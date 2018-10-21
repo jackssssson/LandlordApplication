@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -54,5 +58,5 @@ dependencies {
     testImplementation "org.mockito:mockito-core:2.21.0"
 
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

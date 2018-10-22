@@ -7,17 +7,16 @@ public class BankAccount implements Serializable {
     public BankAccount() {
     }
 
-    private int id;
+    private int bankAccountID;
     private float balance;
-    private List<Transactions> transactions;
-    private User users;
 
-    public int getId() {
-        return id;
+
+    public int getBankAccountID() {
+        return bankAccountID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBankAccountID(int bankAccountID) {
+        this.bankAccountID = bankAccountID;
     }
 
     public float getBalance() {
@@ -28,19 +27,8 @@ public class BankAccount implements Serializable {
         this.balance = balance;
     }
 
-    public List<Transactions> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transactions> transactions) {
-        this.transactions = transactions;
-    }
-
-    public User getUsers() {
-        return users;
-    }
-
-    public void setUsers(User users) {
-        this.users = users;
+    public BankAccount(int bankAccountID, float balance) {
+        this.bankAccountID = bankAccountID;
+        this.balance = balance;
     }
 }

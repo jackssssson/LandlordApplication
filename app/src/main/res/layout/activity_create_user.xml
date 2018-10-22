@@ -4,6 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.AddUser.CreateUserActivity">
+    tools:context=".views.CreateUser.CreateUserActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/home">
+
+
+        <EditText
+            android:id="@+id/user_name_plain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/log_in"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="user_name"
+            android:textColorHint="#ffffff"
+            />
+
+        <EditText
+            android:id="@+id/user_password_plain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/user_name_plain"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="password"
+            android:textColorHint="#ffffff"/>
+
+        <EditText
+            android:id="@+id/user_email_plain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_password_plain"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="email"
+            android:textColorHint="#ffffff"
+            />
+
+        <Button
+            android:id="@+id/create_id"
+            android:layout_width="115dp"
+            android:layout_height="45dp"
+            android:text="Create"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/user_email_plain"
+            android:background="@mipmap/button_create"
+            />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

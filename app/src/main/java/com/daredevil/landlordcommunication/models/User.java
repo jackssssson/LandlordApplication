@@ -6,95 +6,69 @@ import java.util.Set;
 public class User implements Serializable {
     public User() {
     }
+    private int userid;
+    private String userEmail;
+    private String userName;
+    private String userPassword;
+    private BankAccount bankAccount;
+    private Estates estate;
 
-    private int id;
-    private String name;
-    private String password;
-    private String email;
-    private Set<UserRating> user_ratings;
-    private UserType user_types;
-    private Estates estates;
-    private BankAccount bank_account;
-    private Set<Messages> recipientMessage;
-    private Set<Messages> senderMessage;
-
-    public int getId() {
-        return id;
+    public User(int userid, String userEmail, String userName,
+                String userPassword, BankAccount bankAccount, Estates estate) {
+        this.userid = userid;
+        this.userEmail = userEmail;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.bankAccount = bankAccount;
+        this.estate = estate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getUserid() {
+        return userid;
     }
 
-    public String getName() {
-        return name;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getEmail() {
-        return email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public Set<UserRating> getUser_ratings() {
-        return user_ratings;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public void setUser_ratings(Set<UserRating> user_ratings) {
-        this.user_ratings = user_ratings;
+    public BankAccount getBankAccount() {
+        return bankAccount;
     }
 
-    public UserType getUser_types() {
-        return user_types;
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
-    public void setUser_types(UserType user_types) {
-        this.user_types = user_types;
+    public Estates getEstate() {
+        return estate;
     }
 
-    public Estates getEstates() {
-        return estates;
+    public void setEstate(Estates estate) {
+        this.estate = estate;
     }
 
-    public void setEstates(Estates estates) {
-        this.estates = estates;
-    }
-
-    public BankAccount getBank_account() {
-        return bank_account;
-    }
-
-    public void setBank_account(BankAccount bank_account) {
-        this.bank_account = bank_account;
-    }
-
-    public Set<Messages> getRecipientMessage() {
-        return recipientMessage;
-    }
-
-    public void setRecipientMessage(Set<Messages> recipientMessage) {
-        this.recipientMessage = recipientMessage;
-    }
-
-    public Set<Messages> getSenderMessage() {
-        return senderMessage;
-    }
-
-    public void setSenderMessage(Set<Messages> senderMessage) {
-        this.senderMessage = senderMessage;
-    }
 }

@@ -7,13 +7,24 @@ public class Address implements Serializable{
     }
 
     private int id;
-    private String country;
     private String city;
-    private String street;
-    private int floor;
-    private int flat;
+    private String country;
     private char entrance;
-    private Estates estates;
+    private int flat;
+    private int floor;
+    private String street;
+    private int streetNumber;
+
+    public Address(int id, String city, String country, char entrance, int flat, int floor, String street, int streetNumber) {
+        this.id = id;
+        this.city = city;
+        this.country = country;
+        this.entrance = entrance;
+        this.flat = flat;
+        this.floor = floor;
+        this.street = street;
+        this.streetNumber = streetNumber;
+    }
 
     public int getId() {
         return id;
@@ -21,14 +32,6 @@ public class Address implements Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public String getCity() {
@@ -39,28 +42,12 @@ public class Address implements Serializable{
         this.city = city;
     }
 
-    public String getStreet() {
-        return street;
+    public String getCountry() {
+        return country;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public int getFloor() {
-        return floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
-
-    public int getFlat() {
-        return flat;
-    }
-
-    public void setFlat(int flat) {
-        this.flat = flat;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public char getEntrance() {
@@ -71,11 +58,35 @@ public class Address implements Serializable{
         this.entrance = entrance;
     }
 
-    public Estates getEstates() {
-        return estates;
+    public int getFlat() {
+        return flat;
     }
 
-    public void setEstates(Estates estates) {
-        this.estates = estates;
+    public void setFlat(int flat) {
+        this.flat = flat;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(int streetNumber) {
+        this.streetNumber = streetNumber;
     }
 }

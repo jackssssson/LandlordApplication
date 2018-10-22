@@ -4,12 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.AddUser.AddUserActivity">
+    tools:context=".LandlordApplication">
 
-    <FrameLayout
-        android:id="@+id/content_Fragment"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

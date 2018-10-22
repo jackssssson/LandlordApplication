@@ -6,28 +6,27 @@ import java.util.Set;
 public class Estates implements Serializable {
     public Estates() {
     }
-
-    private int id;
-    private float price;
+    private int estateid;
     private String estateName;
     private boolean occupied;
-    private Set<User> users;
-    private Address addresses;
+    private float price;
+    private Address address;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
+    public Estates(int estateid, String estateName, boolean occupied, float price, Address address) {
+        this.estateid = estateid;
+        this.estateName = estateName;
+        this.occupied = occupied;
         this.price = price;
+        this.address = address;
+    }
+
+    public int getEstateid() {
+        return estateid;
+    }
+
+    public void setEstateid(int estateid) {
+        this.estateid = estateid;
     }
 
     public String getEstateName() {
@@ -46,19 +45,19 @@ public class Estates implements Serializable {
         this.occupied = occupied;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public float getPrice() {
+        return price;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
-    public Address getAddresses() {
-        return addresses;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddresses(Address addresses) {
-        this.addresses = addresses;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

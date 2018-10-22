@@ -18,18 +18,18 @@ public class HttpUserService implements UserService{
         return mUserRepository.getAll();
     }
 
-    @Override
-    public User getInfoById(int id) throws IOException {
-        return mUserRepository.getById(id);
-    }
-
-    @Override
-    public void addCar(User car) throws IOException {
-        mUserRepository.add(car);
-    }
-
-    @Override
-    public void deleteCar(int id) throws IOException {
-        mUserRepository.delete(id);
-    }
+//    @Override
+//    public User getInfoById(int id) throws IOException {
+//        return mUserRepository.getById(id);
+//    }
+//
+//    @Override
+//    public void addCar(User car) throws IOException {
+//        mUserRepository.add(car);
+//    }
+//
+//    @Override
+//    public void deleteCar(int id) throws IOException {
+//        mUserRepository.delete(id);
+//    }
 }

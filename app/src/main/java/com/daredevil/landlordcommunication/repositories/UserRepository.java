@@ -6,9 +6,9 @@ import java.util.List;
 public interface UserRepository<T> {
     List<T> getAll() throws IOException;
 
-    void add(T item) throws IOException;
-
-    void delete(int id) throws IOException;
-
-    T getById(int id) throws IOException;
+//    void add(T item) throws IOException;
+//
+//    void delete(int id) throws IOException;
+//
+//    T getById(int id) throws IOException;
 }

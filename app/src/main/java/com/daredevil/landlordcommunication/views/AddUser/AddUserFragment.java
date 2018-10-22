@@ -1,7 +1,9 @@
 package com.daredevil.landlordcommunication.views.AddUser;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.daredevil.landlordcommunication.R;
+import com.daredevil.landlordcommunication.async.AsyncRunner;
+import com.daredevil.landlordcommunication.async.AsyncRunnerImpl;
+import com.daredevil.landlordcommunication.constants.Constants;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +33,7 @@ public class AddUserFragment extends Fragment {
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

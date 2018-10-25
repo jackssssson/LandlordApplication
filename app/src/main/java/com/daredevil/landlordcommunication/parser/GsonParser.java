@@ -4,26 +4,26 @@ import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.List;
 
-public class GsonParser<T> implements JsonParserContract<T> {
-    private final Class<T> mKlass;
-    private final Class<T[]> mArrKlass;
+public class GsonParser<T> implements JsonParser<T> {
+    private final Class<T> mTClass;
+    private final Class<T[]> mArrayClass;
     private final Gson gson;
 
-    public GsonParser(Class<T> mKlass, Class<T[]> mArrKlass) {
-        this.mKlass = mKlass;
-        this.mArrKlass = mArrKlass;
+    public GsonParser(Class<T> tClass, Class<T[]> arrayClass) {
+        this.mTClass = tClass;
+        this.mArrayClass = arrayClass;
         this.gson = new Gson();
     }
 
     @Override
     public List<T> fromJsonArray(String jsonString) {
-        T[] arr = gson.fromJson(jsonString, mArrKlass);
+        T[] arr = gson.fromJson(jsonString, mArrayClass);
         return Arrays.asList(arr);
     }
 
     @Override
     public T fromJson(String jsonString) {
-        return gson.fromJson(jsonString, mKlass);
+        return gson.fromJson(jsonString, mTClass);
     }
 
     @Override

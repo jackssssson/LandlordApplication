@@ -1,7 +1,5 @@
 package com.daredevil.landlordcommunication.http;
 
-import com.daredevil.landlordcommunication.constants.Constants;
-
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -10,9 +8,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class OkHttpHttpRequster implements HttpUserRequester {
+public class OkHttpHttpRequester implements HttpRequester {
 
-    public OkHttpHttpRequster() {
+    public OkHttpHttpRequester() {
     }
 
     @Override
@@ -46,33 +44,6 @@ public class OkHttpHttpRequster implements HttpUserRequester {
 
         Response response = client.newCall(request).execute();
 
-        return response.body().string();
-    }
-
-    @Override
-    public String delete(String url) throws IOException {
-        Request request = new Request
-                .Builder()
-                .delete()
-                .url(url)
-                .build();
-        OkHttpClient client = new OkHttpClient();
-
-        Response response = client.newCall(request).execute();
-        return response.body().string();
-    }
-
-    @Override
-    public String put(String url, String body) throws IOException {
-        RequestBody requestBody = RequestBody.create(MediaType.get("application/json"), body);
-
-        Request request = new Request
-                .Builder()
-                .put(requestBody)
-                .url(url)
-                .build();
-        OkHttpClient client = new OkHttpClient();
-        Response response = client.newCall(request).execute();
         return response.body().string();
     }
 }

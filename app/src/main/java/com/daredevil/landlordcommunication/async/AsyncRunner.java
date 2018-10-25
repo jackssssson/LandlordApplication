@@ -1,5 +1,16 @@
 package com.daredevil.landlordcommunication.async;
 
-public interface AsyncRunner {
-    void runInBackground(final Runnable action);
+import android.os.AsyncTask;
+
+public class AsyncRunner {
+    public static void runInBackGround(Runnable action){
+        new AsyncTask<Boolean, Void, Void>(){
+
+            @Override
+            protected Void doInBackground(Boolean... booleans) {
+                action.run();
+                return null;
+            }
+        }.execute(true);
+    }
 }

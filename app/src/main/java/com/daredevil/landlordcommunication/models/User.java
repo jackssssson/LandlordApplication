@@ -10,16 +10,16 @@ public class User implements Serializable {
     private String userEmail;
     private String userName;
     private String userPassword;
-    private BankAccount bankAccount;
+    //private BankAccount bankAccount;
     private Estates estate;
 
     public User(int userid, String userEmail, String userName,
-                String userPassword, BankAccount bankAccount, Estates estate) {
+                String userPassword, Estates estate) {
         this.userid = userid;
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPassword = userPassword;
-        this.bankAccount = bankAccount;
+        //this.bankAccount = bankAccount;
         this.estate = estate;
     }
 
@@ -55,13 +55,6 @@ public class User implements Serializable {
         this.userPassword = userPassword;
     }
 
-    public BankAccount getBankAccount() {
-        return bankAccount;
-    }
-
-    public void setBankAccount(BankAccount bankAccount) {
-        this.bankAccount = bankAccount;
-    }
 
     public Estates getEstate() {
         return estate;

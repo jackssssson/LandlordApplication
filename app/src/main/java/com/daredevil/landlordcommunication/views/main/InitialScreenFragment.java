@@ -2,6 +2,7 @@ package com.daredevil.landlordcommunication.views.main;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,12 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
+import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
+import com.daredevil.landlordcommunication.views.landlord.LogInLandlord;
 
+import java.io.IOException;
+import java.util.Objects;
 
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,7 +27,13 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InitialScreenFragment extends Fragment implements com.daredevil.landlordcommunication.views.main.View{
+public class InitialScreenFragment extends Fragment implements
+        com.daredevil.landlordcommunication.views.main.View {
+
+    @BindView(R.id.user_name_plain)
+    EditText userName;
+    @BindView(R.id.password_plain)
+    EditText password;
 
     @BindView(R.id.create_id)
     Button mCreate;
@@ -31,9 +42,7 @@ public class InitialScreenFragment extends Fragment implements com.daredevil.lan
     Button mLogIn;
 
     private Presenter presenter;
-    private Navigator navigator;
 
-    @Inject
     public InitialScreenFragment() {
         // Required empty public constructor
     }
@@ -48,8 +57,18 @@ public class InitialScreenFragment extends Fragment implements com.daredevil.lan
 
         ButterKnife.bind(this, view);
 
-        mCreate.setOnClickListener(v -> navigator.navigateCreateButton());
-        mLogIn.setOnClickListener(v -> navigator.navigateLogInButton());
+        mCreate.setOnClickListener(v -> startActivity(new Intent(getActivity(),
+                CreateUserActivity.class)));
+
+
+        mLogIn.setOnClickListener(v -> {
+            try {
+                presenter.logInUser(userName.getText().toString()
+                        , password.getText().toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         return view;
     }
@@ -58,7 +77,6 @@ public class InitialScreenFragment extends Fragment implements com.daredevil.lan
     public void onResume() {
         super.onResume();
         presenter.setView(this);
-        presenter.showTestToast();
     }
 
     @Override
@@ -66,17 +84,21 @@ public class InitialScreenFragment extends Fragment implements com.daredevil.lan
         this.presenter = presenter;
     }
 
+
     @Override
-    public void showTestToast(String text) {
-        Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
+    public void logInUser(boolean isConnected) {
+        runOnUi(() -> {
+            if (isConnected) {
+                startActivity(new Intent(getActivity(), LogInLandlord.class));
+            } else {
+                Toast.makeText(getContext(), "Wrong user or password",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
-//    private void runOnUi(Runnable action) {
-//        Objects.requireNonNull(getActivity()).runOnUiThread(action);
-//    }
-
-    public void setNavigator(Navigator navigator) {
-        this.navigator = navigator;
+    private void runOnUi(Runnable action) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(action);
     }
 }

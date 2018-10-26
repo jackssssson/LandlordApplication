@@ -5,4 +5,102 @@
     android:layout_height="match_parent"
     tools:context=".views.CreateUser.CreateUserFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/home">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:layout_marginStart="130dp"
+            android:text="Landlord"
+            android:textSize="22dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220dp"
+            android:layout_marginStart="130dp"
+            android:text="Tenant"
+            android:textSize="22dp"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_tenant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220dp"
+            android:layout_marginStart="85dp"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:layout_marginStart="85dp"
+            />
+
+        <EditText
+            android:id="@+id/user_name_plain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/log_in"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="user_name"
+            android:textColorHint="#ffffff"
+            />
+
+        <EditText
+            android:id="@+id/user_password_plain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/user_name_plain"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="password"
+            android:textColorHint="#ffffff"/>
+
+        <EditText
+            android:id="@+id/user_email_plain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_password_plain"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="email"
+            android:textColorHint="#ffffff"
+            />
+
+        <EditText
+            android:id="@+id/user_iBan_plain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_email_plain"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="iBan"
+            android:textColorHint="#ffffff"
+            />
+
+        <Button
+            android:id="@+id/btn_create"
+            android:layout_width="115dp"
+            android:layout_height="45dp"
+            android:text="Create"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/user_iBan_plain"
+            android:background="@mipmap/button_create"
+            />
+    </RelativeLayout>
+
 </FrameLayout>

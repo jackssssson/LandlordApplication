@@ -1,7 +1,6 @@
-package com.daredevil.landlordcommunication.views.main;
+package com.daredevil.landlordcommunication.views.CreateUser;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
-import com.daredevil.landlordcommunication.constants.Constants;
 import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.http.OkHttpHttpRequester;
 import com.daredevil.landlordcommunication.models.User;
@@ -13,39 +12,34 @@ import com.daredevil.landlordcommunication.repositories.Repository;
 
 import java.io.IOException;
 
-public class InitialScreenPresenter implements Presenter{
-
+public class CreateUserPresenter implements Presenter {
     private View mView;
-    private Repository<User> mUserRepository;
     private Repository<UserDTO> mCreateUserDTORepository;
     private HttpRequester mHttpRequester;
     private JsonParser<User> mJsonParser;
 
-    public InitialScreenPresenter() {
-
+    public CreateUserPresenter(){
         mJsonParser = new GsonParser(User.class);
         mHttpRequester = new OkHttpHttpRequester();
-        mUserRepository = new HttpRepository(mHttpRequester, mJsonParser);
         mCreateUserDTORepository = new HttpRepository(mHttpRequester, mJsonParser);
         mCreateUserDTORepository = new HttpRepository(mHttpRequester, mJsonParser);
     }
 
     @Override
     public void setView(View view) {
-        mView = view;
+        this.mView = view;
     }
 
     @Override
-    public void logInUser(String userName, String password) {
-        AsyncRunner.runInBackGround(() ->{
+    public void createUserDTO(UserDTO user) throws IOException {
+
+        AsyncRunner.runInBackGround(() -> {
             try {
-               User a = mUserRepository.getByUserNameAndPassword(userName, password);
-
-
-
+                mCreateUserDTORepository.add(user);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
     }
 }

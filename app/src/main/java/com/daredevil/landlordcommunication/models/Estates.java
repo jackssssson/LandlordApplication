@@ -1,6 +1,7 @@
 package com.daredevil.landlordcommunication.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 public class Estates implements Serializable {
@@ -10,15 +11,17 @@ public class Estates implements Serializable {
     private String estateName;
     private boolean occupied;
     private float price;
-    private Address address;
+    private String address;
+    private Date duedate;
 
 
-    public Estates(int estateid, String estateName, boolean occupied, float price, Address address) {
+    public Estates(int estateid, String estateName, boolean occupied, float price, String address, Date duedate) {
         this.estateid = estateid;
         this.estateName = estateName;
         this.occupied = occupied;
         this.price = price;
         this.address = address;
+        this.duedate = duedate;
     }
 
     public int getEstateid() {
@@ -53,11 +56,19 @@ public class Estates implements Serializable {
         this.price = price;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getDuedate() {
+        return duedate;
+    }
+
+    public void setDuedate(Date duedate) {
+        this.duedate = duedate;
     }
 }

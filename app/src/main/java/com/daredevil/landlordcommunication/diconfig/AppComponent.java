@@ -23,6 +23,7 @@ import javax.inject.Singleton;
  */
 @Singleton
 @Component(modules = {
+        OkHttpModule.class,
         AppModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})

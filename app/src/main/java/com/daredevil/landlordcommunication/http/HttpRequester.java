@@ -3,6 +3,7 @@ package com.daredevil.landlordcommunication.http;
 import java.io.IOException;
 
 public interface HttpRequester {
-    String get(String url) throws IOException;
-    String post(String url, String body) throws IOException;
+    String getUser(String url) throws IOException;
+    String postUser(String url, String body) throws IOException;
+    String getUserLogIn(String url) throws IOException;
 }

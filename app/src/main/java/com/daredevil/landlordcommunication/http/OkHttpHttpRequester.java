@@ -14,7 +14,7 @@ public class OkHttpHttpRequester implements HttpRequester {
     }
 
     @Override
-    public String get(String url) throws IOException {
+    public String getUser(String url) throws IOException {
         Request request = new Request
                 .Builder()
                 .get()
@@ -31,7 +31,7 @@ public class OkHttpHttpRequester implements HttpRequester {
     }
 
     @Override
-    public String post(String url, String body) throws IOException {
+    public String postUser(String url, String body) throws IOException {
         RequestBody requestBody = RequestBody.create(
                 MediaType.get("application/json"), body);
 
@@ -46,4 +46,25 @@ public class OkHttpHttpRequester implements HttpRequester {
 
         return response.body().string();
     }
+
+    @Override
+    public String getUserLogIn(String url) throws IOException {
+        Request request = new Request
+                .Builder()
+                .get()
+                .url(url)
+                .build();
+
+        OkHttpClient client = new OkHttpClient();
+
+        Response response = client.newCall(request).execute();
+
+        String body = response.body().string();
+
+
+        return body;
+
+    }
+
+
 }

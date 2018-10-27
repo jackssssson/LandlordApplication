@@ -1,6 +1,9 @@
 package com.daredevil.landlordcommunication.http;
 
 import java.io.IOException;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -10,6 +13,7 @@ import okhttp3.Response;
 
 public class OkHttpHttpRequester implements HttpRequester {
 
+    @Inject
     public OkHttpHttpRequester() {
     }
 
@@ -25,8 +29,7 @@ public class OkHttpHttpRequester implements HttpRequester {
 
         Response response = client.newCall(request).execute();
 
-        String body = response.body().string();
-        return body;
+        return Objects.requireNonNull(response.body()).string();
 
     }
 
@@ -44,7 +47,7 @@ public class OkHttpHttpRequester implements HttpRequester {
 
         Response response = client.newCall(request).execute();
 
-        return response.body().string();
+        return Objects.requireNonNull(response.body()).string();
     }
 
     @Override
@@ -59,10 +62,8 @@ public class OkHttpHttpRequester implements HttpRequester {
 
         Response response = client.newCall(request).execute();
 
-        String body = response.body().string();
 
-
-        return body;
+        return Objects.requireNonNull(response.body()).string();
 
     }
 

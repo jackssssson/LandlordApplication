@@ -5,7 +5,6 @@ import com.daredevil.landlordcommunication.http.OkHttpHttpRequester;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.OkHttpClient;
 
 @Module
 public class OkHttpModule {

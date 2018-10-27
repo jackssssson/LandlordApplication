@@ -9,12 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 
 import java.io.IOException;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,11 +28,8 @@ import butterknife.ButterKnife;
 public class CreateUserFragment extends Fragment implements
         com.daredevil.landlordcommunication.views.CreateUser.View{
 
-    @BindView(R.id.rb_landlord)
-    RadioButton mRadioButtonLandlord;
-
-    @BindView(R.id.rb_tenant)
-    RadioButton mRadioButtonTenant;
+    @BindView(R.id.rg_button)
+    RadioGroup mRadioGroup;
 
     @BindView(R.id.user_name_plain)
     EditText mUserName;
@@ -48,6 +48,7 @@ public class CreateUserFragment extends Fragment implements
 
     private Presenter presenter;
 
+    @Inject
     public CreateUserFragment() {
         // Required empty public constructor
     }
@@ -61,10 +62,22 @@ public class CreateUserFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
+        mRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId){
+                case R.id.rb_landlord:
+                    Toast.makeText(getContext(), "Landlord", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.rb_tenant:
+                    Toast.makeText(getContext(), "Tenant", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        });
+
         mButtonCreate.setOnClickListener(v -> {
             UserDTO userDTO = new UserDTO(mUserName.getText().toString(),
                     mUserPassword.getText().toString(),
                     mUserEmail.getText().toString(), mUserIBan.getText().toString());
+
             try {
                 presenter.createUserDTO(userDTO);
             } catch (IOException e) {
@@ -79,10 +92,6 @@ public class CreateUserFragment extends Fragment implements
     public void onResume() {
         super.onResume();
         presenter.setView(this);
-    }
-
-    public static CreateUserFragment newInstance() {
-        return new CreateUserFragment();
     }
 
     @Override

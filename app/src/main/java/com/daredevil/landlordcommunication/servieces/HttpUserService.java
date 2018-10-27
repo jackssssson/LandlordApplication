@@ -5,13 +5,16 @@ import com.daredevil.landlordcommunication.repositories.Repository;
 
 import java.io.IOException;
 
-public class HttpUserService implements UserService {
-//    private Repository<TestUser> mUserRepository;
-//
-//    public HttpUserService(Repository<TestUser> repository) {
-//        this.mUserRepository = repository;
-//    }
+import javax.inject.Inject;
 
+public class HttpUserService implements UserService {
+    @Inject
+    Repository<User> mUserRepository;
+
+    @Inject
+    public HttpUserService(Repository<User> repository) {
+        this.mUserRepository = repository;
+    }
 
     @Override
     public User getUserById(int id) throws IOException {

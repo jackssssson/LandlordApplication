@@ -1,11 +1,12 @@
 package com.daredevil.landlordcommunication.views.landlord;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.daredevil.landlordcommunication.R;
 
-public class LogInLandlord extends AppCompatActivity {
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class LogInLandlord extends DaggerAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

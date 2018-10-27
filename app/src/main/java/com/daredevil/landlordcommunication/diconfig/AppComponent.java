@@ -3,6 +3,7 @@ package com.daredevil.landlordcommunication.diconfig;
 import android.app.Application;
 
 import com.daredevil.landlordcommunication.LandlordApplication;
+import com.daredevil.landlordcommunication.parser.JsonParser;
 
 import dagger.BindsInstance;
 import dagger.Component;
@@ -23,6 +24,10 @@ import javax.inject.Singleton;
  */
 @Singleton
 @Component(modules = {
+        AsyncRunnerModule.class,
+        UserServiceModule.class,
+        JsonParserModule.class,
+        RepositoriesModule.class,
         OkHttpModule.class,
         AppModule.class,
         ActivityBindingModule.class,

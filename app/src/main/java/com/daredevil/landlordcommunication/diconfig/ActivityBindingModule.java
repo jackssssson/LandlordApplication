@@ -1,5 +1,6 @@
 package com.daredevil.landlordcommunication.diconfig;
 
+import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
 import com.daredevil.landlordcommunication.views.main.InitialScreenActivity;
 
 import dagger.Module;
@@ -18,6 +19,8 @@ public abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = {InitialScreenModule.class})
     abstract InitialScreenActivity initialScreenActivity();
 
-
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = {CreateUserModule.class})
+    abstract CreateUserActivity createUserActivity();
 
 }

@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,6 +45,7 @@ public class InitialScreenFragment extends Fragment implements
 
     private Presenter presenter;
 
+    @Inject
     public InitialScreenFragment() {
         // Required empty public constructor
     }

@@ -3,15 +3,20 @@ package com.daredevil.landlordcommunication.repositories;
 import com.daredevil.landlordcommunication.constants.Constants;
 import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.User;
-import com.daredevil.landlordcommunication.parser.GsonParser;
 import com.daredevil.landlordcommunication.parser.JsonParser;
 
 import java.io.IOException;
+
+import javax.inject.Inject;
 
 public class HttpRepository<T> implements Repository<T> {
     private final HttpRequester mHttpRequester;
     private final JsonParser<T> mJsonParser;
 
+    @Inject
+    JsonParser<User> jsonParser;
+
+    @Inject
     public HttpRepository(HttpRequester httpRequester, JsonParser<T> jsonParser) {
         this.mHttpRequester = httpRequester;
         this.mJsonParser = jsonParser;
@@ -35,14 +40,10 @@ public class HttpRepository<T> implements Repository<T> {
 
     @Override
     public User getByUserNameAndPassword(String userName, String password) throws IOException {
-        //JsonParser<LogInModel> logInModelJsonParser = new GsonParser<>(LogInModel.class);
-
-        //String body = logInModelJsonParser.toJson(logInModel);
         String url = Constants.isLoginCorrect + "/" + userName + "/" + password;
 
         String getUser = mHttpRequester.getUserLogIn(url);
         if (getUser.equals("true")) {
-            JsonParser<User> jsonParser = new GsonParser<>(User.class);
             String json = mHttpRequester.getUser(Constants.getByUserNameAndPassword
                     + "/" + userName + "/" + password);
 
@@ -50,6 +51,5 @@ public class HttpRepository<T> implements Repository<T> {
         } else {
             return new User();
         }
-
     }
 }

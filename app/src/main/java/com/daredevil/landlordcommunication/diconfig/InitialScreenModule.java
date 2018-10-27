@@ -1,7 +1,10 @@
 package com.daredevil.landlordcommunication.diconfig;
 
 import com.daredevil.landlordcommunication.views.main.InitialScreenFragment;
+import com.daredevil.landlordcommunication.views.main.InitialScreenPresenter;
+import com.daredevil.landlordcommunication.views.main.Presenter;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -11,6 +14,7 @@ public abstract class InitialScreenModule {
     @ContributesAndroidInjector
     abstract InitialScreenFragment initialScreenFragment();
 
-//    @ActivityScoped
-//    @Binds abstract TasksContract.Presenter taskPresenter(TasksPresenter presenter);
+    @ActivityScoped
+    @Binds
+    abstract Presenter taskPresenter(InitialScreenPresenter presenter);
 }

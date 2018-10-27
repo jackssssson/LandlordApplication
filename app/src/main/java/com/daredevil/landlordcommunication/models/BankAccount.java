@@ -1,7 +1,6 @@
 package com.daredevil.landlordcommunication.models;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class BankAccount implements Serializable {
     public BankAccount() {

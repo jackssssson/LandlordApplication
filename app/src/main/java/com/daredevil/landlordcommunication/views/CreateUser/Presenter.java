@@ -7,5 +7,5 @@ import java.io.IOException;
 public interface Presenter {
     void setView(View view);
 
-    void createUserDTO(UserDTO user) throws IOException;
+    void createUserDTO(UserDTO user, String type) throws IOException;
 }

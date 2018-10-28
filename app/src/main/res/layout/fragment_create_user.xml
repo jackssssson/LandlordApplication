@@ -31,17 +31,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="90dp"
-            android:layout_marginTop="180dp">
+            android:layout_marginTop="180dp"
+            android:onClick="rbClicked">
 
             <RadioButton
                 android:id="@+id/rb_landlord"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="rbClicked"
+                />
 
             <RadioButton
                 android:id="@+id/rb_tenant"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="rbClicked"
+                />
 
         </RadioGroup>
 

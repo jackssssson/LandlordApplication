@@ -2,8 +2,8 @@ package com.daredevil.landlordcommunication;
 
 
 
+import com.daredevil.landlordcommunication.constants.Constants;
 import com.daredevil.landlordcommunication.diconfig.DaggerAppComponent;
-import com.daredevil.landlordcommunication.views.chat.Constants;
 
 import java.net.URISyntaxException;
 

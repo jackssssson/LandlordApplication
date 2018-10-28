@@ -9,10 +9,10 @@ import javax.inject.Inject;
 
 public class HttpUserService implements UserService {
     @Inject
-    Repository<User> mUserRepository;
+    Repository mUserRepository;
 
     @Inject
-    public HttpUserService(Repository<User> repository) {
+    public HttpUserService(Repository repository) {
         this.mUserRepository = repository;
     }
 

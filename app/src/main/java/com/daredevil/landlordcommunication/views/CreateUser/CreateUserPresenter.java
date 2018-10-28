@@ -15,19 +15,13 @@ public class CreateUserPresenter implements Presenter {
     private View mView;
 
     @Inject
-    Repository<UserDTO> mCreateUserDTORepository;
+    Repository mCreateUserDTORepository;
 
     @Inject
     HttpRequester mHttpRequester;
 
     @Inject
-    JsonParser<User> mJsonParser;
-
-    @Inject
-    AsyncRunner mAsyncRunner;
-
-    @Inject
-    public CreateUserPresenter(){
+    CreateUserPresenter(){
     }
 
     @Override
@@ -36,10 +30,12 @@ public class CreateUserPresenter implements Presenter {
     }
 
     @Override
-    public void createUserDTO(UserDTO user) throws IOException {
-        mAsyncRunner.runInBackground(() -> {
+    public void createUserDTO(UserDTO user, String type) throws IOException {
+        AsyncRunner.runInBackground(() -> {
             try {
-                mCreateUserDTORepository.add(user);
+               String userDTO = mCreateUserDTORepository.addUser(user, type);
+
+               mView.createUserDTO(userDTO);
             } catch (IOException e) {
                 e.printStackTrace();
             }

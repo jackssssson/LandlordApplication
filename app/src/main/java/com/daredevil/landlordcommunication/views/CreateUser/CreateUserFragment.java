@@ -10,22 +10,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
-import com.daredevil.landlordcommunication.views.chat.MainActivity;
+import com.daredevil.landlordcommunication.models.dto.UserDTO;
+import com.daredevil.landlordcommunication.views.landlord.LogInLandlordActivity;
+
+import java.io.IOException;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CreateUserFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.CreateUser.View{
+        com.daredevil.landlordcommunication.views.CreateUser.View {
 
     @BindView(R.id.rg_button)
     RadioGroup mRadioGroup;
@@ -45,6 +51,7 @@ public class CreateUserFragment extends Fragment implements
     @BindView(R.id.btn_create)
     Button mButtonCreate;
 
+
     private Presenter presenter;
 
     @Inject
@@ -61,28 +68,18 @@ public class CreateUserFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-        mRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            switch (checkedId){
-                case R.id.rb_landlord:
-                    Toast.makeText(getContext(), "Landlord", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.rb_tenant:
-                    Toast.makeText(getContext(), "Tenant", Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        });
-
         mButtonCreate.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), MainActivity.class));
-//            UserDTO userDTO = new UserDTO(mUserName.getText().toString(),
-//                    mUserPassword.getText().toString(),
-//                    mUserEmail.getText().toString(), mUserIBan.getText().toString());
-//
-//            try {
-//                presenter.createUserDTO(userDTO);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            UserDTO userDTO = new UserDTO(mUserName.getText().toString(),
+                    mUserPassword.getText().toString(),
+                    mUserEmail.getText().toString(), mUserIBan.getText().toString());
+            final String[] type = new String[1];
+
+
+            try {
+                presenter.createUserDTO(userDTO, type[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         return view;
@@ -97,5 +94,40 @@ public class CreateUserFragment extends Fragment implements
     @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void createUserDTO(String isCreated) {
+        runOnUi(() -> {
+            if (isCreated.equals("Tenant created.") || isCreated.equals("Landlord created.")) {
+                startActivity(new Intent(getActivity(), LogInLandlordActivity.class));
+            } else {
+                Toast.makeText(getContext(), isCreated,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void runOnUi(Runnable action) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+    }
+
+    @OnClick
+    public void rbClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.rb_landlord:
+                if (checked) {
+                    Toast.makeText(getContext(), "landlord",
+                            Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.rb_tenant:
+                if (checked) {
+                    Toast.makeText(getContext(), "tenant",
+                            Toast.LENGTH_LONG).show();
+                }
+        }
     }
 }

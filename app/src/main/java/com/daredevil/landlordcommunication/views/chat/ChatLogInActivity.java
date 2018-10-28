@@ -14,6 +14,8 @@ import com.daredevil.landlordcommunication.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
@@ -21,9 +23,10 @@ import io.socket.emitter.Emitter;
 /**
  * A login screen that offers login via username.
  */
-public class LoginActivity extends Activity {
+public class ChatLogInActivity extends Activity {
 
-    private EditText mUsernameView;
+    @BindView(R.id.username_input)
+    EditText mUsernameView;
 
     private String mUsername;
 
@@ -32,13 +35,13 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_chat_log_in);
+
+        ButterKnife.bind(this);
 
         LandlordApplication app = (LandlordApplication) getApplication();
         mSocket = app.getSocket();
 
-        // Set up the login form.
-        mUsernameView =  findViewById(R.id.username_input);
         mUsernameView.setOnEditorActionListener((textView, id, keyEvent) -> {
             if (id == R.id.login || id == EditorInfo.IME_NULL) {
                 attemptLogin();

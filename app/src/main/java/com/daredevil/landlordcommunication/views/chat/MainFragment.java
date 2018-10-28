@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import butterknife.BindView;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
@@ -44,24 +45,25 @@ import io.socket.emitter.Emitter;
 public class MainFragment extends Fragment {
 
     private static final String TAG = "MainFragment";
-
     private static final int REQUEST_LOGIN = 0;
-
     private static final int TYPING_TIMER_LENGTH = 600;
 
-    private RecyclerView mMessagesView;
-    private EditText mInputMessageView;
+    @BindView(R.id.messages)
+    RecyclerView mMessagesView;
+
+    @BindView(R.id.message_input)
+    EditText mInputMessageView;
+
     private List<Message> mMessages = new ArrayList<>();
     private RecyclerView.Adapter mAdapter;
     private boolean mTyping = false;
     private Handler mTypingHandler = new Handler();
     private String mUsername;
     private Socket mSocket;
-
     private Boolean isConnected = true;
 
     public MainFragment() {
-        super();
+        //super();
     }
 
 
@@ -72,9 +74,6 @@ public class MainFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mAdapter = new MessageAdapter(context, mMessages);
-//        if (context instanceof Activity) {
-//            //this.listener = (MainActivity) context;
-//        }
     }
 
 
@@ -129,11 +128,8 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mMessagesView = view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
-
-        mInputMessageView = view.findViewById(R.id.message_input);
 
         mInputMessageView.setOnEditorActionListener((v, id, event) -> {
             if (id == R.id.send || id == EditorInfo.IME_NULL) {
@@ -180,10 +176,8 @@ public class MainFragment extends Fragment {
         }
 
         mUsername = data.getStringExtra("username");
-        int numUsers = data.getIntExtra("numUsers", 1);
 
         addLog(getResources().getString(R.string.message_welcome));
-        addParticipantsLog(numUsers);
     }
 
     @Override
@@ -213,10 +207,6 @@ public class MainFragment extends Fragment {
                 .message(message).build());
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
-    }
-
-    private void addParticipantsLog(int numUsers) {
-        addLog(getResources().getQuantityString(R.plurals.message_participants, numUsers, numUsers));
     }
 
     private void addMessage(String username, String message) {
@@ -264,7 +254,7 @@ public class MainFragment extends Fragment {
 
     private void startSignIn() {
         mUsername = null;
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        Intent intent = new Intent(getActivity(), ChatLogInActivity.class);
         startActivityForResult(intent, REQUEST_LOGIN);
     }
 
@@ -330,34 +320,28 @@ public class MainFragment extends Fragment {
             getActivity()).runOnUiThread(() -> {
         JSONObject data = (JSONObject) args[0];
         String username;
-        int numUsers;
         try {
             username = data.getString("username");
-            numUsers = data.getInt("numUsers");
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
             return;
         }
 
         addLog(getResources().getString(R.string.message_user_joined, username));
-        addParticipantsLog(numUsers);
     });
 
     private Emitter.Listener onUserLeft = args -> Objects.requireNonNull(
             getActivity()).runOnUiThread(() -> {
         JSONObject data = (JSONObject) args[0];
         String username;
-        int numUsers;
         try {
             username = data.getString("username");
-            numUsers = data.getInt("numUsers");
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
             return;
         }
 
         addLog(getResources().getString(R.string.message_user_left, username));
-        addParticipantsLog(numUsers);
         removeTyping(username);
     });
 

@@ -13,12 +13,11 @@ import dagger.Provides;
 @Module
 public class RepositoriesModule {
     @Provides
-    public Repository<User> userRepository(HttpRequester httpRequester, JsonParser<User> jsonParser){
-        return new HttpRepository<>(httpRequester, jsonParser);
+    public Repository userRepository(HttpRequester mHttpRequester,
+                                     JsonParser<User> mJsonParserUser,
+                                           JsonParser<UserDTO> mJsonParserDTO){
+        return new HttpRepository(mHttpRequester, mJsonParserUser, mJsonParserDTO);
     }
 
-    @Provides
-    public Repository<UserDTO> userDTORepository(HttpRequester httpRequester, JsonParser<UserDTO> jsonParser){
-        return new HttpRepository<>(httpRequester, jsonParser);
-    }
+
 }

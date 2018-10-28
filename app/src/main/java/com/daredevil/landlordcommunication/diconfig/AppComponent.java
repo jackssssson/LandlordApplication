@@ -24,7 +24,6 @@ import javax.inject.Singleton;
  */
 @Singleton
 @Component(modules = {
-        AsyncRunnerModule.class,
         UserServiceModule.class,
         JsonParserModule.class,
         RepositoriesModule.class,

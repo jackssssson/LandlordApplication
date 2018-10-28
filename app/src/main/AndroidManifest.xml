@@ -27,8 +27,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
-        <activity android:name=".views.chat.MainActivity" />
-        <activity android:name=".views.chat.LoginActivity" />
+        <activity android:name=".views.chat.ChatMainActivity" />
+        <activity android:name=".views.chat.ChatLogInActivity" />
     </application>
 
 </manifest>

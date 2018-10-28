@@ -3,40 +3,67 @@ package com.daredevil.landlordcommunication.repositories;
 import com.daredevil.landlordcommunication.constants.Constants;
 import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.User;
+import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.parser.JsonParser;
 
 import java.io.IOException;
 
 import javax.inject.Inject;
 
-public class HttpRepository<T> implements Repository<T> {
-    private final HttpRequester mHttpRequester;
-    private final JsonParser<T> mJsonParser;
+public class HttpRepository implements Repository {
+    @Inject
+    HttpRequester mHttpRequester;
 
     @Inject
-    JsonParser<User> jsonParser;
+    JsonParser<User> mJsonParserUser;
 
     @Inject
-    public HttpRepository(HttpRequester httpRequester, JsonParser<T> jsonParser) {
-        this.mHttpRequester = httpRequester;
-        this.mJsonParser = jsonParser;
+    JsonParser<UserDTO> mJsonParserDTO;
+
+    @Inject
+    public HttpRepository(HttpRequester mHttpRequester, JsonParser<User> mJsonParserUser,
+                          JsonParser<UserDTO> mJsonParserDTO) {
+       this.mHttpRequester = mHttpRequester;
+       this.mJsonParserDTO = mJsonParserDTO;
+       this.mJsonParserUser = mJsonParserUser;
     }
+
+//    @Override
+//    public T add(T item) throws IOException {
+//        String requestBody = mJsonParser.toJson(item);
+//        String responseBody = mHttpRequester.postUser(Constants.postLandlord, requestBody);
+//        return mJsonParser.fromJson(responseBody);
+//
+//    }
 
     @Override
-    public T add(T item) throws IOException {
-        String requestBody = mJsonParser.toJson(item);
-        String responseBody = mHttpRequester.postUser(Constants.postLandlord, requestBody);
-        return mJsonParser.fromJson(responseBody);
+    public String addUser(UserDTO user, String type) throws IOException {
+        String url = Constants.isUserFree;
 
+        String requestBody = mJsonParserDTO.toJson(user);
+        String responseBody = mHttpRequester.postUser(url, requestBody);
+
+        if (responseBody.equals("User is free")){
+            String body;
+            if (type.equals("landlord")){
+                 body = mHttpRequester.postUser(Constants.postLandlord, requestBody);
+            } else {
+                body = mHttpRequester.postUser(Constants.postTenant, requestBody);
+            }
+
+            return body;
+        } else {
+            return responseBody;
+        }
     }
 
-    @Override
-    public T getById(int id) throws IOException {
-        String url = Constants.getUser;
-        String json = mHttpRequester.getUser(url);
-        return mJsonParser.fromJson(json);
-
-    }
+//    @Override
+//    public T getById(int id) throws IOException {
+//        String url = Constants.getUser;
+//        String json = mHttpRequester.getUser(url);
+//        return mJsonParser.fromJson(json);
+//
+//    }
 
     @Override
     public User getByUserNameAndPassword(String userName, String password) throws IOException {
@@ -47,7 +74,7 @@ public class HttpRepository<T> implements Repository<T> {
             String json = mHttpRequester.getUser(Constants.getByUserNameAndPassword
                     + "/" + userName + "/" + password);
 
-            return jsonParser.fromJson(json);
+            return mJsonParserUser.fromJson(json);
         } else {
             return new User();
         }

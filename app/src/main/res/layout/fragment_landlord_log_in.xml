@@ -62,6 +62,7 @@
             android:textColor="@color/username12"/>
 
         <Button
+            android:id="@+id/btn_createEstate"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_below="@id/tv_email"
@@ -72,6 +73,7 @@
             />
 
         <ListView
+            android:id="@+id/lv_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="130dp"

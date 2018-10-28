@@ -2,6 +2,8 @@ package com.daredevil.landlordcommunication.diconfig;
 
 import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
 import com.daredevil.landlordcommunication.views.landlord.LandlordLogInActivity;
+import com.daredevil.landlordcommunication.views.landlord.estate.LandlordEstateActivity;
+import com.daredevil.landlordcommunication.views.landlord.info.LandlordInfoActivity;
 import com.daredevil.landlordcommunication.views.main.InitialScreenActivity;
 
 import dagger.Module;
@@ -25,7 +27,15 @@ public abstract class ActivityBindingModule {
     abstract CreateUserActivity createUserActivity();
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = {CreateUserModule.class})
+    @ContributesAndroidInjector(modules = {LandlordLogInModule.class})
     abstract LandlordLogInActivity landlordLogInActivity();
 
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = {LandlordEstateModule.class})
+    abstract LandlordEstateActivity landlordEstateActivity();
+
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = {LandlordInfoModule.class})
+    abstract LandlordInfoActivity landlordInfoActivity();
 }

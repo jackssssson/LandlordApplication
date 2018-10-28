@@ -27,6 +27,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".views.chat.ChatMainActivity" />
         <activity android:name=".views.chat.ChatLogInActivity" />
+        <activity android:name=".views.landlord.estate.LandlordEstateActivity" />
+        <activity android:name=".views.landlord.info.LandlordInfoActivity"></activity>
     </application>
 
 </manifest>

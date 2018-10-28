@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.landlord.estate.LandlordEstateFragment"
+    android:background="@mipmap/home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/estate_name"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:hint="Estate name"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColorHint="@color/username6"/>
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/estate_name"
+            android:textColorHint="@color/username6"/>
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/price"
+            android:textColorHint="@color/username6"/>
+
+        <Button
+            android:id="@+id/btn_user_estate"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/address"
+            android:background="@mipmap/button_create"
+            android:text="Create"
+            />
+
+    </RelativeLayout>
+
+</FrameLayout>

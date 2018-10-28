@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.landlord.info.LandlordInfoFragment"
+    android:background="@mipmap/home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Tenant name"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Tenant email"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

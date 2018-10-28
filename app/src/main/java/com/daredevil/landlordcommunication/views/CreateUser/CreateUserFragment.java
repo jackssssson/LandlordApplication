@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.views.landlord.LogInLandlordActivity;
+import com.daredevil.landlordcommunication.views.main.InitialScreenActivity;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,7 +25,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,15 +67,23 @@ public class CreateUserFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-        mButtonCreate.setOnClickListener(v -> {
+        mButtonCreate.setOnClickListener((View v) -> {
             UserDTO userDTO = new UserDTO(mUserName.getText().toString(),
                     mUserPassword.getText().toString(),
                     mUserEmail.getText().toString(), mUserIBan.getText().toString());
-            final String[] type = new String[1];
 
+            int radioButtonId = mRadioGroup.getCheckedRadioButtonId();
+            RadioButton radioButton = mRadioGroup.findViewById(radioButtonId);
+            String text;
+
+            if (radioButton == null){
+                text = "";
+            } else {
+                text = radioButton.getText().toString();
+            }
 
             try {
-                presenter.createUserDTO(userDTO, type[0]);
+                presenter.createUserDTO(userDTO, text);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -100,7 +107,7 @@ public class CreateUserFragment extends Fragment implements
     public void createUserDTO(String isCreated) {
         runOnUi(() -> {
             if (isCreated.equals("Tenant created.") || isCreated.equals("Landlord created.")) {
-                startActivity(new Intent(getActivity(), LogInLandlordActivity.class));
+                startActivity(new Intent(getActivity(), InitialScreenActivity.class));
             } else {
                 Toast.makeText(getContext(), isCreated,
                         Toast.LENGTH_LONG).show();
@@ -108,26 +115,13 @@ public class CreateUserFragment extends Fragment implements
         });
     }
 
-    private void runOnUi(Runnable action) {
-        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+    @Override
+    public void typeWarning() {
+        runOnUi(() -> Toast.makeText(getContext(),
+                "Choose landlord or tenant!", Toast.LENGTH_LONG).show());
     }
 
-    @OnClick
-    public void rbClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch (view.getId()) {
-            case R.id.rb_landlord:
-                if (checked) {
-                    Toast.makeText(getContext(), "landlord",
-                            Toast.LENGTH_LONG).show();
-                }
-                break;
-            case R.id.rb_tenant:
-                if (checked) {
-                    Toast.makeText(getContext(), "tenant",
-                            Toast.LENGTH_LONG).show();
-                }
-        }
+    private void runOnUi(Runnable action) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(action);
     }
 }

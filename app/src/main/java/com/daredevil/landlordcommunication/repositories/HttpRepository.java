@@ -45,7 +45,7 @@ public class HttpRepository implements Repository {
 
         if (responseBody.equals("User is free")){
             String body;
-            if (type.equals("landlord")){
+            if (type.equals("Landlord")){
                  body = mHttpRequester.postUser(Constants.postLandlord, requestBody);
             } else {
                 body = mHttpRequester.postUser(Constants.postTenant, requestBody);
@@ -66,7 +66,7 @@ public class HttpRepository implements Repository {
 //    }
 
     @Override
-    public User getByUserNameAndPassword(String userName, String password) throws IOException {
+    public UserDTO getByUserNameAndPassword(String userName, String password) throws IOException {
         String url = Constants.isLoginCorrect + "/" + userName + "/" + password;
 
         String getUser = mHttpRequester.getUserLogIn(url);
@@ -74,9 +74,9 @@ public class HttpRepository implements Repository {
             String json = mHttpRequester.getUser(Constants.getByUserNameAndPassword
                     + "/" + userName + "/" + password);
 
-            return mJsonParserUser.fromJson(json);
+            return mJsonParserDTO.fromJson(json);
         } else {
-            return new User();
+            return new UserDTO();
         }
     }
 }

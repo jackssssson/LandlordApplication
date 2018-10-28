@@ -14,8 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
+import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
-import com.daredevil.landlordcommunication.views.landlord.LogInLandlordActivity;
+import com.daredevil.landlordcommunication.views.landlord.LandlordLogInActivity;
+import com.daredevil.landlordcommunication.views.tenant.TenantLogInActivity;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -89,13 +91,17 @@ public class InitialScreenFragment extends Fragment implements
 
 
     @Override
-    public void logInUser(boolean isConnected) {
+    public void logInUser(UserDTO user) {
         runOnUi(() -> {
-            if (isConnected) {
-                startActivity(new Intent(getActivity(), LogInLandlordActivity.class));
-            } else {
+            if (user.getUserName() == null) {
                 Toast.makeText(getContext(), "Wrong user or password",
                         Toast.LENGTH_LONG).show();
+            } else {
+                if (user.getType().equals("Landlord")){
+                    startActivity(new Intent(getActivity(), LandlordLogInActivity.class));
+                } else {
+                    startActivity(new Intent(getActivity(), TenantLogInActivity.class));
+                }
             }
         });
     }

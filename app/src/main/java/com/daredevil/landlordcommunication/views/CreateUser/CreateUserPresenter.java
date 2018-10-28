@@ -33,6 +33,11 @@ public class CreateUserPresenter implements Presenter {
     public void createUserDTO(UserDTO user, String type) throws IOException {
         AsyncRunner.runInBackground(() -> {
             try {
+                if (type.equals("")){
+                    mView.typeWarning();
+                    return;
+                }
+
                String userDTO = mCreateUserDTORepository.addUser(user, type);
 
                mView.createUserDTO(userDTO);

@@ -10,42 +10,31 @@
         android:layout_height="match_parent"
         android:background="@mipmap/home">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="180dp"
-            android:text="Landlord"
-            android:textSize="22dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="212dp"
-            android:text="Tenant"
-            android:textSize="22dp" />
+
+
 
         <RadioGroup
             android:id="@+id/rg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="90dp"
-            android:layout_marginTop="180dp"
-            android:onClick="rbClicked">
+            android:layout_marginTop="180dp">
 
             <RadioButton
                 android:id="@+id/rb_landlord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="rbClicked"
+                android:text="Landlord"
+                android:textSize="22dp"
                 />
 
             <RadioButton
                 android:id="@+id/rb_tenant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="rbClicked"
+                android:text="Tenant"
+                android:textSize="22dp"
                 />
 
         </RadioGroup>

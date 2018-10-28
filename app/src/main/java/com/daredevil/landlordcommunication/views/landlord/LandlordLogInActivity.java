@@ -1,18 +1,15 @@
 package com.daredevil.landlordcommunication.views.landlord;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import com.daredevil.landlordcommunication.R;
 
-
-public class LogInLandlordActivity extends AppCompatActivity {
-
+public class LandlordLogInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in_landlord);
-
+        setContentView(R.layout.activity_landlord_log_in);
     }
 }

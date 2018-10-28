@@ -7,6 +7,8 @@ public class UserDTO {
     private String userPassword;
     private String userEmail;
     private String userIban;
+    private String userType;
+
 
     public UserDTO() {
     }
@@ -17,6 +19,15 @@ public class UserDTO {
         this.userPassword = userPassword;
         this.userEmail = userEmail;
         this.userIban = userIban;
+    }
+
+    public UserDTO(String userName, String userPassword, String userEmail,
+                   String userIban, String userType) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.userIban = userIban;
+        this.userType = userType;
     }
 
     public String getUserName() {
@@ -49,5 +60,13 @@ public class UserDTO {
 
     public void setUserIban(String userIban) {
         this.userIban = userIban;
+    }
+
+    public String getType() {
+        return userType;
+    }
+
+    public void setType(String userType) {
+        this.userType = userType;
     }
 }

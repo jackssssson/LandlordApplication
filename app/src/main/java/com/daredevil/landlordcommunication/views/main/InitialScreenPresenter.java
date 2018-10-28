@@ -3,6 +3,7 @@ package com.daredevil.landlordcommunication.views.main;
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.User;
+import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.parser.JsonParser;
 import com.daredevil.landlordcommunication.repositories.Repository;
 
@@ -36,13 +37,9 @@ public class InitialScreenPresenter implements Presenter{
     public void logInUser(String userName, String password) {
         AsyncRunner.runInBackground(() -> {
             try {
-                User user = mUserRepository.getByUserNameAndPassword(userName, password);
+                UserDTO user = mUserRepository.getByUserNameAndPassword(userName, password);
 
-                if (user.getUserName() == null){
-                    mView.logInUser(false);
-                } else {
-                    mView.logInUser(true);
-                }
+                mView.logInUser(user);
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -3,12 +3,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.landlord.LandlordLogInFragment">
+    tools:context=".views.landlord.LandlordLogInFragment"
+    android:background="@mipmap/home">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:text="Email:"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/tv_userEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_marginStart="70dp"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="240dp"
+            android:text="Rating:"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/tv_userRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="315dp"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/tv_email"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/button_create"
+            android:text="Create"
+            android:textSize="22dp"
+            />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="130dp"
+            android:layout_centerHorizontal="true"
+            >
+
+
+        </ListView>
+
+
+    </RelativeLayout>
 
 </FrameLayout>

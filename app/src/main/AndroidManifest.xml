@@ -20,15 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.CreateUser.CreateUserActivity" />
-        <activity android:name=".views.tenant.LogInTenant" />
+        <activity android:name=".views.tenant.TenantLogInActivity" />
         <activity
-            android:name=".views.landlord.LogInLandlordActivity"
+            android:name=".views.landlord.LandlordLogInActivity"
             android:label="@string/title_activity_log_in_landlord"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".views.chat.ChatMainActivity" />
         <activity android:name=".views.chat.ChatLogInActivity" />
-        <activity android:name=".views.landlord.LandlordLogInActivity" />
-        <activity android:name=".views.tenant.TenantLogInActivity"></activity>
     </application>
 
 </manifest>

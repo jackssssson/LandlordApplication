@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.landlord.LandlordLogInActivity"
-    android:background="@mipmap/home">
+    tools:context=".views.landlord.LandlordLogInActivity" >
+
+    <FrameLayout
+        android:id="@+id/log_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

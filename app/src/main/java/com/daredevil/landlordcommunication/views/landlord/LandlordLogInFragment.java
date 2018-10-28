@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 
 import com.daredevil.landlordcommunication.R;
 
+import javax.inject.Inject;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LandlordLogInFragment extends Fragment {
+public class LandlordLogInFragment extends Fragment implements
+        com.daredevil.landlordcommunication.views.landlord.View{
 
-
+    @Inject
     public LandlordLogInFragment() {
         // Required empty public constructor
     }

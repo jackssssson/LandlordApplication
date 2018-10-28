@@ -21,7 +21,14 @@
         </activity>
         <activity android:name=".views.CreateUser.CreateUserActivity" />
         <activity android:name=".views.tenant.LogInTenant" />
-        <activity android:name=".views.landlord.LogInLandlord"></activity>
+        <activity
+            android:name=".views.landlord.LogInLandlordActivity"
+            android:label="@string/title_activity_log_in_landlord"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
+        <activity android:name=".views.chat.MainActivity" />
+        <activity android:name=".views.chat.LoginActivity" />
     </application>
 
 </manifest>

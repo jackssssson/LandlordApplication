@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
-import com.daredevil.landlordcommunication.views.landlord.LogInLandlord;
+import com.daredevil.landlordcommunication.views.landlord.LogInLandlordActivity;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -92,7 +92,7 @@ public class InitialScreenFragment extends Fragment implements
     public void logInUser(boolean isConnected) {
         runOnUi(() -> {
             if (isConnected) {
-                startActivity(new Intent(getActivity(), LogInLandlord.class));
+                startActivity(new Intent(getActivity(), LogInLandlordActivity.class));
             } else {
                 Toast.makeText(getContext(), "Wrong user or password",
                         Toast.LENGTH_LONG).show();

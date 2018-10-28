@@ -1,6 +1,7 @@
 package com.daredevil.landlordcommunication.views.CreateUser;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,9 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
-import com.daredevil.landlordcommunication.models.dto.UserDTO;
-
-import java.io.IOException;
+import com.daredevil.landlordcommunication.views.chat.MainActivity;
 
 import javax.inject.Inject;
 
@@ -74,15 +73,16 @@ public class CreateUserFragment extends Fragment implements
         });
 
         mButtonCreate.setOnClickListener(v -> {
-            UserDTO userDTO = new UserDTO(mUserName.getText().toString(),
-                    mUserPassword.getText().toString(),
-                    mUserEmail.getText().toString(), mUserIBan.getText().toString());
-
-            try {
-                presenter.createUserDTO(userDTO);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            startActivity(new Intent(getActivity(), MainActivity.class));
+//            UserDTO userDTO = new UserDTO(mUserName.getText().toString(),
+//                    mUserPassword.getText().toString(),
+//                    mUserEmail.getText().toString(), mUserIBan.getText().toString());
+//
+//            try {
+//                presenter.createUserDTO(userDTO);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         });
 
         return view;

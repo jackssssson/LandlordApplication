@@ -13,4 +13,6 @@ public class LogInTenant extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_tenant);
     }
+
+
 }

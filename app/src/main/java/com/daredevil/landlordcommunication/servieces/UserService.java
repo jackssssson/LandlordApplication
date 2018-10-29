@@ -5,5 +5,5 @@ import com.daredevil.landlordcommunication.models.User;
 import java.io.IOException;
 
 public interface UserService {
-    User getUserById(int id) throws IOException;
+
 }

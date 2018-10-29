@@ -24,6 +24,12 @@ public class Estates implements Serializable {
         this.duedate = duedate;
     }
 
+    public Estates(String estateName, float price, String address) {
+        this.estateName = estateName;
+        this.price = price;
+        this.address = address;
+    }
+
     public int getEstateid() {
         return estateid;
     }

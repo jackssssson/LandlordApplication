@@ -98,9 +98,14 @@ public class InitialScreenFragment extends Fragment implements
                         Toast.LENGTH_LONG).show();
             } else {
                 if (user.getType().equals("Landlord")){
-                    startActivity(new Intent(getActivity(), LandlordLogInActivity.class));
+                    Intent intent = new Intent(getActivity(), LandlordLogInActivity.class);
+                    intent.putExtra("user", user);
+
+                    startActivity(intent);
                 } else {
-                    startActivity(new Intent(getActivity(), TenantLogInActivity.class));
+                    Intent intent = new Intent(getActivity(), TenantLogInActivity.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
                 }
             }
         });

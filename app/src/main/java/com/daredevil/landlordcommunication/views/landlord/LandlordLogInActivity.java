@@ -1,21 +1,27 @@
 package com.daredevil.landlordcommunication.views.landlord;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.daredevil.landlordcommunication.R;
 
 import javax.inject.Inject;
 
-public class LandlordLogInActivity extends AppCompatActivity {
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class LandlordLogInActivity extends DaggerAppCompatActivity {
 
     @Inject
     LandlordLogInFragment mFragment;
+
+    @Inject
+    Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landlord_log_in);
+
+        mFragment.setPresenter(presenter);
 
         getSupportFragmentManager()
                 .beginTransaction()

@@ -2,8 +2,10 @@ package com.daredevil.landlordcommunication.repositories;
 
 import com.daredevil.landlordcommunication.constants.Constants;
 import com.daredevil.landlordcommunication.http.HttpRequester;
+import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.User;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
+import com.daredevil.landlordcommunication.parser.GsonParser;
 import com.daredevil.landlordcommunication.parser.JsonParser;
 
 import java.io.IOException;
@@ -78,5 +80,15 @@ public class HttpRepository implements Repository {
         } else {
             return new UserDTO();
         }
+    }
+
+    @Override
+    public String createEstate(Estates estates, String name) throws IOException {
+        String url = Constants.createEstateUrl + name;
+        JsonParser<Estates> jsonEstate = new GsonParser<>(Estates.class);
+
+        String requestBody = jsonEstate.toJson(estates);
+
+        return mHttpRequester.postUser(url, requestBody);
     }
 }

@@ -28,7 +28,19 @@
         <activity android:name=".views.chat.ChatMainActivity" />
         <activity android:name=".views.chat.ChatLogInActivity" />
         <activity android:name=".views.landlord.estate.LandlordEstateActivity" />
-        <activity android:name=".views.landlord.info.LandlordInfoActivity"></activity>
+        <activity android:name=".views.landlord.info.LandlordInfoActivity" />
+        <activity android:name=".views.tenant.estate.TenantEstateActivity" />
+        <activity
+            android:name=".views.tenant.info.TenantInfoActivity"
+            android:label="@string/title_activity_tenant_info"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".views.tenant.unoccupiedestates.TenantUnOccupiedActivity"></activity>
     </application>
 
 </manifest>

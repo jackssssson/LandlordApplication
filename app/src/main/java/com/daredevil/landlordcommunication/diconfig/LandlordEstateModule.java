@@ -3,6 +3,8 @@ package com.daredevil.landlordcommunication.diconfig;
 
 
 import com.daredevil.landlordcommunication.views.landlord.estate.LandlordEstateFragment;
+import com.daredevil.landlordcommunication.views.landlord.estate.LandlordEstatePresenter;
+import com.daredevil.landlordcommunication.views.landlord.estate.Presenter;
 
 import dagger.Binds;
 import dagger.Module;
@@ -14,7 +16,7 @@ public abstract class LandlordEstateModule {
     @ContributesAndroidInjector
     abstract LandlordEstateFragment landlordEstateFragment();
 
-//    @ActivityScoped
-//    @Binds
-//    abstract Presenter taskPresenter(InitialScreenPresenter presenter);
+    @ActivityScoped
+    @Binds
+    abstract Presenter taskPresenter(LandlordEstatePresenter presenter);
 }

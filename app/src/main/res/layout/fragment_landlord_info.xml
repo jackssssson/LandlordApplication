@@ -15,7 +15,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tenant name:"
-            android:textSize="22dp"
+            android:textSize="18dp"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/username12"/>
+
+        <!-- text view user name-->
+        <TextView
+            android:id="@+id/user_name_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/name_info"
+            android:textSize="18dp"
+            android:layout_marginTop="100dp"
             android:textColor="@color/username12"/>
 
         <TextView
@@ -24,17 +35,27 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/name_info"
             android:text="Tenant email:"
-            android:textSize="22dp"
+            android:textSize="18dp"
+            android:textColor="@color/username12"/>
+
+        <!-- text view user email-->
+        <TextView
+            android:id="@+id/user_email_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_info"
+            android:layout_toRightOf="@id/email_info"
+            android:textSize="18dp"
             android:textColor="@color/username12"/>
 
         <EditText
             android:id="@+id/rate_info"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/email_info"
-            android:text="Rate tenant"
+            android:layout_below="@id/is_occupied"
+            android:text="rate tenant"
             android:layout_centerHorizontal="true"
-            android:textSize="22dp"
+            android:textSize="16dp"
             android:textColor="@color/username12"
             />
 
@@ -42,37 +63,74 @@
             android:id="@+id/rate_info_tenant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rate_info"
+            android:layout_below="@id/email_info"
             android:text="Tenant rating:"
+            android:textSize="18dp"
+            android:textColor="@color/username12"/>
+
+        <!--text view user rate info-->
+        <TextView
+            android:id="@+id/user_rate_info_tenant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email_info"
+            android:layout_toRightOf="@+id/rate_info_tenant"
             android:textSize="22dp"
             android:textColor="@color/username12"/>
 
+        <!--button rate-->
         <Button
             android:id="@+id/btn_rate_info"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
             android:layout_below="@id/rate_info"
-            android:layout_marginStart="150dp"
+            android:layout_centerHorizontal="true"
             android:background="@mipmap/button_create"
             android:text="Rate"
             />
 
-        <TextView
-            android:id="@+id/owned_info"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/owed_info"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rate_info_tenant"
-            android:text="Owned:"
-            android:textSize="22dp"
+            android:layout_below="@id/btn_rate_info"
+            android:layout_centerHorizontal="true"
+            android:text="owed"
+            android:textSize="16dp"
             android:textColor="@color/username12"/>
+
+        <!--btn owned-->
+
+        <Button
+            android:id="@+id/btn_owed"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/owed_info"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/button_create"
+            android:text="Owed"/>
+
+        <!-- text view user owned-->
+
 
         <TextView
             android:id="@+id/due_date_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/owned_info"
+            android:layout_below="@id/rate_info_tenant"
             android:text="Due date:"
-            android:textSize="22dp"
+            android:textSize="18dp"
+            android:textColor="@color/username12"/>
+
+        <!--text view user due date-->
+
+        <TextView
+            android:id="@+id/user_due_date_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rate_info_tenant"
+            android:layout_toRightOf="@+id/due_date_info"
+            android:textSize="18dp"
             android:textColor="@color/username12"/>
 
         <TextView
@@ -81,17 +139,52 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/due_date_info"
             android:text="Is occupied:"
-            android:textSize="22dp"
+            android:textSize="18dp"
             android:textColor="@color/username12"/>
 
+        <!-- text view user is occupied-->
+
         <TextView
-            android:id="@+id/set_due_date"
+            android:id="@+id/user_is_occupied"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/due_date_info"
-            android:text="Set due date:"
-            android:textSize="22dp"
+            android:layout_toRightOf="@+id/is_occupied"
+            android:textSize="18dp"
             android:textColor="@color/username12"/>
+
+        <!--edit text set due date-->
+
+        <EditText
+            android:id="@+id/user_set_due_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_owed"
+            android:text="set due date:"
+            android:textSize="16dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/username12" />
+
+        <!--button set-->
+
+        <Button
+            android:id="@+id/btn_set_info"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/user_set_due_date"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/button_create"
+            android:text="Set"/>
+
+        <!--btn chat-->
+
+        <Button
+            android:id="@+id/btn_chat_info"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="505dp"
+            android:text="Chat"/>
 
 
 

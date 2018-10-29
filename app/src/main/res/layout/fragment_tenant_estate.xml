@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.tenant.estate.TenantEstateFragment"
+    android:background="@mipmap/home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/name_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Landlord name:"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <!--tv user name-->
+
+        <TextView
+            android:id="@+id/user_name_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/name_tenant_estate_landlord"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/email_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_tenant_estate_landlord"
+            android:text="Landlord email:"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <!--tv user email-->
+        <TextView
+            android:id="@+id/user_email_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_tenant_estate_landlord"
+            android:layout_toRightOf="@+id/email_tenant_estate_landlord"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/rating_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email_tenant_estate_landlord"
+            android:text="Landlord rating:"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <!--tv user rating-->
+        <TextView
+            android:id="@+id/user_rating_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email_tenant_estate_landlord"
+            android:layout_toRightOf="@+id/rating_tenant_estate_landlord"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <TextView
+            android:id="@+id/price_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rating_tenant_estate_landlord"
+            android:text="Price:"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <!--tv user rating-->
+        <TextView
+            android:id="@+id/user_price_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rating_tenant_estate_landlord"
+            android:layout_toRightOf="@+id/price_tenant_estate_landlord"
+            android:textSize="22dp"
+            android:textColor="@color/username12"/>
+
+        <!--button chat-->
+
+        <Button
+            android:id="@+id/btn_chat_tenant_estate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="520dp"
+            android:text="Rent"
+            />
+
+    </RelativeLayout>
+
+</FrameLayout>

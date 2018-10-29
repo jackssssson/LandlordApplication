@@ -2,6 +2,7 @@ package com.daredevil.landlordcommunication.diconfig;
 
 import com.daredevil.landlordcommunication.views.tenant.Presenter;
 import com.daredevil.landlordcommunication.views.tenant.TenantLogInFragment;
+import com.daredevil.landlordcommunication.views.tenant.TenantLogInPresenter;
 
 import dagger.Binds;
 import dagger.Module;
@@ -15,5 +16,5 @@ public abstract class TenantLogInModule {
 
     @ActivityScoped
     @Binds
-    abstract Presenter taskPresenter(TenantLogInFragment presenter);
+    abstract Presenter presenter(TenantLogInPresenter presenter);
 }

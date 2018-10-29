@@ -8,13 +8,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.daredevil.landlordcommunication.R;
+import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.views.landlord.estate.LandlordEstateActivity;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -27,22 +29,24 @@ import butterknife.ButterKnife;
 public class LandlordLogInFragment extends Fragment implements
         com.daredevil.landlordcommunication.views.landlord.View{
 
-    @BindView(R.id.tv_name)
+    @BindView(R.id.user_name_log_in)
     TextView mUserName;
 
-    @BindView(R.id.tv_email)
+    @BindView(R.id.user_email_log_in)
     TextView mUserEmail;
 
-    @BindView(R.id.tv_userRating)
+    @BindView(R.id.user_rating_log_in)
     TextView mUserRating;
 
-    @BindView(R.id.lv_items)
+    @BindView(R.id.lv_estate_log_in)
     ListView mListView;
 
-    @BindView(R.id.btn_createEstate)
+    @BindView(R.id.btn_create_estate_log_in)
     Button mCreateEstate;
 
-    //private ArrayAdapter<ListView> adapter;
+    private Presenter presenter;
+
+   // private ArrayAdapter<String> mAdapter;
 
     @Inject
     public LandlordLogInFragment() {
@@ -58,10 +62,48 @@ public class LandlordLogInFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-        mCreateEstate.setOnClickListener(v -> startActivity(new Intent(getActivity(),
-                LandlordEstateActivity.class)));
+//       mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+//               android.R.layout.simple_list_item_1);
+//
+//       mListView.setAdapter(mAdapter);
+//
+//       mAdapter.add("Batman");
+
+        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
+        UserDTO userDTO = (UserDTO) intent.getSerializableExtra("user");
+        presenter.setUser(userDTO);
+
+
+        Intent estateIntent = new Intent(getActivity(),
+                LandlordEstateActivity.class);
+        estateIntent.putExtra("user", userDTO);
+        mCreateEstate.setOnClickListener(v -> startActivity(estateIntent));
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.setView(this);
+        presenter.loadUser();
+    }
+
+    @Override
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @Override
+    public void showUserInfo(String name, String email, String rating) {
+        runOnUi(() -> {
+            mUserName.setText(name);
+            mUserEmail.setText(email);
+            mUserRating.setText(rating);
+        });
+    }
+
+    private void runOnUi(Runnable action) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+    }
 }

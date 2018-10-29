@@ -18,8 +18,9 @@
             android:textSize="22dp"
             android:textColor="@color/username12"/>
 
+        <!--tv user name-->
         <TextView
-            android:id="@+id/tv_userName"
+            android:id="@+id/user_name_log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
@@ -35,8 +36,9 @@
             android:textSize="22dp"
             android:textColor="@color/username12"/>
 
+        <!--tv user email-->
         <TextView
-            android:id="@+id/tv_userEmail"
+            android:id="@+id/user_email_log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"
@@ -53,16 +55,20 @@
             android:textSize="22dp"
             android:textColor="@color/username12"/>
 
+        <!--tv user rating-->
+
         <TextView
-            android:id="@+id/tv_userRating"
+            android:id="@+id/user_rating_log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="315dp"
             android:textSize="22dp"
             android:textColor="@color/username12"/>
 
+        <!--btn create estate-->
+
         <Button
-            android:id="@+id/btn_createEstate"
+            android:id="@+id/btn_create_estate_log_in"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_below="@id/tv_email"
@@ -72,8 +78,10 @@
             android:textSize="22dp"
             />
 
+        <!--lv estate log in-->
+
         <ListView
-            android:id="@+id/lv_items"
+            android:id="@+id/lv_estate_log_in"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="130dp"

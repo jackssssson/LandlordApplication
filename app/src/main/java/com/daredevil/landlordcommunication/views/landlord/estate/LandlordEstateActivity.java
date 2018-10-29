@@ -13,10 +13,15 @@ public class LandlordEstateActivity extends DaggerAppCompatActivity {
     @Inject
     LandlordEstateFragment mFragment;
 
+    @Inject
+    Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landlord_estate);
+
+        mFragment.setPresenter(mPresenter);
 
         getSupportFragmentManager()
                 .beginTransaction()

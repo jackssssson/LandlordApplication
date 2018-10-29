@@ -17,7 +17,7 @@
             android:hint="Estate name"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textColorHint="@color/username6"/>
+            android:textColorHint="@color/username12"/>
 
         <EditText
             android:id="@+id/price"
@@ -26,7 +26,7 @@
             android:hint="Price"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/estate_name"
-            android:textColorHint="@color/username6"/>
+            android:textColorHint="@color/username12"/>
 
         <EditText
             android:id="@+id/address"
@@ -35,7 +35,7 @@
             android:hint="Address"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/price"
-            android:textColorHint="@color/username6"/>
+            android:textColorHint="@color/username12"/>
 
         <Button
             android:id="@+id/btn_user_estate"

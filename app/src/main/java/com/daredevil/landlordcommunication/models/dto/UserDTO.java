@@ -1,13 +1,15 @@
 package com.daredevil.landlordcommunication.models.dto;
 
 
+import java.io.Serializable;
 
-public class UserDTO {
+public class UserDTO implements Serializable{
     private String userName;
     private String userPassword;
     private String userEmail;
     private String userIban;
     private String userType;
+    private String userRating;
 
 
     public UserDTO() {
@@ -28,6 +30,16 @@ public class UserDTO {
         this.userEmail = userEmail;
         this.userIban = userIban;
         this.userType = userType;
+    }
+
+    public UserDTO(String userName, String userPassword, String userEmail,
+                   String userIban, String userType, String userRating) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.userIban = userIban;
+        this.userType = userType;
+        this.userRating = userRating;
     }
 
     public String getUserName() {
@@ -68,5 +80,13 @@ public class UserDTO {
 
     public void setType(String userType) {
         this.userType = userType;
+    }
+
+    public String getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(String userRating) {
+        this.userRating = userRating;
     }
 }

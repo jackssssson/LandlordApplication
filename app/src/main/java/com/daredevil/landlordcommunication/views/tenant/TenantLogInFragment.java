@@ -1,4 +1,4 @@
-package com.daredevil.landlordcommunication.views.landlord.info;
+package com.daredevil.landlordcommunication.views.tenant;
 
 
 import android.os.Bundle;
@@ -15,13 +15,11 @@ import javax.inject.Inject;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LandlordInfoFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.landlord.info.View{
-
-
+public class TenantLogInFragment extends Fragment implements
+        com.daredevil.landlordcommunication.views.tenant.View{
 
     @Inject
-    public LandlordInfoFragment() {
+    public TenantLogInFragment() {
         // Required empty public constructor
     }
 
@@ -30,11 +28,7 @@ public class LandlordInfoFragment extends Fragment implements
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_landlord_info, container, false);
-
-
-
-        return view;
+        return inflater.inflate(R.layout.fragment_tenant_log_in, container, false);
     }
 
 }

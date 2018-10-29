@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.tenant.TenantLogInActivity"
-    android:background="@mipmap/home">
+    tools:context=".views.tenant.TenantLogInActivity" >
+
+    <FrameLayout
+        android:id="@+id/log_in_tenant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

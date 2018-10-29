@@ -5,6 +5,7 @@ import com.daredevil.landlordcommunication.views.landlord.LandlordLogInActivity;
 import com.daredevil.landlordcommunication.views.landlord.estate.LandlordEstateActivity;
 import com.daredevil.landlordcommunication.views.landlord.info.LandlordInfoActivity;
 import com.daredevil.landlordcommunication.views.main.InitialScreenActivity;
+import com.daredevil.landlordcommunication.views.tenant.TenantLogInActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -38,4 +39,8 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = {LandlordInfoModule.class})
     abstract LandlordInfoActivity landlordInfoActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = {TenantLogInModule.class})
+    abstract TenantLogInActivity tenantLogInActivity();
 }

@@ -8,24 +8,21 @@ public class Estates implements Serializable {
     public Estates() {
     }
     private int estateid;
-    private String estateName;
     private boolean occupied;
     private float price;
     private String address;
     private Date duedate;
 
 
-    public Estates(int estateid, String estateName, boolean occupied, float price, String address, Date duedate) {
+    public Estates(int estateid,  boolean occupied, float price, String address, Date duedate) {
         this.estateid = estateid;
-        this.estateName = estateName;
         this.occupied = occupied;
         this.price = price;
         this.address = address;
         this.duedate = duedate;
     }
 
-    public Estates(String estateName, float price, String address) {
-        this.estateName = estateName;
+    public Estates(float price, String address) {
         this.price = price;
         this.address = address;
     }
@@ -36,14 +33,6 @@ public class Estates implements Serializable {
 
     public void setEstateid(int estateid) {
         this.estateid = estateid;
-    }
-
-    public String getEstateName() {
-        return estateName;
-    }
-
-    public void setEstateName(String estateName) {
-        this.estateName = estateName;
     }
 
     public boolean isOccupied() {

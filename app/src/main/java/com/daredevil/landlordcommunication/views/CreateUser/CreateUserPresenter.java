@@ -2,9 +2,7 @@ package com.daredevil.landlordcommunication.views.CreateUser;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.http.HttpRequester;
-import com.daredevil.landlordcommunication.models.User;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.parser.JsonParser;
 import com.daredevil.landlordcommunication.repositories.Repository;
 
 import java.io.IOException;
@@ -21,6 +19,9 @@ public class CreateUserPresenter implements Presenter {
     HttpRequester mHttpRequester;
 
     @Inject
+    AsyncRunner asyncRunner;
+
+    @Inject
     CreateUserPresenter(){
     }
 
@@ -31,7 +32,7 @@ public class CreateUserPresenter implements Presenter {
 
     @Override
     public void createUserDTO(UserDTO user, String type) throws IOException {
-        AsyncRunner.runInBackground(() -> {
+        asyncRunner.runInBackground(() -> {
             try {
                 if (type.equals("")){
                     mView.typeWarning();

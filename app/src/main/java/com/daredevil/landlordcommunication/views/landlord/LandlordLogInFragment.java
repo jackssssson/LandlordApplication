@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,7 +47,7 @@ public class LandlordLogInFragment extends Fragment implements
 
     private Presenter presenter;
 
-   // private ArrayAdapter<String> mAdapter;
+    private ArrayAdapter<String> mAdapter;
 
     @Inject
     public LandlordLogInFragment() {
@@ -62,12 +63,12 @@ public class LandlordLogInFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-//       mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-//               android.R.layout.simple_list_item_1);
-//
-//       mListView.setAdapter(mAdapter);
-//
-//       mAdapter.add("Batman");
+       mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+               android.R.layout.simple_list_item_1);
+
+       mListView.setAdapter(mAdapter);
+
+       mAdapter.addAll("Batman");
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         UserDTO userDTO = (UserDTO) intent.getSerializableExtra("user");
@@ -101,6 +102,11 @@ public class LandlordLogInFragment extends Fragment implements
             mUserEmail.setText(email);
             mUserRating.setText(rating);
         });
+    }
+
+    @Override
+    public void showEstate() {
+
     }
 
     private void runOnUi(Runnable action) {

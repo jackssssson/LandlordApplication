@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".views.tenant.unoccupiedestates.TenantUnOccupiedActivity">
 
+    <FrameLayout
+        android:id="@+id/unoccupied_tenant_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -60,6 +60,8 @@ public class LandlordInfoFragment extends Fragment implements
     @BindView(R.id.btn_chat_info)
     Button mButtonChat;
 
+    private Presenter presenter;
+
     @Inject
     public LandlordInfoFragment() {
         // Required empty public constructor
@@ -77,4 +79,8 @@ public class LandlordInfoFragment extends Fragment implements
         return view;
     }
 
+    @Override
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
 }

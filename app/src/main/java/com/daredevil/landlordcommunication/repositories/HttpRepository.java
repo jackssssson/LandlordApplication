@@ -91,4 +91,13 @@ public class HttpRepository implements Repository {
 
         return mHttpRequester.postUser(url, requestBody);
     }
+
+    @Override
+    public Estates getEstates() throws IOException {
+        String url = "";
+        String estate = mHttpRequester.getUser(url);
+        JsonParser<Estates> jsonEstate = new GsonParser<>(Estates.class);
+
+        return jsonEstate.fromJson(estate);
+    }
 }

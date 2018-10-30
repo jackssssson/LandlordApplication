@@ -62,7 +62,7 @@ public class LandlordEstateFragment extends Fragment implements
         UserDTO userDTO = (UserDTO) estateIntent.getSerializableExtra("user");
 
         mCreateEstate.setOnClickListener(v -> {
-            Estates estate = new Estates(mEstateName.getText().toString(),
+            Estates estate = new Estates(
                     Float.valueOf(mEstatePrice.getText().toString()),
                     mEstateAddress.getText().toString());
 

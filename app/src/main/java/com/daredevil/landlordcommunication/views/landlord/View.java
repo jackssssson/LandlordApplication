@@ -5,5 +5,5 @@ public interface View {
 
     void showUserInfo(String name, String email, String rating);
 
-
+    void showEstate();
 }

@@ -25,6 +25,9 @@ public class InitialScreenPresenter implements Presenter{
     JsonParser<User> mJsonParser;
 
     @Inject
+    AsyncRunner asyncRunner;
+
+    @Inject
     InitialScreenPresenter() {
     }
 
@@ -35,7 +38,7 @@ public class InitialScreenPresenter implements Presenter{
 
     @Override
     public void logInUser(String userName, String password) {
-        AsyncRunner.runInBackground(() -> {
+        asyncRunner.runInBackground(() -> {
             try {
                 UserDTO user = mUserRepository.getByUserNameAndPassword(userName, password);
 

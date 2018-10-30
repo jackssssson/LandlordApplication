@@ -17,6 +17,9 @@ public class LandlordEstatePresenter implements Presenter {
     Repository mRepository;
 
     @Inject
+    AsyncRunner asyncRunner;
+
+    @Inject
     LandlordEstatePresenter() {
     }
 
@@ -27,7 +30,7 @@ public class LandlordEstatePresenter implements Presenter {
 
     @Override
     public void createEstate(Estates estates, String name)  {
-        AsyncRunner.runInBackground(() -> {
+        asyncRunner.runInBackground(() -> {
             String result = null;
             try {
                 result = mRepository.createEstate(estates, name);

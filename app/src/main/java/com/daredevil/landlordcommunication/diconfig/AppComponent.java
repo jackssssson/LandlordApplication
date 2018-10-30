@@ -3,6 +3,7 @@ package com.daredevil.landlordcommunication.diconfig;
 import android.app.Application;
 
 import com.daredevil.landlordcommunication.LandlordApplication;
+import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.parser.JsonParser;
 
 import dagger.BindsInstance;
@@ -24,6 +25,7 @@ import javax.inject.Singleton;
  */
 @Singleton
 @Component(modules = {
+        AsyncRunnerModule.class,
         UserServiceModule.class,
         JsonParserModule.class,
         RepositoriesModule.class,

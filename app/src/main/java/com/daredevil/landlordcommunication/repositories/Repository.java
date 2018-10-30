@@ -11,4 +11,6 @@ public interface Repository {
     UserDTO getByUserNameAndPassword(String userName, String password) throws IOException;
 
     String createEstate(Estates estates, String name) throws IOException;
+
+    Estates getEstates() throws IOException;
 }

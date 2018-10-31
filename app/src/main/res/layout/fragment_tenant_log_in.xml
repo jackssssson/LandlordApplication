@@ -75,7 +75,7 @@
             android:layout_below="@id/tv_email_tenant"
             android:layout_centerHorizontal="true"
             android:background="@mipmap/button_create"
-            android:text="Create"
+            android:text="Rent"
             android:textSize="22dp"
             />
 

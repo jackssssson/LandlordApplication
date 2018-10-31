@@ -1,16 +1,28 @@
 package com.daredevil.landlordcommunication.views.tenant;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.daredevil.landlordcommunication.R;
+import com.daredevil.landlordcommunication.models.Estates;
+import com.daredevil.landlordcommunication.models.dto.UserDTO;
+import com.daredevil.landlordcommunication.views.landlord.info.LandlordInfoActivity;
+import com.daredevil.landlordcommunication.views.tenant.estate.TenantEstateActivity;
+import com.daredevil.landlordcommunication.views.tenant.info.TenantInfoActivity;
+import com.daredevil.landlordcommunication.views.tenant.unoccupiedestates.TenantUnOccupiedActivity;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -21,7 +33,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class TenantLogInFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.tenant.View {
+        com.daredevil.landlordcommunication.views.tenant.View, AdapterView.OnItemClickListener {
 
     @BindView(R.id.user_name_log_in)
     TextView mUserName;
@@ -33,9 +45,15 @@ public class TenantLogInFragment extends Fragment implements
     TextView mUserRating;
 
     @BindView(R.id.btn_create_estate_log_in)
-    Button mButtonCreate;
+    Button mButtonRent;
+
+    @BindView(R.id.lv_estate_log_in)
+    ListView mListView;
 
     private Presenter presenter;
+
+    private UserDTO userDTO;
+    private ArrayAdapter<Estates> mAdapter;
 
     @Inject
     public TenantLogInFragment() {
@@ -51,6 +69,19 @@ public class TenantLogInFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
+        showEstateAdapter();
+
+        presenter.setUser(userDTO);
+
+        mListView.setOnItemClickListener(this);
+
+        mButtonRent.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TenantUnOccupiedActivity.class);
+            intent.putExtra("id", userDTO.getUserid());
+
+            startActivity(intent);
+        });
+
         return  view;
     }
 
@@ -58,10 +89,46 @@ public class TenantLogInFragment extends Fragment implements
     public void onResume() {
         super.onResume();
         presenter.setView(this);
+        presenter.loadUser();
     }
 
     @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void showUserInfo(String name, String email, String rating) {
+        runOnUi(() -> {
+            mUserName.setText(name);
+            mUserEmail.setText(email);
+            mUserRating.setText(rating);
+        });
+    }
+
+    private void showEstateAdapter() {
+        mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1);
+
+        mListView.setAdapter(mAdapter);
+
+        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
+        userDTO = (UserDTO) intent.getSerializableExtra("user");
+
+        for (Estates e : userDTO.getEstates()) {
+            mAdapter.add(e);
+        }
+    }
+
+    private void runOnUi(Runnable action) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), TenantInfoActivity.class);
+        intent.putExtra("estate", mAdapter.getItem(position));
+        intent.putExtra("userName", userDTO.getUserName());
+        startActivity(intent);
     }
 }

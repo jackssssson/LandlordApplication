@@ -87,7 +87,30 @@
             android:id="@+id/user_price_tenant_estate_landlord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/price_tenant_estate_landlord"
             android:layout_below="@id/rating_tenant_estate_landlord"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
+
+        <TextView
+            android:id="@+id/address_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_price_tenant_estate_landlord"
+            android:text="Address:"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
+
+        <!--tv user address-->
+
+        <TextView
+            android:id="@+id/user_address_tenant_estate_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_price_tenant_estate_landlord"
+            android:layout_toRightOf="@id/address_tenant_estate_landlord"
             android:textSize="16sp"
             android:textStyle="italic"
             android:textColor="#ffff"/>
@@ -95,7 +118,7 @@
         <!--button chat-->
 
         <Button
-            android:id="@+id/btn_chat_tenant_estate"
+            android:id="@+id/btn_rent_tenant_estate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="520dp"

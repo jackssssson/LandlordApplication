@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.views.landlord.LandlordLogInActivity;
 
 import java.util.Objects;
 
@@ -89,7 +88,7 @@ public class LandlordEstateFragment extends Fragment implements
         runOnUi(() -> {
             Toast.makeText(getContext(), "Estate created", Toast.LENGTH_LONG).show();
             //startActivity(new Intent(getActivity(), LandlordLogInActivity.class));
-            getActivity().finish();
+            Objects.requireNonNull(getActivity()).finish();
         });
     }
 

@@ -84,5 +84,4 @@ public class OkHttpHttpRequester implements HttpRequester {
         return Objects.requireNonNull(response.body()).string();
     }
 
-
 }

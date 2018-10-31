@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class UserDTO implements Serializable{
+    private int userid;
     private List<Estates> estates;
     private String userName;
     private String userPassword;
@@ -14,6 +15,19 @@ public class UserDTO implements Serializable{
     private String userIban;
     private String userType;
     private String userRating;
+
+    public UserDTO(int userid, List<Estates> estates, String userName,
+                   String userPassword, String userEmail, String userIban,
+                   String userType, String userRating) {
+        this.userid = userid;
+        this.estates = estates;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.userIban = userIban;
+        this.userType = userType;
+        this.userRating = userRating;
+    }
 
     public UserDTO(List<Estates> estates, String userName,
                    String userPassword, String userEmail, String userIban,
@@ -113,5 +127,13 @@ public class UserDTO implements Serializable{
 
     public void setEstates(List<Estates> estates) {
         this.estates = estates;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 }

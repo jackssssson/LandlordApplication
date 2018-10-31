@@ -9,6 +9,8 @@ import com.daredevil.landlordcommunication.parser.GsonParser;
 import com.daredevil.landlordcommunication.parser.JsonParser;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -123,6 +125,27 @@ public class HttpRepository implements Repository {
     @Override
     public String setOwed(String price, int id) throws IOException {
         String url = Constants.setOwed + "/" + id + "/" + price;
+        return mHttpRequester.postText(url);
+    }
+
+    @Override
+    public List<Estates> getUnoccupiedEstates() throws IOException {
+        String url = Constants.getUnoccupiedEstates;
+        String json = mHttpRequester.getUser(url);
+        JsonParser<Estates[]> jsonEstate = new GsonParser<>(Estates[].class);
+        return Arrays.asList(jsonEstate.fromJson(json));
+    }
+
+    @Override
+    public UserDTO postIdPerson(int id) throws IOException {
+        String url = Constants.getLandlordURL + id;
+        String json = mHttpRequester.getUser(url);
+        return mJsonParserDTO.fromJson(json);
+    }
+
+    @Override
+    public String rentEstate(String userId, String estateId) throws IOException {
+        String url = Constants.rentEstate + userId + "/" + estateId;
         return mHttpRequester.postText(url);
     }
 }

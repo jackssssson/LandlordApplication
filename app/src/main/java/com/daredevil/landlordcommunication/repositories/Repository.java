@@ -13,4 +13,12 @@ public interface Repository {
     String createEstate(Estates estates, String name) throws IOException;
 
     Estates getEstates() throws IOException;
+
+    UserDTO postIdEstate(int id) throws IOException;
+
+    String setDueDate(String dueDate, int id) throws IOException;
+
+    String rateUser(int rating, String name, String userName) throws IOException;
+
+    String setOwed(String price, int id) throws IOException;
 }

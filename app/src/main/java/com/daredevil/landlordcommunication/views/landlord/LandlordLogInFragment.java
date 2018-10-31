@@ -8,14 +8,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.daredevil.landlordcommunication.R;
+import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.views.landlord.estate.LandlordEstateActivity;
+import com.daredevil.landlordcommunication.views.landlord.info.LandlordInfoActivity;
 
 import java.util.Objects;
 
@@ -28,7 +31,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class LandlordLogInFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.landlord.View{
+        com.daredevil.landlordcommunication.views.landlord.View, AdapterView.OnItemClickListener {
 
     @BindView(R.id.user_name_log_in)
     TextView mUserName;
@@ -46,8 +49,9 @@ public class LandlordLogInFragment extends Fragment implements
     Button mCreateEstate;
 
     private Presenter presenter;
+    private UserDTO userDTO;
+    private ArrayAdapter<Estates> mAdapter;
 
-    private ArrayAdapter<String> mAdapter;
 
     @Inject
     public LandlordLogInFragment() {
@@ -59,26 +63,18 @@ public class LandlordLogInFragment extends Fragment implements
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_landlord_log_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_landlord_log_in, container, false);
 
         ButterKnife.bind(this, view);
 
-       mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-               android.R.layout.simple_list_item_1);
+        //set adapter, get userDto and set list view
+        showEstateAdapter();
 
-       mListView.setAdapter(mAdapter);
-
-       mAdapter.addAll("Batman");
-
-        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
-        UserDTO userDTO = (UserDTO) intent.getSerializableExtra("user");
         presenter.setUser(userDTO);
 
+        navigateToEstate();
 
-        Intent estateIntent = new Intent(getActivity(),
-                LandlordEstateActivity.class);
-        estateIntent.putExtra("user", userDTO);
-        mCreateEstate.setOnClickListener(v -> startActivity(estateIntent));
+        mListView.setOnItemClickListener(this);
 
         return view;
     }
@@ -104,12 +100,37 @@ public class LandlordLogInFragment extends Fragment implements
         });
     }
 
-    @Override
-    public void showEstate() {
+    private void showEstateAdapter() {
+        mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1);
 
+        mListView.setAdapter(mAdapter);
+
+        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
+        userDTO = (UserDTO) intent.getSerializableExtra("user");
+
+        for (Estates e : userDTO.getEstates()) {
+            mAdapter.add(e);
+        }
+    }
+
+    private void navigateToEstate(){
+        Intent estateIntent = new Intent(getActivity(),
+                LandlordEstateActivity.class);
+
+        estateIntent.putExtra("user", userDTO);
+        mCreateEstate.setOnClickListener(v -> startActivity(estateIntent));
     }
 
     private void runOnUi(Runnable action) {
         Objects.requireNonNull(getActivity()).runOnUiThread(action);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), LandlordInfoActivity.class);
+        intent.putExtra("estate", mAdapter.getItem(position));
+        intent.putExtra("userName", userDTO.getUserName());
+        startActivity(intent);
     }
 }

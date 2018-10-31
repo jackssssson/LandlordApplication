@@ -13,10 +13,15 @@ public class TenantLogInActivity extends DaggerAppCompatActivity {
     @Inject
     TenantLogInFragment mFragment;
 
+    @Inject
+    Presenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tenant_log_in);
+
+        mFragment.setPresenter(presenter);
 
         getSupportFragmentManager()
                 .beginTransaction()

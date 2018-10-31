@@ -25,9 +25,9 @@ public class HttpRepository implements Repository {
     @Inject
     public HttpRepository(HttpRequester mHttpRequester, JsonParser<User> mJsonParserUser,
                           JsonParser<UserDTO> mJsonParserDTO) {
-       this.mHttpRequester = mHttpRequester;
-       this.mJsonParserDTO = mJsonParserDTO;
-       this.mJsonParserUser = mJsonParserUser;
+        this.mHttpRequester = mHttpRequester;
+        this.mJsonParserDTO = mJsonParserDTO;
+        this.mJsonParserUser = mJsonParserUser;
     }
 
 //    @Override
@@ -45,10 +45,10 @@ public class HttpRepository implements Repository {
         String requestBody = mJsonParserDTO.toJson(user);
         String responseBody = mHttpRequester.postUser(url, requestBody);
 
-        if (responseBody.equals("User is free")){
+        if (responseBody.equals("User is free")) {
             String body;
-            if (type.equals("Landlord")){
-                 body = mHttpRequester.postUser(Constants.postLandlord, requestBody);
+            if (type.equals("Landlord")) {
+                body = mHttpRequester.postUser(Constants.postLandlord, requestBody);
             } else {
                 body = mHttpRequester.postUser(Constants.postTenant, requestBody);
             }
@@ -99,5 +99,30 @@ public class HttpRepository implements Repository {
         JsonParser<Estates> jsonEstate = new GsonParser<>(Estates.class);
 
         return jsonEstate.fromJson(estate);
+    }
+
+    @Override
+    public UserDTO postIdEstate(int id) throws IOException {
+        String url = Constants.getTenantURL + id;
+        String json = mHttpRequester.getUser(url);
+        return mJsonParserDTO.fromJson(json);
+    }
+
+    @Override
+    public String setDueDate(String dueDate, int id) throws IOException {
+        String url = Constants.setDueDate + dueDate + "/" + id;
+        return mHttpRequester.postText(url);
+    }
+
+    @Override
+    public String rateUser(int rating, String name, String userName) throws IOException {
+        String url = Constants.ratingUser + rating + "/" + name + "/" + userName;
+        return mHttpRequester.postText(url);
+    }
+
+    @Override
+    public String setOwed(String price, int id) throws IOException {
+        String url = Constants.setOwed + "/" + id + "/" + price;
+        return mHttpRequester.postText(url);
     }
 }

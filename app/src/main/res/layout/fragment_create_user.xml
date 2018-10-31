@@ -10,23 +10,23 @@
         android:layout_height="match_parent"
         android:background="@mipmap/home">
 
-
-
-
-
         <RadioGroup
             android:id="@+id/rg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="90dp"
-            android:layout_marginTop="180dp">
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="190dp"
+           >
 
             <RadioButton
                 android:id="@+id/rb_landlord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Landlord"
+
                 android:textSize="22dp"
+                android:textStyle="italic"
                 />
 
             <RadioButton
@@ -35,62 +35,76 @@
                 android:layout_height="wrap_content"
                 android:text="Tenant"
                 android:textSize="22dp"
+                android:textStyle="italic"
                 />
 
         </RadioGroup>
 
         <EditText
             android:id="@+id/user_name_plain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/log_in"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded_edit_text"
+            android:textAlignment="center"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:ems="10"
-            android:hint="user_name"
+            android:hint="user name"
+            android:textSize="15sp"
             android:inputType="textPersonName"
             android:textColorHint="#ffffff" />
 
         <EditText
             android:id="@+id/user_password_plain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/user_name_plain"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="305dp"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:background="@drawable/rounded_edit_text"
+            android:textAlignment="center"
             android:hint="password"
+            android:textSize="15sp"
             android:inputType="textPassword"
             android:textColorHint="#ffffff" />
 
         <EditText
             android:id="@+id/user_email_plain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/user_password_plain"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="340dp"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:background="@drawable/rounded_edit_text"
+            android:textAlignment="center"
             android:hint="email"
+            android:textSize="15sp"
             android:inputType="textEmailAddress"
             android:textColorHint="#ffffff" />
 
         <EditText
             android:id="@+id/user_iBan_plain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/user_email_plain"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="375dp"
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:hint="iBan"
+            android:textSize="15sp"
+            android:background="@drawable/rounded_edit_text"
+            android:textAlignment="center"
             android:inputType="textEmailAddress"
             android:textColorHint="#ffffff" />
 
         <Button
             android:id="@+id/btn_create"
-            android:layout_width="115dp"
-            android:layout_height="45dp"
-            android:layout_below="@id/user_iBan_plain"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="415dp"
             android:layout_centerHorizontal="true"
             android:background="@mipmap/button_create"
+            android:textSize="10dp"
+            android:textColor="@color/username12"
             android:text="Create" />
     </RelativeLayout>
 

@@ -45,6 +45,12 @@ public class TenantUnOccupiedFragment extends Fragment implements
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        presenter.setView(this);
+    }
+
+    @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
     }

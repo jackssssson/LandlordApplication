@@ -15,17 +15,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name:"
-            android:textSize="22dp"
-            android:textColor="@color/username12"/>
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
 
         <!--tv user name-->
         <TextView
             android:id="@+id/user_name_log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:textSize="22dp"
-            android:textColor="@color/username12"/>
+            android:layout_toRightOf="@+id/tv_name"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
 
         <TextView
             android:id="@+id/tv_email"
@@ -33,8 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"
             android:text="Email:"
-            android:textSize="22dp"
-            android:textColor="@color/username12"/>
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
 
         <!--tv user email-->
         <TextView
@@ -42,9 +45,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"
-            android:layout_marginStart="70dp"
-            android:textSize="22dp"
-            android:textColor="@color/username12"/>
+            android:layout_toRightOf="@+id/tv_email"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
 
         <TextView
             android:id="@+id/tv_rating"
@@ -52,8 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="240dp"
             android:text="Rating:"
-            android:textSize="22dp"
-            android:textColor="@color/username12"/>
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
 
         <!--tv user rating-->
 
@@ -61,21 +66,23 @@
             android:id="@+id/user_rating_log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="315dp"
-            android:textSize="22dp"
-            android:textColor="@color/username12"/>
+            android:layout_toRightOf="@id/tv_rating"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="#ffff"/>
 
         <!--btn create estate-->
 
         <Button
             android:id="@+id/btn_create_estate_log_in"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_below="@id/tv_email"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="80dp"
             android:layout_centerHorizontal="true"
             android:background="@mipmap/button_create"
             android:text="Create"
-            android:textSize="22dp"
+            android:textSize="10dp"
+            android:textColor="@color/username12"
             />
 
         <!--lv estate log in-->
@@ -84,8 +91,10 @@
             android:id="@+id/lv_estate_log_in"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="140dp"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_edit_text"
+
             >
 
 

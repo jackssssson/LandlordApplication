@@ -13,5 +13,9 @@ public class Constants {
     public static final String getByUserNameAndPassword = Constants.IP_AND_PORT+"user/getUser";
 
     public static final String IP_AND_PORT = "http://192.168.43.151:8080/";
-    public static final String createEstateUrl = Constants.IP_AND_PORT + "/estates/createEstate/";
+    public static final String createEstateUrl = Constants.IP_AND_PORT + "estates/createEstate/";
+    public static final String getTenantURL = Constants.IP_AND_PORT + "estates/getTenant/";
+    public static final String ratingUser = Constants.IP_AND_PORT + "userRating/rateUser/";
+    public static final String setDueDate = Constants.IP_AND_PORT + "estates/setDueDate/";
+    public static final String setOwed = Constants.IP_AND_PORT + "estates/setOwed/";
 }

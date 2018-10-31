@@ -67,4 +67,22 @@ public class OkHttpHttpRequester implements HttpRequester {
 
     }
 
+    @Override
+    public String postText(String url) throws IOException {
+        RequestBody requestBody = RequestBody.create(
+                MediaType.get("application/json"), "");
+
+        Request request = new Request
+                .Builder()
+                .put(requestBody)
+                .url(url)
+                .build();
+        OkHttpClient client = new OkHttpClient();
+
+        Response response = client.newCall(request).execute();
+
+        return Objects.requireNonNull(response.body()).string();
+    }
+
+
 }

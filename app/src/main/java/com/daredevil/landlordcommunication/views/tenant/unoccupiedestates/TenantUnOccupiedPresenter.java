@@ -2,7 +2,7 @@ package com.daredevil.landlordcommunication.views.tenant.unoccupiedestates;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.Estates;
-import com.daredevil.landlordcommunication.repositories.Repository;
+import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,10 +14,10 @@ public class TenantUnOccupiedPresenter implements Presenter{
     private View mView;
 
     @Inject
-    Repository mRepository;
+    UserService mService;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     TenantUnOccupiedPresenter() {
@@ -30,9 +30,9 @@ public class TenantUnOccupiedPresenter implements Presenter{
 
     @Override
     public void loadAdapter() {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
-                List<Estates> estates = mRepository.getUnoccupiedEstates();
+                List<Estates> estates = mService.getUnoccupiedEstates();
                 mView.showAdapter(estates);
             } catch (IOException e) {
                 e.printStackTrace();

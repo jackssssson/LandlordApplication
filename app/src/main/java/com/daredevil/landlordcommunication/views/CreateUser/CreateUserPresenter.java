@@ -3,7 +3,7 @@ package com.daredevil.landlordcommunication.views.CreateUser;
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.repositories.Repository;
+import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
 
@@ -13,13 +13,13 @@ public class CreateUserPresenter implements Presenter {
     private View mView;
 
     @Inject
-    Repository mCreateUserDTORepository;
+    UserService mService;
 
     @Inject
     HttpRequester mHttpRequester;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     CreateUserPresenter(){
@@ -32,14 +32,14 @@ public class CreateUserPresenter implements Presenter {
 
     @Override
     public void createUserDTO(UserDTO user, String type) throws IOException {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
                 if (type.equals("")){
                     mView.typeWarning();
                     return;
                 }
 
-               String userDTO = mCreateUserDTORepository.addUser(user, type);
+               String userDTO = mService.addUser(user, type);
 
                mView.createUserDTO(userDTO);
             } catch (IOException e) {

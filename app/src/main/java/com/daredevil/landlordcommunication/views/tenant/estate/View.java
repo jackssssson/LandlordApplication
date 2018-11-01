@@ -5,7 +5,5 @@ public interface View {
 
    void showUserInfo(String name, String email, String rating, String price, String address);
 
-   void showEstateRented();
-
-   void showErrorMessage(String message);
+   void showMessage(String message);
 }

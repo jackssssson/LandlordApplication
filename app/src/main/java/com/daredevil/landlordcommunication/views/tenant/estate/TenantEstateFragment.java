@@ -101,15 +101,7 @@ public class TenantEstateFragment extends Fragment implements
     }
 
     @Override
-    public void showEstateRented() {
-        runOnUi(() -> {
-            Toast.makeText(getContext(), "Rented", Toast.LENGTH_LONG).show();
-            Objects.requireNonNull(getActivity()).finish();
-        });
-    }
-
-    @Override
-    public void showErrorMessage(String message) {
+    public void showMessage(String message) {
         runOnUi(() -> Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show());
     }
 

@@ -2,7 +2,7 @@ package com.daredevil.landlordcommunication.views.tenant;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.repositories.Repository;
+import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
 
@@ -14,10 +14,10 @@ public class TenantLogInPresenter implements Presenter {
     private UserDTO mUserDTO;
 
     @Inject
-    Repository mRepository;
+    UserService mService;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     TenantLogInPresenter() {
@@ -41,9 +41,9 @@ public class TenantLogInPresenter implements Presenter {
 
     @Override
     public void refreshUserDto(int id) {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
-                mView.setUserDTO(mRepository.getUserById(id));
+                mView.setUserDTO(mService.getUserById(id));
                 mView.showEstateAdapter();
             } catch (IOException e) {
                 e.printStackTrace();

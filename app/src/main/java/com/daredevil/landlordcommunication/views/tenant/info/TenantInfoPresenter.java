@@ -3,7 +3,7 @@ package com.daredevil.landlordcommunication.views.tenant.info;
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.repositories.Repository;
+import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
 
@@ -16,10 +16,10 @@ public class TenantInfoPresenter implements Presenter{
     private int userId;
 
     @Inject
-    Repository mRepository;
+    UserService mService;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     TenantInfoPresenter() {
@@ -33,11 +33,11 @@ public class TenantInfoPresenter implements Presenter{
     @Override
     public void postIdEstate(int id, Estates estates) {
         this.userId = id;
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
 
             if (estates.isOccupied()){
                 try {
-                    userDTO = mRepository.postIdPerson(id);
+                    userDTO = mService.postIdPerson(id);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -49,9 +49,9 @@ public class TenantInfoPresenter implements Presenter{
 
     @Override
     public void rateUser(int rating, String name) {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
-                String result = mRepository.rateUser(rating, userDTO.getUserName(), name);
+                String result = mService.rateUser(rating, userDTO.getUserName(), name);
                 mView.showMessage(result);
                 refreshInfo();
             } catch (IOException e) {
@@ -62,7 +62,7 @@ public class TenantInfoPresenter implements Presenter{
 
     private void refreshInfo(){
         try {
-            userDTO = mRepository.postIdPerson(userId);
+            userDTO = mService.postIdPerson(userId);
         } catch (IOException e) {
             e.printStackTrace();
         }

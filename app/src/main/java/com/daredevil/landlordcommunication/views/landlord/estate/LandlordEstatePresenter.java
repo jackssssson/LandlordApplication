@@ -2,8 +2,7 @@ package com.daredevil.landlordcommunication.views.landlord.estate;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.Estates;
-import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.repositories.Repository;
+import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
 
@@ -11,13 +10,12 @@ import javax.inject.Inject;
 
 public class LandlordEstatePresenter implements Presenter {
     private View mView;
-    private UserDTO userDTO;
 
     @Inject
-    Repository mRepository;
+    UserService mService;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     LandlordEstatePresenter() {
@@ -30,10 +28,10 @@ public class LandlordEstatePresenter implements Presenter {
 
     @Override
     public void createEstate(Estates estates, String name)  {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             String result = null;
             try {
-                result = mRepository.createEstate(estates, name);
+                result = mService.createEstate(estates, name);
             } catch (IOException e) {
                 e.printStackTrace();
             }

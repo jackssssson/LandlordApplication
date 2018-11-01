@@ -3,7 +3,7 @@ package com.daredevil.landlordcommunication.views.tenant.estate;
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.repositories.Repository;
+import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
 
@@ -17,10 +17,10 @@ public class TenantEstatePresenter implements Presenter {
     private UserDTO userDTO;
 
     @Inject
-    Repository mRepository;
+    UserService mService;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     TenantEstatePresenter() {
@@ -33,9 +33,9 @@ public class TenantEstatePresenter implements Presenter {
 
     @Override
     public void loadInfo() {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
-                userDTO = mRepository.postIdPerson(estates.getEstateid());
+                userDTO = mService.postIdPerson(estates.getEstateid());
                 mView.showUserInfo(userDTO.getUserName(), userDTO.getUserEmail(),
                         String.valueOf(userDTO.getUserRating()), String.valueOf(estates.getPrice()),
                         estates.getAddress());
@@ -57,14 +57,14 @@ public class TenantEstatePresenter implements Presenter {
 
     @Override
     public void rateEstate() {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
-                mRepository.rentEstate(String.valueOf(userId),
+               String result = mService.rentEstate(String.valueOf(userId),
                         String.valueOf(estates.getEstateid()));
 
-                mView.showEstateRented();
+                mView.showMessage(result);
             } catch (IOException e) {
-                mView.showErrorMessage("Can`t rent");
+                mView.showMessage("Can`t rent");
                 e.printStackTrace();
             }
         });

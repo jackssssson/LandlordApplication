@@ -17,8 +17,6 @@ import android.widget.TextView;
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
-import com.daredevil.landlordcommunication.views.landlord.info.LandlordInfoActivity;
-import com.daredevil.landlordcommunication.views.tenant.estate.TenantEstateActivity;
 import com.daredevil.landlordcommunication.views.tenant.info.TenantInfoActivity;
 import com.daredevil.landlordcommunication.views.tenant.unoccupiedestates.TenantUnOccupiedActivity;
 
@@ -69,6 +67,9 @@ public class TenantLogInFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
+        Intent intent2 = Objects.requireNonNull(getActivity()).getIntent();
+        userDTO = (UserDTO) intent2.getSerializableExtra("user");
+
         showEstateAdapter();
 
         presenter.setUser(userDTO);
@@ -90,6 +91,7 @@ public class TenantLogInFragment extends Fragment implements
         super.onResume();
         presenter.setView(this);
         presenter.loadUser();
+        presenter.refreshUserDto(userDTO.getUserid());
     }
 
     @Override
@@ -106,18 +108,23 @@ public class TenantLogInFragment extends Fragment implements
         });
     }
 
-    private void showEstateAdapter() {
-        mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-                android.R.layout.simple_list_item_1);
+    @Override
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
 
-        mListView.setAdapter(mAdapter);
+    @Override
+    public void showEstateAdapter() {
+       runOnUi(() -> {
+           mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+                   android.R.layout.simple_list_item_1);
 
-        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
-        userDTO = (UserDTO) intent.getSerializableExtra("user");
+           mListView.setAdapter(mAdapter);
 
-        for (Estates e : userDTO.getEstates()) {
-            mAdapter.add(e);
-        }
+           for (Estates e : userDTO.getEstates()) {
+               mAdapter.add(e);
+           }
+       });
     }
 
     private void runOnUi(Runnable action) {

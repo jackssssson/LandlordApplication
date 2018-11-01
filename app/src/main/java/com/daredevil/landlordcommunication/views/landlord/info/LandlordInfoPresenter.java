@@ -13,6 +13,7 @@ public class LandlordInfoPresenter implements Presenter {
 
     private View mView;
     private UserDTO userDTO;
+    private int userId;
 
     @Inject
     Repository mRepository;
@@ -31,6 +32,7 @@ public class LandlordInfoPresenter implements Presenter {
 
     @Override
     public void postIdEstate(int id, Estates estates) {
+        userId = id;
         asyncRunner.runInBackground(() -> {
 
             if (estates.isOccupied()){
@@ -63,6 +65,7 @@ public class LandlordInfoPresenter implements Presenter {
             try {
                String result = mRepository.rateUser(rating, userDTO.getUserName(), name);
                mView.showMessage(result);
+               refreshInfo();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,5 +82,15 @@ public class LandlordInfoPresenter implements Presenter {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void refreshInfo(){
+        try {
+            userDTO = mRepository.postIdEstate(userId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mView.showUserDTO(userDTO);
     }
 }

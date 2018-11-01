@@ -175,6 +175,7 @@
             android:layout_centerHorizontal="true"
             android:background="@mipmap/button_create"
             android:text="Rate"
+            android:textSize="10sp"
             android:textColor="@color/username12"
             />
 
@@ -202,6 +203,7 @@
             android:layout_centerHorizontal="true"
             android:background="@mipmap/button_create"
             android:text="Owed"
+            android:textSize="10sp"
             android:textColor="@color/username12"/>
 
         <!-- text view user owned-->
@@ -275,17 +277,20 @@
             android:layout_centerHorizontal="true"
             android:background="@mipmap/button_create"
             android:text="Set"
+            android:textSize="10sp"
             android:textColor="@color/username12"/>
 
         <!--btn chat-->
 
         <Button
             android:id="@+id/btn_chat_info"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="530dp"
+            android:background="@mipmap/button_create"
             android:text="Chat"
+            android:textSize="10sp"
             android:textColor="@color/username12"/>
 
         <TextView

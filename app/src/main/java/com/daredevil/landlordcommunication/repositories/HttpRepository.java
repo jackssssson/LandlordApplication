@@ -148,4 +148,11 @@ public class HttpRepository implements Repository {
         String url = Constants.rentEstate + userId + "/" + estateId;
         return mHttpRequester.postText(url);
     }
+
+    @Override
+    public UserDTO getUserById(int id) throws IOException {
+        String url = Constants.getUserById + id;
+        String json = mHttpRequester.getUser(url);
+        return mJsonParserDTO.fromJson(json);
+    }
 }

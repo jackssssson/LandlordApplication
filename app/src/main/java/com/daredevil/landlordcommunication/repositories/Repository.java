@@ -28,4 +28,6 @@ public interface Repository {
     UserDTO postIdPerson(int id) throws IOException;
 
     String rentEstate(String userId, String estateId) throws IOException;
+
+    UserDTO getUserById(int id) throws IOException;
 }

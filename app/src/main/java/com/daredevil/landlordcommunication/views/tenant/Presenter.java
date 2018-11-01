@@ -8,4 +8,6 @@ public interface Presenter {
     void loadUser();
 
     void setUser(UserDTO user);
+
+    void refreshUserDto(int id);
 }

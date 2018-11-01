@@ -67,7 +67,9 @@ public class LandlordLogInFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-        //set adapter, get userDto and set list view
+        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
+        userDTO = (UserDTO) intent.getSerializableExtra("user");
+
         showEstateAdapter();
 
         presenter.setUser(userDTO);
@@ -84,6 +86,7 @@ public class LandlordLogInFragment extends Fragment implements
         super.onResume();
         presenter.setView(this);
         presenter.loadUser();
+        presenter.refreshUserDto(userDTO.getUserid());
     }
 
     @Override
@@ -100,18 +103,23 @@ public class LandlordLogInFragment extends Fragment implements
         });
     }
 
-    private void showEstateAdapter() {
-        mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-                android.R.layout.simple_list_item_1);
+    @Override
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
 
-        mListView.setAdapter(mAdapter);
+    @Override
+    public void showEstateAdapter() {
+        runOnUi(() -> {
+            mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+                    android.R.layout.simple_list_item_1);
 
-        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
-        userDTO = (UserDTO) intent.getSerializableExtra("user");
+            mListView.setAdapter(mAdapter);
 
-        for (Estates e : userDTO.getEstates()) {
-            mAdapter.add(e);
-        }
+            for (Estates e : userDTO.getEstates()) {
+                mAdapter.add(e);
+            }
+        });
     }
 
     private void navigateToEstate(){

@@ -148,6 +148,11 @@ public class LandlordInfoFragment extends Fragment implements
 
     private void buttonRate() {
         mButtonRate.setOnClickListener(v -> {
+            if (!estates.isOccupied()){
+                showMessage("Can`t rate! No tenant!");
+                return;
+            }
+
             int rating = 0;
             int radioButtonId = mRadioGroup.getCheckedRadioButtonId();
             RadioButton radioButton = mRadioGroup.findViewById(radioButtonId);
@@ -181,6 +186,11 @@ public class LandlordInfoFragment extends Fragment implements
 
     public void buttonSetDueDate() {
         mButtonSet.setOnClickListener(v -> {
+            if (!estates.isOccupied()){
+                showMessage("Can`t set due date! No tenant!");
+                return;
+            }
+
             String result;
 
             if (mSetDueDate.getText().toString().equals("")) {

@@ -119,10 +119,14 @@
 
         <Button
             android:id="@+id/btn_rent_tenant_estate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_marginTop="520dp"
             android:text="Rent"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/button_create"
+            android:textSize="10sp"
+
             android:textColor="@color/username12"
             />
 

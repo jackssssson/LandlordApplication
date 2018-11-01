@@ -9,7 +9,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class TenantUnoOccupiedModule {
+abstract class TenantUnoOccupiedModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract TenantUnOccupiedFragment tenantLogInFragment();

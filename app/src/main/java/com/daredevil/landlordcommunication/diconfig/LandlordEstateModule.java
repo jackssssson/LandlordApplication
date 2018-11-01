@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class LandlordEstateModule {
+abstract class LandlordEstateModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract LandlordEstateFragment landlordEstateFragment();

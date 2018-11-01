@@ -1,9 +1,5 @@
 package com.daredevil.landlordcommunication.diconfig;
 
-
-
-
-
 import com.daredevil.landlordcommunication.views.tenant.estate.Presenter;
 import com.daredevil.landlordcommunication.views.tenant.estate.TenantEstateFragment;
 import com.daredevil.landlordcommunication.views.tenant.estate.TenantEstatePresenter;
@@ -13,7 +9,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class TenantEstateModule {
+abstract class TenantEstateModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract TenantEstateFragment tenantEstateFragment();

@@ -21,7 +21,7 @@ import dagger.android.ContributesAndroidInjector;
  * When Dagger.Android annotation processor runs it will create 4 subcomponents for us.
  */
 @Module
-public abstract class ActivityBindingModule {
+abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = {InitialScreenModule.class})
     abstract InitialScreenActivity initialScreenActivity();

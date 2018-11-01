@@ -9,7 +9,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class InitialScreenModule {
+abstract class InitialScreenModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract InitialScreenFragment initialScreenFragment();

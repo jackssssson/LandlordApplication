@@ -5,7 +5,7 @@ import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.User;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.parser.JsonParser;
-import com.daredevil.landlordcommunication.repositories.Repository;
+import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class InitialScreenPresenter implements Presenter{
     private View mView;
 
     @Inject
-    Repository mUserRepository;
+    UserService mService;
 
     @Inject
     HttpRequester mHttpRequester;
@@ -25,7 +25,7 @@ public class InitialScreenPresenter implements Presenter{
     JsonParser<User> mJsonParser;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     InitialScreenPresenter() {
@@ -38,9 +38,9 @@ public class InitialScreenPresenter implements Presenter{
 
     @Override
     public void logInUser(String userName, String password) {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
-                UserDTO user = mUserRepository.getByUserNameAndPassword(userName, password);
+                UserDTO user = mService.getByUserNameAndPassword(userName, password);
 
                 mView.logInUser(user);
 

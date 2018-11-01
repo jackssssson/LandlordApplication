@@ -1,7 +1,6 @@
 package com.daredevil.landlordcommunication.servieces;
 
 import com.daredevil.landlordcommunication.models.Estates;
-import com.daredevil.landlordcommunication.models.User;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 
 import java.io.IOException;

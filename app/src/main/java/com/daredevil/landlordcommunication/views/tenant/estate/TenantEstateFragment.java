@@ -47,8 +47,6 @@ public class TenantEstateFragment extends Fragment implements
     Button mButtonRent;
 
     private Presenter presenter;
-    private Estates estate;
-    private int userId;
 
     @Inject
     public TenantEstateFragment() {
@@ -65,14 +63,12 @@ public class TenantEstateFragment extends Fragment implements
         ButterKnife.bind(this, view);
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
-        estate = (Estates) intent.getSerializableExtra("estate");
-        userId = intent.getIntExtra("id", 0);
+        Estates estate = (Estates) intent.getSerializableExtra("estate");
+        int userId = intent.getIntExtra("id", 0);
         presenter.setEstate(estate);
         presenter.setUserId(userId);
 
-        mButtonRent.setOnClickListener(v -> {
-            presenter.rateEstate();
-        });
+        mButtonRent.setOnClickListener(v -> presenter.rateEstate());
 
         return view;
     }

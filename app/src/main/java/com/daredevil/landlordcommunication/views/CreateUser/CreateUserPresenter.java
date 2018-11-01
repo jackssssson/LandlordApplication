@@ -31,7 +31,7 @@ public class CreateUserPresenter implements Presenter {
     }
 
     @Override
-    public void createUserDTO(UserDTO user, String type) throws IOException {
+    public void createUserDTO(UserDTO user, String type) {
         mAsyncRunner.runInBackground(() -> {
             try {
                 if (type.equals("")){

@@ -11,7 +11,15 @@ public class Messages implements Serializable {
     private MessageContent message_content;
     private User sender;
     private User recipient;
-    private Date timeStamp;
+    private String timeStamp;
+
+    public Messages(int id, MessageContent message_content, User sender, User recipient, String timeStamp) {
+        this.id = id;
+        this.message_content = message_content;
+        this.sender = sender;
+        this.recipient = recipient;
+        this.timeStamp = timeStamp;
+    }
 
     public int getId() {
         return id;
@@ -45,11 +53,11 @@ public class Messages implements Serializable {
         this.recipient = recipient;
     }
 
-    public Date getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 }

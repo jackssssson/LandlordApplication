@@ -1,4 +1,4 @@
-package com.daredevil.landlordcommunication.views.tenant.unoccupiedestates;
+package com.daredevil.landlordcommunication.views.chat;
 
 
 import android.content.Intent;
@@ -8,13 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.daredevil.landlordcommunication.R;
-import com.daredevil.landlordcommunication.models.Estates;
-import com.daredevil.landlordcommunication.views.tenant.estate.TenantEstateActivity;
+import com.daredevil.landlordcommunication.models.Messages;
 
 import java.util.List;
 import java.util.Objects;
@@ -27,36 +27,41 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TenantUnOccupiedFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.tenant.unoccupiedestates.View, AdapterView.OnItemClickListener {
+public class ChatFragment extends Fragment implements
+        com.daredevil.landlordcommunication.views.chat.View{
 
-    @BindView(R.id.lv_unoccupied_estate)
+    @BindView(R.id.chat_message)
+    EditText mMessage;
+
+    @BindView(R.id.btn_chat)
+    Button mButtonChat;
+
+    @BindView(R.id.lv_chat)
     ListView mListView;
 
-    @Inject
-    ArrayAdapter<Estates> mAdapter;
-
     private Presenter presenter;
-    private int userId;
+    private int tenantId;
+    private int landlordId;
 
     @Inject
-    public TenantUnOccupiedFragment() {
+    ArrayAdapter<Messages> mAdapter;
+
+    @Inject
+    public ChatFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tenant_un_occupied, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         ButterKnife.bind(this, view);
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
-        userId = intent.getIntExtra("id", 0);
-
-        mListView.setOnItemClickListener(this);
+        tenantId = intent.getIntExtra("tenant", 0);
+        landlordId = intent.getIntExtra("landlord", 0);
 
         return view;
     }
@@ -65,7 +70,7 @@ public class TenantUnOccupiedFragment extends Fragment implements
     public void onResume() {
         super.onResume();
         presenter.setView(this);
-        presenter.loadAdapter();
+        presenter.getMessages(tenantId, landlordId);
     }
 
     @Override
@@ -74,23 +79,15 @@ public class TenantUnOccupiedFragment extends Fragment implements
     }
 
     @Override
-    public void showAdapter(List<Estates> estates) {
+    public void showAdapter(List<Messages> messages) {
         runOnUi(() -> {
-
             mListView.setAdapter(mAdapter);
-            mAdapter.addAll(estates);
+
+            mAdapter.addAll(messages);
         });
     }
 
     private void runOnUi(Runnable action) {
         Objects.requireNonNull(getActivity()).runOnUiThread(action);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getActivity(), TenantEstateActivity.class);
-        intent.putExtra("estate", mAdapter.getItem(position));
-        intent.putExtra("id", userId);
-        startActivity(intent);
     }
 }

@@ -1,6 +1,7 @@
 package com.daredevil.landlordcommunication.repositories;
 
 import com.daredevil.landlordcommunication.models.Estates;
+import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 
 import java.io.IOException;
@@ -30,4 +31,6 @@ public interface Repository {
     String rentEstate(String userId, String estateId) throws IOException;
 
     UserDTO getUserById(int id) throws IOException;
+
+    List<Messages> getMessages(int tenantId, int landlordId) throws IOException;
 }

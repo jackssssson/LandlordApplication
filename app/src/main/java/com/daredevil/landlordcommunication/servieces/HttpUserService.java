@@ -1,6 +1,7 @@
 package com.daredevil.landlordcommunication.servieces;
 
 import com.daredevil.landlordcommunication.models.Estates;
+import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.repositories.Repository;
 
@@ -77,5 +78,10 @@ public class HttpUserService implements UserService {
     @Override
     public UserDTO getUserById(int id) throws IOException {
         return mUserRepository.getUserById(id);
+    }
+
+    @Override
+    public List<Messages> getMessages(int tenantId, int landlordId) throws IOException {
+        return mUserRepository.getMessages(tenantId, landlordId);
     }
 }

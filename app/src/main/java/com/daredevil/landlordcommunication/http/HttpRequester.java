@@ -10,4 +10,5 @@ public interface HttpRequester {
     String getUserLogIn(String url) throws IOException;
 
     String postText(String url) throws IOException;
+
 }

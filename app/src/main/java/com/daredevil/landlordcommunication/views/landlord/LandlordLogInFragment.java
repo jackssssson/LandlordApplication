@@ -48,9 +48,11 @@ public class LandlordLogInFragment extends Fragment implements
     @BindView(R.id.btn_create_estate_log_in)
     Button mCreateEstate;
 
+    @Inject
+    ArrayAdapter<Estates> mAdapter;
+
     private Presenter presenter;
     private UserDTO userDTO;
-    private ArrayAdapter<Estates> mAdapter;
 
 
     @Inject
@@ -111,8 +113,6 @@ public class LandlordLogInFragment extends Fragment implements
     @Override
     public void showEstateAdapter() {
         runOnUi(() -> {
-            mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-                    android.R.layout.simple_list_item_1);
 
             mListView.setAdapter(mAdapter);
 
@@ -139,6 +139,7 @@ public class LandlordLogInFragment extends Fragment implements
         Intent intent = new Intent(getActivity(), LandlordInfoActivity.class);
         intent.putExtra("estate", mAdapter.getItem(position));
         intent.putExtra("userName", userDTO.getUserName());
+        intent.putExtra("id", userDTO.getUserid());
         startActivity(intent);
     }
 }

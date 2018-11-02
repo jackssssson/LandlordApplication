@@ -48,10 +48,12 @@ public class TenantLogInFragment extends Fragment implements
     @BindView(R.id.lv_estate_log_in)
     ListView mListView;
 
+    @Inject
+    ArrayAdapter<Estates> mAdapter;
+
     private Presenter presenter;
 
     private UserDTO userDTO;
-    private ArrayAdapter<Estates> mAdapter;
 
     @Inject
     public TenantLogInFragment() {
@@ -116,8 +118,6 @@ public class TenantLogInFragment extends Fragment implements
     @Override
     public void showEstateAdapter() {
        runOnUi(() -> {
-           mAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-                   android.R.layout.simple_list_item_1);
 
            mListView.setAdapter(mAdapter);
 

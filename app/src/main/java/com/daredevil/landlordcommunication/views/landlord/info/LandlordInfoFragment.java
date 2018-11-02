@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
+import com.daredevil.landlordcommunication.views.chat.ChatActivity;
 
 import java.util.Objects;
 
@@ -72,10 +73,9 @@ public class LandlordInfoFragment extends Fragment implements
     TextView mUserOwed;
 
     private Presenter presenter;
-
     private Estates estates;
-
     private String name;
+    private int userId;
 
     @Inject
     public LandlordInfoFragment() {
@@ -93,14 +93,16 @@ public class LandlordInfoFragment extends Fragment implements
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         estates = (Estates) intent.getSerializableExtra("estate");
-
         name = intent.getStringExtra("userName");
+        userId = intent.getIntExtra("id", 0);
 
         buttonSetDueDate();
 
         buttonRate();
 
         buttonSetOwed();
+
+        mButtonChat.setOnClickListener(v -> presenter.chatClicked());
 
         return view;
     }
@@ -222,4 +224,10 @@ public class LandlordInfoFragment extends Fragment implements
         });
     }
 
+    @Override
+    public void buttonChat(int id){
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
+        intent.putExtra("landlord", userId);
+        intent.putExtra("tenant", id);
+    }
 }

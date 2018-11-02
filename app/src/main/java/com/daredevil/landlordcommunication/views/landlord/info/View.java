@@ -8,4 +8,6 @@ public interface View {
     void showUserDTO(UserDTO userDTO);
 
     void showMessage(String name);
+
+    void buttonChat(int id);
 }

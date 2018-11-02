@@ -107,6 +107,6 @@ public class TenantEstateFragment extends Fragment implements
 
     @Override
     public void endActivity(){
-        getActivity().finish();
+        Objects.requireNonNull(getActivity()).finish();
     }
 }

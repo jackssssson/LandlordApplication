@@ -12,4 +12,6 @@ public interface Presenter {
     void rateUser(int rating, String name);
 
     void setOwed(String price, int id);
+
+    void chatClicked();
 }

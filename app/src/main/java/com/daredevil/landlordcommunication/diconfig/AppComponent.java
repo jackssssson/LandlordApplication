@@ -13,6 +13,8 @@ import javax.inject.Singleton;
 
 @Singleton
 @Component(modules = {
+        MessagesAdapterModule.class,
+        EstateAdapterModule.class,
         AsyncRunnerModule.class,
         UserServiceModule.class,
         JsonParserModule.class,

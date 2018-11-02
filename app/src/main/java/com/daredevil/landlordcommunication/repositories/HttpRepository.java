@@ -3,6 +3,7 @@ package com.daredevil.landlordcommunication.repositories;
 import com.daredevil.landlordcommunication.constants.Constants;
 import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.Estates;
+import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.User;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.parser.GsonParser;
@@ -42,7 +43,7 @@ public class HttpRepository implements Repository {
 
     @Override
     public String addUser(UserDTO user, String type) throws IOException {
-        String url = Constants.isUserFree;
+        String url = Constants.IS_USER_FREE;
 
         String requestBody = mJsonParserDTO.toJson(user);
         String responseBody = mHttpRequester.postUser(url, requestBody);
@@ -50,9 +51,9 @@ public class HttpRepository implements Repository {
         if (responseBody.equals("User is free")) {
             String body;
             if (type.equals("Landlord")) {
-                body = mHttpRequester.postUser(Constants.postLandlord, requestBody);
+                body = mHttpRequester.postUser(Constants.POST_LANDLORD, requestBody);
             } else {
-                body = mHttpRequester.postUser(Constants.postTenant, requestBody);
+                body = mHttpRequester.postUser(Constants.POST_TENANT, requestBody);
             }
 
             return body;
@@ -71,11 +72,11 @@ public class HttpRepository implements Repository {
 
     @Override
     public UserDTO getByUserNameAndPassword(String userName, String password) throws IOException {
-        String url = Constants.isLoginCorrect + "/" + userName + "/" + password;
+        String url = Constants.IS_LOGIN_CORRECT + "/" + userName + "/" + password;
 
         String getUser = mHttpRequester.getUserLogIn(url);
         if (getUser.equals("true")) {
-            String json = mHttpRequester.getUser(Constants.getByUserNameAndPassword
+            String json = mHttpRequester.getUser(Constants.GET_BY_USER_NAME_AND_PASSWORD
                     + "/" + userName + "/" + password);
 
             return mJsonParserDTO.fromJson(json);
@@ -86,7 +87,7 @@ public class HttpRepository implements Repository {
 
     @Override
     public String createEstate(Estates estates, String name) throws IOException {
-        String url = Constants.createEstateUrl + name;
+        String url = Constants.CREATE_ESTATE + name;
         JsonParser<Estates> jsonEstate = new GsonParser<>(Estates.class);
 
         String requestBody = jsonEstate.toJson(estates);
@@ -105,32 +106,32 @@ public class HttpRepository implements Repository {
 
     @Override
     public UserDTO postIdEstate(int id) throws IOException {
-        String url = Constants.getTenantURL + id;
+        String url = Constants.GET_TENANT + id;
         String json = mHttpRequester.getUser(url);
         return mJsonParserDTO.fromJson(json);
     }
 
     @Override
     public String setDueDate(String dueDate, int id) throws IOException {
-        String url = Constants.setDueDate + dueDate + "/" + id;
+        String url = Constants.SET_DUE_DATE + dueDate + "/" + id;
         return mHttpRequester.postText(url);
     }
 
     @Override
     public String rateUser(int rating, String name, String userName) throws IOException {
-        String url = Constants.ratingUser + rating + "/" + name + "/" + userName;
+        String url = Constants.RATING_USER + rating + "/" + name + "/" + userName;
         return mHttpRequester.postText(url);
     }
 
     @Override
     public String setOwed(String price, int id) throws IOException {
-        String url = Constants.setOwed + "/" + id + "/" + price;
+        String url = Constants.SET_OWED + "/" + id + "/" + price;
         return mHttpRequester.postText(url);
     }
 
     @Override
     public List<Estates> getUnoccupiedEstates() throws IOException {
-        String url = Constants.getUnoccupiedEstates;
+        String url = Constants.GET_UNOCCUPIED_ESTATE;
         String json = mHttpRequester.getUser(url);
         JsonParser<Estates[]> jsonEstate = new GsonParser<>(Estates[].class);
         return Arrays.asList(jsonEstate.fromJson(json));
@@ -138,21 +139,29 @@ public class HttpRepository implements Repository {
 
     @Override
     public UserDTO postIdPerson(int id) throws IOException {
-        String url = Constants.getLandlordURL + id;
+        String url = Constants.GET_LANDLORD + id;
         String json = mHttpRequester.getUser(url);
         return mJsonParserDTO.fromJson(json);
     }
 
     @Override
     public String rentEstate(String userId, String estateId) throws IOException {
-        String url = Constants.rentEstate + userId + "/" + estateId;
+        String url = Constants.RENT_ESTATE + userId + "/" + estateId;
         return mHttpRequester.postText(url);
     }
 
     @Override
     public UserDTO getUserById(int id) throws IOException {
-        String url = Constants.getUserById + id;
+        String url = Constants.GET_USER_BY_ID + id;
         String json = mHttpRequester.getUser(url);
         return mJsonParserDTO.fromJson(json);
+    }
+
+    @Override
+    public List<Messages> getMessages(int tenantId, int landlordId) throws IOException {
+        String url = Constants.GET_MESSAGES;
+        String json = mHttpRequester.getUser(url);
+        JsonParser<Messages[]> jsonEstate = new GsonParser<>(Messages[].class);
+        return Arrays.asList(jsonEstate.fromJson(json));
     }
 }

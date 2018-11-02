@@ -84,6 +84,11 @@ public class LandlordInfoPresenter implements Presenter {
         });
     }
 
+    @Override
+    public void chatClicked() {
+        mView.buttonChat(userDTO.getUserid());
+    }
+
     private void refreshInfo(){
         try {
             userDTO = mService.postIdEstate(userId);

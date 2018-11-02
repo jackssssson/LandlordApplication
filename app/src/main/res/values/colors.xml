@@ -16,4 +16,5 @@
     <color name="username10">#a700ff</color>
     <color name="username11">#d300e7</color>
     <color name="username12">#091242</color>
+    <color name="text_view_color">#000000</color>
 </resources>

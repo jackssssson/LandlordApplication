@@ -84,4 +84,24 @@ public class HttpUserService implements UserService {
     public List<Messages> getMessages(int tenantId, int landlordId) throws IOException {
         return mUserRepository.getMessages(tenantId, landlordId);
     }
+
+    @Override
+    public List<Messages> getNewMessages(int tenantId, int landlordId) throws IOException {
+        return mUserRepository.getNewMessages(tenantId, landlordId);
+    }
+
+    @Override
+    public boolean checkForNewMessages(int senderId, int recipientId) throws IOException {
+        return mUserRepository.checkForNewMessages(senderId, recipientId);
+    }
+
+    @Override
+    public boolean checkForMessages(int senderId, int recipientId) throws IOException {
+        return mUserRepository.checkForMessages(senderId, recipientId);
+    }
+
+    @Override
+    public Messages sendMessage(String message, int senderId, int recipientId) throws IOException {
+        return mUserRepository.sendMessage(message, senderId, recipientId);
+    }
 }

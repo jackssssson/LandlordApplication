@@ -33,4 +33,12 @@ public interface UserService {
     UserDTO getUserById(int id) throws IOException;
 
     List<Messages> getMessages(int tenantId, int landlordId) throws IOException;
+
+    List<Messages> getNewMessages(int tenantId, int landlordId) throws IOException;
+
+    boolean checkForNewMessages(int senderId, int recipientId) throws IOException;
+
+    boolean checkForMessages(int senderId, int recipientId) throws IOException;
+
+    Messages sendMessage(String message, int senderId, int recipientId) throws IOException;
 }

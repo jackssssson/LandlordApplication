@@ -60,6 +60,11 @@ public class TenantInfoPresenter implements Presenter{
         });
     }
 
+    @Override
+    public void chatClicked() {
+        mView.buttonChat(userDTO.getUserid());
+    }
+
     private void refreshInfo(){
         try {
             userDTO = mService.postIdPerson(userId);

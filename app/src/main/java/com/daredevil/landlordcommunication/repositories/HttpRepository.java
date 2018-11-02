@@ -159,9 +159,39 @@ public class HttpRepository implements Repository {
 
     @Override
     public List<Messages> getMessages(int tenantId, int landlordId) throws IOException {
-        String url = Constants.GET_MESSAGES;
+        String url = Constants.GET_MESSAGES + tenantId + "/" + landlordId;
         String json = mHttpRequester.getUser(url);
         JsonParser<Messages[]> jsonEstate = new GsonParser<>(Messages[].class);
         return Arrays.asList(jsonEstate.fromJson(json));
+    }
+
+    @Override
+    public List<Messages> getNewMessages(int tenantId, int landlordId) throws IOException {
+        String url = Constants.GET_NEW_MESSAGES + tenantId + "/" + landlordId;
+        String json = mHttpRequester.getUser(url);
+        JsonParser<Messages[]> jsonEstate = new GsonParser<>(Messages[].class);
+        return Arrays.asList(jsonEstate.fromJson(json));
+    }
+
+    @Override
+    public boolean checkForNewMessages(int senderId, int recipientId) throws IOException {
+        String url = Constants.CHECK_FOR_NEW_MESSAGES + senderId + "/" + recipientId;
+        String json = mHttpRequester.getUser(url);
+        return json.equals("true");
+    }
+
+    @Override
+    public boolean checkForMessages(int senderId, int recipientId) throws IOException {
+        String url = Constants.CHECK_FOR_MESSAGES + senderId + "/" + recipientId;
+        String json = mHttpRequester.getUser(url);
+        return json.equals("true");
+    }
+
+    @Override
+    public Messages sendMessage(String message, int senderId, int recipientId) throws IOException {
+        String url = Constants.SEND_TEXT_MESSAGES + message + "/" + recipientId + "/" + senderId;
+        String json = mHttpRequester.postText(url);
+        JsonParser<Messages> jsonEstate = new GsonParser<>(Messages.class);
+        return jsonEstate.fromJson(json);
     }
 }

@@ -8,67 +8,92 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/home">
+        android:background="@mipmap/home"
+        >
 
 
-        <TextView
-            android:id="@+id/welcome_text"
+        <RelativeLayout
+            android:id="@+id/rl_welcome_landlord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/text_view"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="120dp"
-            android:gravity="center"
-            android:textStyle="italic"
-            android:textColor="#ffffff"
-            android:text="Welcome to"
-            android:textSize="20dp" />
+            android:layout_marginTop="140dp"
+            >
+            <TextView
+                android:id="@+id/welcome_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textStyle="italic"
+                android:textColor="#ffff"
+                android:text="Welcome to"
+                android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/landlord_text"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="LANDLORD STUDIO."
-            android:textColor="#ffffff"
-            android:textSize="20dp"
-            android:textStyle="italic" />
+            <TextView
+                android:id="@+id/landlord_text"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:allowUndo="false"
+                android:gravity="center"
+                android:text="LANDLORD STUDIO."
+                android:textColor="#ffff"
+                android:textSize="20dp"
+                android:textStyle="italic" />
+        </RelativeLayout>
 
         <Button
             android:id="@+id/create_id"
             android:layout_width="100dp"
             android:layout_height="40dp"
+            android:layout_below="@+id/rl_welcome_landlord"
+            android:layout_marginTop="50dp"
             android:text="Create user"
             android:textSize="10sp"
             android:textColor="@color/username12"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="220dp"
+
             android:background="@mipmap/button_create"
             />
 
-        <TextView
-            android:id="@+id/log_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log in"
-            android:textSize="20dp"
-            android:layout_below="@id/welcome_text"
-            android:textColor="#ffffff"
+        <RelativeLayout
+            android:id="@+id/rl_log_in"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
             android:layout_centerHorizontal="true"
-            android:textStyle="italic"
-            android:layout_marginTop="200dp"
-            />
+            android:layout_below="@id/create_id"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/text_view"
+
+            >
+
+            <TextView
+                android:id="@+id/log_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log in"
+                android:textSize="20dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff"
+                android:textStyle="italic"
+                />
+
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/user_name_plain"
             android:layout_width="160dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/log_in"
             android:layout_centerHorizontal="true"
             android:background="@drawable/rounded_edit_text"
             android:textAlignment="center"
             android:hint="user name"
+            android:layout_below="@+id/rl_log_in"
+            android:layout_marginTop="10dp"
+
             android:inputType="textPersonName"
             android:textColorHint="#ffffff"
             android:textSize="15sp" />
@@ -79,8 +104,9 @@
             android:layout_height="30dp"
             android:background="@drawable/rounded_edit_text"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="415dp"
             android:inputType="textPassword"
+            android:layout_below="@+id/user_name_plain"
+            android:layout_marginTop="10dp"
             android:hint="password"
             android:textAlignment="center"
             android:textSize="15sp"
@@ -90,7 +116,8 @@
             android:id="@+id/log_in_id"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_marginTop="450dp"
+            android:layout_below="@+id/password_plain"
+            android:layout_marginTop="10dp"
             android:text="Log in"
             android:textSize="10sp"
             android:textColor="@color/username12"

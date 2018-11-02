@@ -10,7 +10,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Enter message"
+        android:textStyle="italic"
         android:layout_marginTop="525dp"
+        android:textColorHint="#ffff"
         />
 
     <Button

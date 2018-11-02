@@ -1,56 +1,35 @@
 package com.daredevil.landlordcommunication.models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Messages implements Serializable {
+    private String textMessage;
+    private String messageType;
+    private String timeStamp;
+
     public Messages() {
     }
 
-    private int id;
-    private MessageContent message_content;
-    private User sender;
-    private User recipient;
-    private String timeStamp;
-
-    public Messages(int id, MessageContent message_content, User sender, User recipient, String timeStamp) {
-        this.id = id;
-        this.message_content = message_content;
-        this.sender = sender;
-        this.recipient = recipient;
+    public Messages(String textMessage, String messageType, String timeStamp) {
+        this.textMessage = textMessage;
+        this.messageType = messageType;
         this.timeStamp = timeStamp;
     }
 
-    public int getId() {
-        return id;
+    public String getTextMessage() {
+        return textMessage;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTextMessage(String textMessage) {
+        this.textMessage = textMessage;
     }
 
-    public MessageContent getMessage_content() {
-        return message_content;
+    public String getMessageType() {
+        return messageType;
     }
 
-    public void setMessage_content(MessageContent message_content) {
-        this.message_content = message_content;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    public User getRecipient() {
-        return recipient;
-    }
-
-    public void setRecipient(User recipient) {
-        this.recipient = recipient;
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
     }
 
     public String getTimeStamp() {
@@ -59,5 +38,10 @@ public class Messages implements Serializable {
 
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    @Override
+    public String toString() {
+        return getTextMessage();
     }
 }

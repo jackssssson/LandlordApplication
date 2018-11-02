@@ -40,8 +40,8 @@ public class ChatFragment extends Fragment implements
     ListView mListView;
 
     private Presenter presenter;
-    private int tenantId;
-    private int landlordId;
+    private int senderId;
+    private int recipientId;
 
     @Inject
     ArrayAdapter<Messages> mAdapter;
@@ -60,8 +60,10 @@ public class ChatFragment extends Fragment implements
         ButterKnife.bind(this, view);
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
-        tenantId = intent.getIntExtra("tenant", 0);
-        landlordId = intent.getIntExtra("landlord", 0);
+        senderId = intent.getIntExtra("sender", 0);
+        recipientId = intent.getIntExtra("recipient", 0);
+
+        buttonSendChat();
 
         return view;
     }
@@ -70,7 +72,14 @@ public class ChatFragment extends Fragment implements
     public void onResume() {
         super.onResume();
         presenter.setView(this);
-        presenter.getMessages(tenantId, landlordId);
+        presenter.getMessages(senderId, recipientId);
+        presenter.refreshMessages();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.stopThread();
     }
 
     @Override
@@ -87,7 +96,29 @@ public class ChatFragment extends Fragment implements
         });
     }
 
+    @Override
+    public void showNewElement(List<Messages> messages) {
+        runOnUi(() -> mAdapter.addAll(messages));
+    }
+
+    @Override
+    public void showSendMessage(Messages message) {
+        runOnUi(() -> mAdapter.add(message));
+    }
+
     private void runOnUi(Runnable action) {
         Objects.requireNonNull(getActivity()).runOnUiThread(action);
+    }
+
+    private void buttonSendChat(){
+        mButtonChat.setOnClickListener(v -> {
+            String message = mMessage.getText().toString();
+
+            if (message.equals("")){
+                return;
+            }
+
+            presenter.sendMessage(message, senderId, recipientId);
+        });
     }
 }

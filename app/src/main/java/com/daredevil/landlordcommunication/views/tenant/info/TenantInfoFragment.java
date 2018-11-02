@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
+import com.daredevil.landlordcommunication.views.chat.ChatActivity;
 
 import java.util.Objects;
 
@@ -58,6 +59,7 @@ public class TenantInfoFragment extends Fragment implements
     private Presenter presenter;
     private Estates estate;
     private String userName;
+    private int tenantId;
 
 
     @Inject
@@ -77,8 +79,11 @@ public class TenantInfoFragment extends Fragment implements
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         estate = (Estates) intent.getSerializableExtra("estate");
         userName = intent.getStringExtra("userName");
+        tenantId = intent.getIntExtra("tenantId", 0);
 
         buttonRate();
+
+        mButtonChat.setOnClickListener(v -> presenter.chatClicked());
 
         return view;
     }
@@ -88,6 +93,7 @@ public class TenantInfoFragment extends Fragment implements
         super.onResume();
         presenter.setView(this);
         presenter.postIdEstate(estate.getEstateid(), estate);
+
     }
 
     @Override
@@ -109,6 +115,14 @@ public class TenantInfoFragment extends Fragment implements
     @Override
     public void showMessage(String name) {
         runOnUi(() -> Toast.makeText(getContext(), name, Toast.LENGTH_LONG).show());
+    }
+
+    @Override
+    public void buttonChat(int id) {
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
+        intent.putExtra("sender", id);
+        intent.putExtra("recipient", tenantId);
+        startActivity(intent);
     }
 
     private void runOnUi(Runnable action) {

@@ -8,4 +8,8 @@ public interface View {
     void setPresenter(Presenter presenter);
 
     void showAdapter(List<Messages> messages);
+
+    void showNewElement(List<Messages> messages);
+
+    void showSendMessage(Messages message);
 }

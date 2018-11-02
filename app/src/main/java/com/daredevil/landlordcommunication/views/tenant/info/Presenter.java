@@ -9,4 +9,5 @@ public interface Presenter {
 
     void rateUser(int rating, String name);
 
+    void chatClicked();
 }

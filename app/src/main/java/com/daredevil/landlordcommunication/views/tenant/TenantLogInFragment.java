@@ -136,6 +136,7 @@ public class TenantLogInFragment extends Fragment implements
         Intent intent = new Intent(getActivity(), TenantInfoActivity.class);
         intent.putExtra("estate", mAdapter.getItem(position));
         intent.putExtra("userName", userDTO.getUserName());
+        intent.putExtra("tenantId", userDTO.getUserid());
         startActivity(intent);
     }
 }

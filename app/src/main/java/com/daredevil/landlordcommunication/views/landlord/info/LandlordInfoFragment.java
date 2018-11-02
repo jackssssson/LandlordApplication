@@ -227,7 +227,8 @@ public class LandlordInfoFragment extends Fragment implements
     @Override
     public void buttonChat(int id){
         Intent intent = new Intent(getActivity(), ChatActivity.class);
-        intent.putExtra("landlord", userId);
-        intent.putExtra("tenant", id);
+        intent.putExtra("recipient", userId);
+        intent.putExtra("sender", id);
+        startActivity(intent);
     }
 }

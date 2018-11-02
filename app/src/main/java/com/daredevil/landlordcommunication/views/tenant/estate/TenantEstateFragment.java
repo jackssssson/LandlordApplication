@@ -104,4 +104,9 @@ public class TenantEstateFragment extends Fragment implements
     private void runOnUi(Runnable action) {
         Objects.requireNonNull(getActivity()).runOnUiThread(action);
     }
+
+    @Override
+    public void endActivity(){
+        getActivity().finish();
+    }
 }

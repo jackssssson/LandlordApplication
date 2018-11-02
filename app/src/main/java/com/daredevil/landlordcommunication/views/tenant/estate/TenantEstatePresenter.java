@@ -63,6 +63,7 @@ public class TenantEstatePresenter implements Presenter {
                         String.valueOf(estates.getEstateid()));
 
                 mView.showMessage(result);
+                mView.endActivity();
             } catch (IOException e) {
                 mView.showMessage("Can`t rent");
                 e.printStackTrace();

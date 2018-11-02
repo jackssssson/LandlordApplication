@@ -30,7 +30,8 @@
             android:background="@drawable/rounded_edit_text"
             android:textAlignment="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="305dp"
+            android:layout_below="@+id/estate_name"
+            android:layout_marginTop="5dp"
             android:textSize="15sp"
             android:textColorHint="#ffff"/>
 
@@ -42,7 +43,8 @@
             android:background="@drawable/rounded_edit_text"
             android:textAlignment="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="343dp"
+            android:layout_below="@+id/price"
+            android:layout_marginTop="5dp"
             android:textSize="15sp"
             android:textColorHint="#ffff"/>
 
@@ -51,7 +53,8 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="380dp"
+            android:layout_below="@+id/address"
+            android:layout_marginTop="10dp"
             android:background="@mipmap/button_create"
             android:textSize="10sp"
             android:text="Create"

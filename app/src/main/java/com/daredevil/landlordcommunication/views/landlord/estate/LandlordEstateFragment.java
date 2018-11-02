@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class LandlordEstateFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.landlord.estate.View{
+        com.daredevil.landlordcommunication.views.landlord.estate.View {
 
     @BindView(R.id.estate_name)
     EditText mEstateName;
@@ -53,20 +53,26 @@ public class LandlordEstateFragment extends Fragment implements
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_landlord_estate, container, false);
+        View view = inflater.inflate(R.layout.fragment_landlord_estate, container, false);
 
         ButterKnife.bind(this, view);
 
         Intent estateIntent = Objects.requireNonNull(getActivity()).getIntent();
         UserDTO userDTO = (UserDTO) estateIntent.getSerializableExtra("user");
 
-        mCreateEstate.setOnClickListener(v -> {
-            Estates estate = new Estates(
-                    Float.valueOf(mEstatePrice.getText().toString()),
-                    mEstateAddress.getText().toString());
 
-            presenter.createEstate(estate, userDTO.getUserName());
+        mCreateEstate.setOnClickListener(v -> {
+            try {
+                Estates estate = new Estates(
+                        Float.valueOf(mEstatePrice.getText().toString()),
+                        mEstateAddress.getText().toString());
+
+                presenter.createEstate(estate, userDTO.getUserName());
+            } catch (NumberFormatException e) {
+                Toast.makeText(getContext(), "Invalid price!", Toast.LENGTH_SHORT).show();
+            }
         });
+
 
         return view;
     }

@@ -1,11 +1,14 @@
 package com.daredevil.landlordcommunication.models;
 
+import com.daredevil.landlordcommunication.models.dto.UserDTO;
+
 import java.io.Serializable;
 
 public class Messages implements Serializable {
     private String textMessage;
     private String messageType;
     private String timeStamp;
+    private UserDTO sender;
 
     public Messages() {
     }
@@ -14,6 +17,13 @@ public class Messages implements Serializable {
         this.textMessage = textMessage;
         this.messageType = messageType;
         this.timeStamp = timeStamp;
+    }
+
+    public Messages(String textMessage, String messageType, String timeStamp, UserDTO sender) {
+        this.textMessage = textMessage;
+        this.messageType = messageType;
+        this.timeStamp = timeStamp;
+        this.sender = sender;
     }
 
     public String getTextMessage() {
@@ -40,8 +50,17 @@ public class Messages implements Serializable {
         this.timeStamp = timeStamp;
     }
 
+
+    public UserDTO getSender() {
+        return sender;
+    }
+
+    public void setSender(UserDTO sender) {
+        this.sender = sender;
+    }
+
     @Override
     public String toString() {
-        return getTextMessage();
+        return sender.getUserName() + ": " + getTextMessage();
     }
 }

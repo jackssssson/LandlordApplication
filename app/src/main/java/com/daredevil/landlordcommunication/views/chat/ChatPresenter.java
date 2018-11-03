@@ -1,11 +1,8 @@
 package com.daredevil.landlordcommunication.views.chat;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
-import com.daredevil.landlordcommunication.async.AsyncRunnerImpl;
-import com.daredevil.landlordcommunication.async.AsyncRunnerImpl2;
 import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.servieces.UserService;
-import com.daredevil.landlordcommunication.thread.RunThread;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,9 +49,7 @@ public class ChatPresenter implements Presenter {
 
     @Override
     public void refreshMessages() {
-        AsyncRunner asyncRunner = new AsyncRunnerImpl2();
-
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             while (!isStopped){
                 try {
                     if (mService.checkForNewMessages(senderId, recipientId)){
@@ -80,7 +75,7 @@ public class ChatPresenter implements Presenter {
 
     @Override
     public void sendMessage(String message, int senderId, int recipientId) {
-        mAsyncRunner.runInBackground(() -> {
+        new Thread(() -> {
             try {
                 Messages myMessage = mService.sendMessage(message, senderId, recipientId);
                 mView.showSendMessage(myMessage);
@@ -88,6 +83,6 @@ public class ChatPresenter implements Presenter {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        }).start();
     }
 }

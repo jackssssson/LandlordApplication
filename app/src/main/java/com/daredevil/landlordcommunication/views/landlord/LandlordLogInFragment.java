@@ -72,6 +72,8 @@ public class LandlordLogInFragment extends Fragment implements
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         userDTO = (UserDTO) intent.getSerializableExtra("user");
 
+        mListView.setAdapter(mAdapter);
+
         showEstateAdapter();
 
         presenter.setUser(userDTO);
@@ -79,7 +81,6 @@ public class LandlordLogInFragment extends Fragment implements
         navigateToEstate();
 
         mListView.setOnItemClickListener(this);
-
         return view;
     }
 
@@ -114,7 +115,7 @@ public class LandlordLogInFragment extends Fragment implements
     public void showEstateAdapter() {
         runOnUi(() -> {
 
-            mListView.setAdapter(mAdapter);
+            mAdapter.clear();
 
             for (Estates e : userDTO.getEstates()) {
                 mAdapter.add(e);

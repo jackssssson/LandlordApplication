@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -53,6 +54,12 @@ public class TenantInfoFragment extends Fragment implements
     @BindView(R.id.btn_tenant_info_chat)
     Button mButtonChat;
 
+    @BindView(R.id.btn_value_tenant_info)
+    Button mButtonPay;
+
+    @BindView(R.id.value_tenant_info)
+    EditText mValueEnter;
+
     @BindView(R.id.rg_rating_tenant)
     RadioGroup mRadioGroup;
 
@@ -84,6 +91,8 @@ public class TenantInfoFragment extends Fragment implements
         buttonRate();
 
         mButtonChat.setOnClickListener(v -> presenter.chatClicked());
+
+        mButtonPay.setOnClickListener(v -> presenter.payRent(mValueEnter.getText().toString(), estate.getEstateid()));
 
         return view;
     }
@@ -123,6 +132,11 @@ public class TenantInfoFragment extends Fragment implements
         intent.putExtra("sender", id);
         intent.putExtra("recipient", tenantId);
         startActivity(intent);
+    }
+
+    @Override
+    public void showEstate(Estates estate) {
+        runOnUi(() -> mUserOwed.setText(String.valueOf(estate.getPrice())));
     }
 
     private void runOnUi(Runnable action) {

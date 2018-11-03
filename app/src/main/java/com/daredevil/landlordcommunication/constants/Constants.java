@@ -25,4 +25,6 @@ public class Constants {
     public static final String SEND_TEXT_MESSAGES = Constants.IP_AND_PORT + "messages/postTextMessage/";
     public static final String CHAT_SERVER_URL = "https://socket-io-chat.now.sh/";
     public static final String GET_NOTIFICATION = Constants.IP_AND_PORT + "user/getNotification/";
+    public static final String PAY_RENT = Constants.IP_AND_PORT + "user/payRent/";
+    public static final String UPDATE_RENT = Constants.IP_AND_PORT + "estates/getEstate/";
 }

@@ -1,5 +1,6 @@
 package com.daredevil.landlordcommunication.views.tenant.info;
 
+import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 
 public interface View {
@@ -10,4 +11,6 @@ public interface View {
     void showMessage(String name);
 
     void buttonChat(int id);
+
+    void showEstate(Estates estate);
 }

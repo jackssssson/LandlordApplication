@@ -65,6 +65,35 @@ public class TenantInfoPresenter implements Presenter{
         mView.buttonChat(userDTO.getUserid());
     }
 
+    @Override
+    public void payRent(String value, int id) {
+        mAsyncRunner.runInBackground(() -> {
+            String result = null;
+            try {
+                result = mService.payRent(value, id);
+                refreshRent(id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            mView.showMessage(result);
+        });
+    }
+
+    @Override
+    public void refreshRent(int id) {
+        mAsyncRunner.runInBackground(() -> {
+            try {
+                Estates estates = mService.refreshEstate(id);
+                mView.showEstate(estates);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        });
+    }
+
     private void refreshInfo(){
         try {
             userDTO = mService.postIdPerson(userId);

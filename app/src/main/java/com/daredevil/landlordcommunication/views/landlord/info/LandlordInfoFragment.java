@@ -93,6 +93,11 @@ public class LandlordInfoFragment extends Fragment implements
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         estates = (Estates) intent.getSerializableExtra("estate");
+
+        if (!estates.isOccupied()){
+            mButtonChat.setVisibility(View.GONE);
+        }
+
         name = intent.getStringExtra("userName");
         userId = intent.getIntExtra("id", 0);
 

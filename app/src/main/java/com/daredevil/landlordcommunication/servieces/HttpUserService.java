@@ -109,4 +109,14 @@ public class HttpUserService implements UserService {
     public String getNotification(String user_name) throws IOException {
         return mUserRepository.getNotification(user_name);
     }
+
+    @Override
+    public String payRent(String value, int id) throws IOException {
+        return mUserRepository.payRent(value, id);
+    }
+
+    @Override
+    public Estates refreshEstate(int id) throws IOException {
+        return mUserRepository.refreshEstate(id);
+    }
 }

@@ -236,6 +236,39 @@
             android:textColor="@color/username12"
             />
 
+        <!--et pay-->
+
+        <EditText
+            android:id="@+id/value_tenant_info"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btn_tenant_info_rate"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_edit_text"
+            android:hint="enter value"
+            android:textAlignment="center"
+            android:textColor="#ffff"
+            android:textColorHint="#ffff"
+            android:textSize="15sp"
+
+            />
+
+        <!--button pay-->
+
+        <Button
+            android:id="@+id/btn_value_tenant_info"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/value_tenant_info"
+            android:background="@mipmap/button_create"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textSize="10sp"
+            android:text="Pay"
+            android:textColor="@color/username12"
+            />
+
         <!--button chat-->
 
         <Button
@@ -243,8 +276,8 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/btn_tenant_info_rate"
-            android:layout_marginTop="160dp"
+            android:layout_below="@id/btn_value_tenant_info"
+            android:layout_marginTop="70dp"
             android:background="@mipmap/button_create"
             android:textSize="10sp"
             android:text="Chat"

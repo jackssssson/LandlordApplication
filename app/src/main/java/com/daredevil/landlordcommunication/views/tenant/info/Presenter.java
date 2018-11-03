@@ -10,4 +10,8 @@ public interface Presenter {
     void rateUser(int rating, String name);
 
     void chatClicked();
+
+    void payRent(String value, int id);
+
+    void refreshRent(int id);
 }

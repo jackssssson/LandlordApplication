@@ -43,4 +43,8 @@ public interface UserService {
     Messages sendMessage(String message, int senderId, int recipientId) throws IOException;
 
     String getNotification(String user_name) throws IOException;
+
+    String payRent(String value, int id) throws IOException;
+
+    Estates refreshEstate(int id) throws IOException;
 }

@@ -184,4 +184,18 @@ public class HttpRepository implements Repository {
         String url = Constants.GET_NOTIFICATION + user_name;
         return mHttpRequester.postText(url);
     }
+
+    @Override
+    public String payRent(String value, int id) throws IOException {
+        String url = Constants.PAY_RENT + id + "/" + value;
+        return mHttpRequester.postText(url);
+    }
+
+    @Override
+    public Estates refreshEstate(int id) throws IOException {
+        String url = Constants.UPDATE_RENT + id;
+        String json = mHttpRequester.getUser(url);
+        JsonParser<Estates> jsonEstate = new GsonParser<>(Estates.class);
+        return jsonEstate.fromJson(json);
+    }
 }

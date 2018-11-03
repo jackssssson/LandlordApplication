@@ -141,6 +141,7 @@ public class LandlordLogInFragment extends Fragment implements
         intent.putExtra("estate", mAdapter.getItem(position));
         intent.putExtra("userName", userDTO.getUserName());
         intent.putExtra("id", userDTO.getUserid());
+
         startActivity(intent);
     }
 }

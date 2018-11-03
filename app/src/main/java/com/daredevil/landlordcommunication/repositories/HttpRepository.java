@@ -33,14 +33,6 @@ public class HttpRepository implements Repository {
         this.mJsonParserUser = mJsonParserUser;
     }
 
-//    @Override
-//    public T add(T item) throws IOException {
-//        String requestBody = mJsonParser.toJson(item);
-//        String responseBody = mHttpRequester.postUser(Constants.postLandlord, requestBody);
-//        return mJsonParser.fromJson(responseBody);
-//
-//    }
-
     @Override
     public String addUser(UserDTO user, String type) throws IOException {
         String url = Constants.IS_USER_FREE;
@@ -61,14 +53,6 @@ public class HttpRepository implements Repository {
             return responseBody;
         }
     }
-
-//    @Override
-//    public T getById(int id) throws IOException {
-//        String url = Constants.getUser;
-//        String json = mHttpRequester.getUser(url);
-//        return mJsonParser.fromJson(json);
-//
-//    }
 
     @Override
     public UserDTO getByUserNameAndPassword(String userName, String password) throws IOException {
@@ -193,5 +177,11 @@ public class HttpRepository implements Repository {
         String json = mHttpRequester.postText(url);
         JsonParser<Messages> jsonEstate = new GsonParser<>(Messages.class);
         return jsonEstate.fromJson(json);
+    }
+
+    @Override
+    public String getNotification(String user_name) throws IOException {
+        String url = Constants.GET_NOTIFICATION + user_name;
+        return mHttpRequester.postText(url);
     }
 }

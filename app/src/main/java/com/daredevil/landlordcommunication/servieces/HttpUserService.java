@@ -104,4 +104,9 @@ public class HttpUserService implements UserService {
     public Messages sendMessage(String message, int senderId, int recipientId) throws IOException {
         return mUserRepository.sendMessage(message, senderId, recipientId);
     }
+
+    @Override
+    public String getNotification(String user_name) throws IOException {
+        return mUserRepository.getNotification(user_name);
+    }
 }

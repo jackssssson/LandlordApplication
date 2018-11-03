@@ -6,4 +6,8 @@ public interface View {
     void setPresenter(Presenter presenter);
 
     void logInUser(UserDTO user);
+
+    void savePreference(String userName, String password);
+
+    void setNotification(String user_name);
 }

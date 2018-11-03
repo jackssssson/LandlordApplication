@@ -1,5 +1,6 @@
 package com.daredevil.landlordcommunication.views.main;
 
+
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.User;
@@ -41,6 +42,8 @@ public class InitialScreenPresenter implements Presenter{
         mAsyncRunner.runInBackground(() -> {
             try {
                 UserDTO user = mService.getByUserNameAndPassword(userName, password);
+
+                mView.savePreference(userName, password);
 
                 mView.logInUser(user);
 

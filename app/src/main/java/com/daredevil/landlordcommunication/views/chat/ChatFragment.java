@@ -2,6 +2,8 @@ package com.daredevil.landlordcommunication.views.chat;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,15 +11,14 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
+import com.daredevil.landlordcommunication.camera.CameraActivity;
 import com.daredevil.landlordcommunication.models.Messages;
 
 import java.util.List;
@@ -40,8 +41,14 @@ public class ChatFragment extends Fragment implements
     @BindView(R.id.btn_chat)
     Button mButtonChat;
 
+    @BindView(R.id.btn_send_image)
+    Button mButtonPhoto;
+
     @BindView(R.id.lv_chat)
     ListView mListView;
+
+    @BindView(R.id.id_picture)
+    ImageView mPicture;
 
     private Presenter presenter;
     private int senderId;
@@ -71,6 +78,16 @@ public class ChatFragment extends Fragment implements
 
         clickEnter();
 
+        mButtonPhoto.setOnClickListener(v -> {
+            Intent intent1 = new Intent(getActivity(), CameraActivity.class);
+            intent1.putExtra("senderId", senderId);
+            intent1.putExtra("recipientId", recipientId);
+
+            startActivity(intent1);
+
+
+        });
+
         return view;
     }
 
@@ -98,7 +115,24 @@ public class ChatFragment extends Fragment implements
         runOnUi(() -> {
             mListView.setAdapter(mAdapter);
 
-            mAdapter.addAll(messages);
+            for (Messages m : messages){
+                if (m.getImageMessage() != null){
+                    byte[] bytes = m.getImageMessage().getBytes();
+                    //Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
+                            0, bytes.length, options);
+
+                    mPicture.setImageBitmap(bitmap);
+
+                    continue;
+                }
+                mAdapter.add(m);
+            }
+
+            //mAdapter.addAll(messages);
         });
     }
 

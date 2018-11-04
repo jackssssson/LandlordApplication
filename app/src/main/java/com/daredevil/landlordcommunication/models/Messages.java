@@ -9,6 +9,7 @@ public class Messages implements Serializable {
     private String messageType;
     private String timeStamp;
     private UserDTO sender;
+    private String imageMessage;
 
     public Messages() {
     }
@@ -24,6 +25,14 @@ public class Messages implements Serializable {
         this.messageType = messageType;
         this.timeStamp = timeStamp;
         this.sender = sender;
+    }
+
+    public Messages(String textMessage, String messageType, String timeStamp, UserDTO sender, String imageMessage) {
+        this.textMessage = textMessage;
+        this.messageType = messageType;
+        this.timeStamp = timeStamp;
+        this.sender = sender;
+        this.imageMessage = imageMessage;
     }
 
     public String getTextMessage() {
@@ -62,5 +71,14 @@ public class Messages implements Serializable {
     @Override
     public String toString() {
         return sender.getUserName() + ": " + getTextMessage();
+    }
+
+
+    public String getImageMessage() {
+        return imageMessage;
+    }
+
+    public void setImageMessage(String imageMessage) {
+        this.imageMessage = imageMessage;
     }
 }

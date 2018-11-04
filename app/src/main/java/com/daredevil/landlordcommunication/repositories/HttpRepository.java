@@ -5,6 +5,7 @@ import com.daredevil.landlordcommunication.http.HttpRequester;
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.User;
+import com.daredevil.landlordcommunication.models.dto.MessageDTO;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.parser.GsonParser;
 import com.daredevil.landlordcommunication.parser.JsonParser;
@@ -197,5 +198,13 @@ public class HttpRepository implements Repository {
         String json = mHttpRequester.getUser(url);
         JsonParser<Estates> jsonEstate = new GsonParser<>(Estates.class);
         return jsonEstate.fromJson(json);
+    }
+
+    @Override
+    public void sendImageMessage(MessageDTO messageDTO) throws IOException {
+        String url = Constants.SEND_IMAGE;
+        JsonParser<MessageDTO> messagesDTO = new GsonParser<>(MessageDTO.class);
+        String body = messagesDTO.toJson(messageDTO);
+        mHttpRequester.postUser(url, body);
     }
 }

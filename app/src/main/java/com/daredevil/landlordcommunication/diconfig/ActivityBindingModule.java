@@ -1,5 +1,6 @@
 package com.daredevil.landlordcommunication.diconfig;
 
+import com.daredevil.landlordcommunication.camera.CameraActivity;
 import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
 import com.daredevil.landlordcommunication.views.chat.ChatActivity;
 import com.daredevil.landlordcommunication.views.landlord.LandlordLogInActivity;
@@ -63,4 +64,8 @@ abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = {ChatModule.class})
     abstract ChatActivity chatActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector()
+    abstract CameraActivity cameraActivity();
 }

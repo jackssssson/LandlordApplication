@@ -2,6 +2,7 @@ package com.daredevil.landlordcommunication.servieces;
 
 import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.Messages;
+import com.daredevil.landlordcommunication.models.dto.MessageDTO;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 
 import java.io.IOException;
@@ -47,4 +48,6 @@ public interface UserService {
     String payRent(String value, int id) throws IOException;
 
     Estates refreshEstate(int id) throws IOException;
+
+    void sendImageMessage(MessageDTO messageDTO) throws IOException;
 }

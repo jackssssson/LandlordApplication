@@ -2,6 +2,7 @@ package com.daredevil.landlordcommunication.views.chat;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.Messages;
+import com.daredevil.landlordcommunication.models.dto.MessageDTO;
 import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
@@ -39,6 +40,9 @@ public class ChatPresenter implements Presenter {
             try {
                 if (mService.checkForMessages(senderId, recipientId)) {
                     List<Messages> messages = mService.getMessages(senderId, recipientId);
+
+
+
                     mView.showAdapter(messages);
                 }
             } catch (IOException e) {

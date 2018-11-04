@@ -4,8 +4,9 @@
     package="com.daredevil.landlordcommunication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-    <uses-permission android:name="android.permission.SET_ALARM"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".LandlordApplication"
@@ -15,17 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".notification.NotificationActivity" />
 
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
+        <activity android:name=".camera.CameraActivity"/>
+         <!--<intent-filter>-->
+         <!--<action android:name="android.intent.action.MAIN" />-->
 
 
-        <!-- </activity> -->
+         <!--<category android:name="android.intent.category.LAUNCHER" />-->
+         <!--</intent-filter>-->
+
+
+         <!--</activity>-->
 
         <activity android:name=".views.main.InitialScreenActivity">
             <intent-filter>
@@ -34,7 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.CreateUser.CreateUserActivity"
+        <activity
+            android:name=".views.CreateUser.CreateUserActivity"
             tools:ignore="InnerclassSeparator" />
         <activity android:name=".views.tenant.TenantLogInActivity" />
         <activity
@@ -47,11 +49,12 @@
         <activity
             android:name=".views.tenant.info.TenantInfoActivity"
             android:label="@string/title_activity_tenant_info"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".views.tenant.unoccupiedestates.TenantUnOccupiedActivity" />
         <activity android:name=".views.chat.ChatActivity" />
-        <activity android:name=".notification.RepeatingActivity"/>
-        <receiver android:name=".notification.MyNotification"/>
+        <activity android:name=".notification.RepeatingActivity" />
+
+        <receiver android:name=".notification.MyNotification" />
     </application>
 
 </manifest>

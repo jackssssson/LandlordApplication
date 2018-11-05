@@ -3,24 +3,24 @@ package com.daredevil.landlordcommunication.models.dto;
 import java.io.Serializable;
 
 public class MessageDTO implements Serializable{
-    private byte[] imageMessage;
+    private String imageMessage;
     private int senderId;
     private int recipientId;
 
     public MessageDTO() {
     }
 
-    public MessageDTO(byte[] imageMessage, int senderId, int recipientId) {
+    public MessageDTO(String imageMessage, int senderId, int recipientId) {
         this.imageMessage = imageMessage;
         this.senderId = senderId;
         this.recipientId = recipientId;
     }
 
-    public byte[] getImageMessage() {
+    public String getImageMessage() {
         return imageMessage;
     }
 
-    public void setImageMessage(byte[] imageMessage) {
+    public void setImageMessage(String imageMessage) {
         this.imageMessage = imageMessage;
     }
 

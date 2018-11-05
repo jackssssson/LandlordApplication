@@ -9,7 +9,7 @@
         android:id="@+id/id_picture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="180dp"
+        android:layout_centerHorizontal="true"
 
         />
 
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="Send"
         android:layout_below="@id/lv_chat"
-        android:layout_toRightOf="@id/chat_message"
+        android:layout_toEndOf="@id/chat_message"
         />
 
     <Button
@@ -39,20 +39,18 @@
         android:layout_height="wrap_content"
         android:text="Photo"
         android:layout_below="@id/lv_chat"
-        android:layout_toRightOf="@id/btn_chat"
+        android:layout_toEndOf="@id/btn_chat"
         />
 
     <ListView
         android:id="@+id/lv_chat"
         android:layout_width="match_parent"
+        android:layout_below="@+id/id_picture"
         android:layout_height="520dp"
         android:transcriptMode="alwaysScroll"
         android:stackFromBottom="false"
-        android:layout_marginTop="100dp"
+        android:cacheColorHint="@color/username8"
         >
-
-
-
     </ListView>
 
 </RelativeLayout>

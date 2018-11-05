@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.camera.CameraActivity;
@@ -114,18 +116,11 @@ public class ChatFragment extends Fragment implements
     public void showAdapter(List<Messages> messages) {
         runOnUi(() -> {
             mListView.setAdapter(mAdapter);
+           // int a = 0;
 
-            for (Messages m : messages){
-                if (m.getImageMessage() != null){
-                    byte[] bytes = m.getImageMessage().getBytes();
-                    //Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
-
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
-                            0, bytes.length, options);
-
-                    mPicture.setImageBitmap(bitmap);
+            for (Messages m : messages) {
+                if (m.getImageMessage() != null) {
+                    testMethod(m);
 
                     continue;
                 }
@@ -185,7 +180,16 @@ public class ChatFragment extends Fragment implements
             }
             return false;
         });
-
-
     }
+
+    private void testMethod(Messages m) {
+        byte[] bytes = Base64.decode(m.getImageMessage(), Base64.DEFAULT);
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
+                0, bytes.length);
+
+        mPicture.setImageBitmap(bitmap);
+    }
+
+
 }

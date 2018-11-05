@@ -6,6 +6,7 @@ public class Estates implements Serializable {
     public Estates() {
     }
     private int estateid;
+    private String estateName;
     private boolean occupied;
     private float price;
     private String address;
@@ -23,6 +24,15 @@ public class Estates implements Serializable {
     public Estates(float price, String address) {
         this.price = price;
         this.address = address;
+    }
+
+    public Estates(int estateid, String estateName, boolean occupied, float price, String address, String duedate) {
+        this.estateid = estateid;
+        this.estateName = estateName;
+        this.occupied = occupied;
+        this.price = price;
+        this.address = address;
+        this.duedate = duedate;
     }
 
     public int getEstateid() {
@@ -75,6 +85,14 @@ public class Estates implements Serializable {
             isOccupied = "free";
         }
 
-        return getAddress() + " " + getPrice() + " " + isOccupied;
+        return  getEstateName() + "  " + getAddress() + "  " + getPrice() + "  " + isOccupied;
+    }
+
+    public String getEstateName() {
+        return estateName;
+    }
+
+    public void setEstateName(String estateName) {
+        this.estateName = estateName;
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.daredevil.landlordcommunication.R;
@@ -74,9 +75,10 @@ public class CameraActivity extends DaggerAppCompatActivity implements EasyImage
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         byte[] byteArray = stream.toByteArray();
+        String imageString =  Base64.encodeToString(byteArray, Base64.DEFAULT);
 
 
-        MessageDTO messageDTO = new MessageDTO(byteArray, recipientId, senderId);
+        MessageDTO messageDTO = new MessageDTO(imageString, recipientId, senderId);
 
         new Thread(() -> {
             try {

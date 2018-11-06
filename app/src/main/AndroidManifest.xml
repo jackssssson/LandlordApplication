@@ -16,17 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        <activity android:name=".camera.CameraActivity"/>
-         <!--<intent-filter>-->
-         <!--<action android:name="android.intent.action.MAIN" />-->
-
-
-         <!--<category android:name="android.intent.category.LAUNCHER" />-->
-         <!--</intent-filter>-->
+        <activity android:name=".camera.CameraActivity" />
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-         <!--</activity>-->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+
+
+        <!-- </activity> -->
 
         <activity android:name=".views.main.InitialScreenActivity">
             <intent-filter>
@@ -55,6 +54,8 @@
         <activity android:name=".notification.RepeatingActivity" />
 
         <receiver android:name=".notification.MyNotification" />
+
+        <activity android:name=".views.images.ImagesActivity"></activity>
     </application>
 
 </manifest>

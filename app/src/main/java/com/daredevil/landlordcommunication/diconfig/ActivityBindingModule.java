@@ -3,6 +3,7 @@ package com.daredevil.landlordcommunication.diconfig;
 import com.daredevil.landlordcommunication.camera.CameraActivity;
 import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
 import com.daredevil.landlordcommunication.views.chat.ChatActivity;
+import com.daredevil.landlordcommunication.views.images.ImagesActivity;
 import com.daredevil.landlordcommunication.views.landlord.LandlordLogInActivity;
 import com.daredevil.landlordcommunication.views.landlord.estate.LandlordEstateActivity;
 import com.daredevil.landlordcommunication.views.landlord.info.LandlordInfoActivity;
@@ -68,4 +69,8 @@ abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector()
     abstract CameraActivity cameraActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = {ImagesModule.class})
+    abstract ImagesActivity imagesActivity();
 }

@@ -14,4 +14,6 @@ public interface Presenter {
     void setOwed(String price, int id);
 
     void chatClicked();
+
+    void getMessagesForAdapter(int id);
 }

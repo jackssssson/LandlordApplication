@@ -1,7 +1,6 @@
 package com.daredevil.landlordcommunication.views.chat;
 
 import android.os.Bundle;
-
 import com.daredevil.landlordcommunication.R;
 
 import javax.inject.Inject;
@@ -28,4 +27,6 @@ public class ChatActivity extends DaggerAppCompatActivity {
                 .replace(R.id.chat_fragment, mFragment)
                 .commit();
     }
+
+
 }

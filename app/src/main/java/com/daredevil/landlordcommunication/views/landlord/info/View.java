@@ -1,6 +1,9 @@
 package com.daredevil.landlordcommunication.views.landlord.info;
 
+import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
+
+import java.util.List;
 
 public interface View {
     void setPresenter(Presenter presenter);
@@ -10,4 +13,6 @@ public interface View {
     void showMessage(String name);
 
     void buttonChat(int id);
+
+    void showMessagesInAdapter(List<Messages> messages);
 }

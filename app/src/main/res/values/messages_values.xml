@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_content">
+        <item>Paid rent</item>
+        <item>Payment pending</item>
+        <item>Apartment is cleaned</item>
+        <item>Issue with the estate</item>
+    </string-array>
+</resources>

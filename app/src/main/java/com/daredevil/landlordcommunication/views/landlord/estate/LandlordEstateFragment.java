@@ -63,7 +63,7 @@ public class LandlordEstateFragment extends Fragment implements
 
         mCreateEstate.setOnClickListener(v -> {
             try {
-                Estates estate = new Estates(
+                Estates estate = new Estates(mEstateName.getText().toString(),
                         Float.valueOf(mEstatePrice.getText().toString()),
                         mEstateAddress.getText().toString());
 

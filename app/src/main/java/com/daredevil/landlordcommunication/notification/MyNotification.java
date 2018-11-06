@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import com.daredevil.landlordcommunication.async.AsyncRunnerImpl;
 import com.daredevil.landlordcommunication.http.OkHttpHttpRequester;
 import com.daredevil.landlordcommunication.models.User;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
@@ -31,14 +30,14 @@ public class MyNotification extends BroadcastReceiver {
         String text = intent.getStringExtra("user_name");
         final String[] notification = {""};
 
-        new AsyncRunnerImpl().runInBackground(() -> {
+        new Thread(() -> {
             try {
                 notification[0] = userService.getNotification(text);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        }).start();
 
         try {
             Thread.sleep(3000);

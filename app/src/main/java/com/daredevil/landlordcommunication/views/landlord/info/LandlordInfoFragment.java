@@ -8,18 +8,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.Estates;
+import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.views.chat.ChatActivity;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -31,7 +37,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class LandlordInfoFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.landlord.info.View {
+        com.daredevil.landlordcommunication.views.landlord.info.View, AdapterView.OnItemSelectedListener{
 
     @BindView(R.id.user_name_info)
     TextView mUserName;
@@ -66,11 +72,25 @@ public class LandlordInfoFragment extends Fragment implements
     @BindView(R.id.btn_chat_info)
     Button mButtonChat;
 
+    @BindView(R.id.btn_send_info)
+    Button mButtonSend;
+
     @BindView(R.id.rg_rating)
     RadioGroup mRadioGroup;
 
     @BindView(R.id.user_owed_info)
     TextView mUserOwed;
+
+    @BindView(R.id.lv_landlord_info)
+    ListView mListView;
+
+    @BindView(R.id.spinner_messages)
+    Spinner mSpinner;
+
+    @Inject
+    ArrayAdapter<Messages> mAdapter;
+
+    private ArrayAdapter<CharSequence> mSpinnerAdapter;
 
     private Presenter presenter;
     private Estates estates;
@@ -91,10 +111,14 @@ public class LandlordInfoFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
+        spinner();
+
+        mListView.setAdapter(mAdapter);
+
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         estates = (Estates) intent.getSerializableExtra("estate");
 
-        if (!estates.isOccupied()){
+        if (!estates.isOccupied()) {
             mButtonChat.setVisibility(View.GONE);
         }
 
@@ -117,6 +141,7 @@ public class LandlordInfoFragment extends Fragment implements
         super.onResume();
         presenter.setView(this);
         presenter.postIdEstate(estates.getEstateid(), estates);
+        presenter.getMessagesForAdapter(estates.getEstateid());
     }
 
     @Override
@@ -155,7 +180,7 @@ public class LandlordInfoFragment extends Fragment implements
 
     private void buttonRate() {
         mButtonRate.setOnClickListener(v -> {
-            if (!estates.isOccupied()){
+            if (!estates.isOccupied()) {
                 showMessage("Can`t rate! No tenant!");
                 return;
             }
@@ -193,7 +218,7 @@ public class LandlordInfoFragment extends Fragment implements
 
     public void buttonSetDueDate() {
         mButtonSet.setOnClickListener(v -> {
-            if (!estates.isOccupied()){
+            if (!estates.isOccupied()) {
                 showMessage("Can`t set due date! No tenant!");
                 return;
             }
@@ -230,10 +255,34 @@ public class LandlordInfoFragment extends Fragment implements
     }
 
     @Override
-    public void buttonChat(int id){
+    public void buttonChat(int id) {
         Intent intent = new Intent(getActivity(), ChatActivity.class);
         intent.putExtra("recipient", userId);
         intent.putExtra("sender", id);
         startActivity(intent);
+    }
+
+    @Override
+    public void showMessagesInAdapter(List<Messages> messages) {
+        runOnUi(() -> mAdapter.addAll(messages));
+    }
+
+    private void spinner() {
+        mSpinnerAdapter = ArrayAdapter.createFromResource(Objects.requireNonNull(getContext()),
+                R.array.spinner_content,
+                android.R.layout.simple_spinner_item);
+
+        mSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(mSpinnerAdapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

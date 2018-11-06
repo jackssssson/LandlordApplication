@@ -50,7 +50,7 @@ public class ChatPresenter implements Presenter {
 
     @Override
     public void refreshMessages() {
-        mAsyncRunner.runInBackground(() -> {
+        new Thread(() -> {
             while (!isStopped){
                 try {
                     if (mService.checkForNewMessages(senderId, recipientId)){
@@ -66,7 +66,7 @@ public class ChatPresenter implements Presenter {
                     e.printStackTrace();
                 }
             }
-        });
+        }).start();
     }
 
     @Override

@@ -84,6 +84,7 @@ public class TenantInfoFragment extends Fragment implements
         ButterKnife.bind(this, view);
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
+
         estate = (Estates) intent.getSerializableExtra("estate");
         userName = intent.getStringExtra("userName");
         tenantId = intent.getIntExtra("tenantId", 0);
@@ -102,9 +103,7 @@ public class TenantInfoFragment extends Fragment implements
         super.onResume();
         presenter.setView(this);
         presenter.postIdEstate(estate.getEstateid(), estate);
-
     }
-
     @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;

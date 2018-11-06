@@ -50,4 +50,8 @@ public interface UserService {
     Estates refreshEstate(int id) throws IOException;
 
     void sendImageMessage(MessageDTO messageDTO) throws IOException;
+
+    List<Messages> getMessagesForAdapter(int id) throws IOException;
+
+    String checkForEstateMessage(int id) throws IOException;
 }

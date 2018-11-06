@@ -2,9 +2,12 @@ package com.daredevil.landlordcommunication.views.chat;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.camera.CameraActivity;
 import com.daredevil.landlordcommunication.models.Messages;
-import com.daredevil.landlordcommunication.views.images.ImagesActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,8 +48,8 @@ public class ChatFragment extends Fragment implements
     @BindView(R.id.lv_chat)
     ListView mListView;
 
-    @BindView(R.id.btn_images)
-    Button mButtonPicture;
+    @BindView(R.id.id_picture)
+    ImageView mPicture;
 
     private Presenter presenter;
     private int senderId;
@@ -55,8 +57,6 @@ public class ChatFragment extends Fragment implements
 
     @Inject
     ArrayAdapter<Messages> mAdapter;
-
-    private ArrayList<String> mMessages = new ArrayList<>();
 
     @Inject
     public ChatFragment() {
@@ -89,12 +89,6 @@ public class ChatFragment extends Fragment implements
 
         });
 
-        mButtonPicture.setOnClickListener(v -> {
-            Intent intent1 = new Intent(getActivity(), ImagesActivity.class);
-            intent1.putStringArrayListExtra("images", mMessages);
-            startActivity(intent1);
-        });
-
         return view;
     }
 
@@ -122,13 +116,21 @@ public class ChatFragment extends Fragment implements
         runOnUi(() -> {
             mListView.setAdapter(mAdapter);
 
+            for (int i = messages.size() - 1; i >= 0; i--){
+                if (messages.get(i).getImageMessage() != null){
+                    testMethod(messages.get(i));
+                    break;
+                }
+            }
+
             for (Messages m : messages) {
-                if (m.getImageMessage() != null) {
-                    mMessages.add(m.getImageMessage());
+                if (m.getImageMessage() != null){
                     continue;
                 }
+
                 mAdapter.add(m);
             }
+
         });
     }
 
@@ -182,4 +184,15 @@ public class ChatFragment extends Fragment implements
             return false;
         });
     }
+
+    private void testMethod(Messages m) {
+        byte[] bytes = Base64.decode(m.getImageMessage(), Base64.DEFAULT);
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
+                0, bytes.length);
+
+        mPicture.setImageBitmap(bitmap);
+    }
+
+
 }

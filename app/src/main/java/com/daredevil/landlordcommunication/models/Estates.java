@@ -21,9 +21,10 @@ public class Estates implements Serializable {
         this.duedate = duedate;
     }
 
-    public Estates(float price, String address) {
+    public Estates(String estateName, float price, String address) {
         this.price = price;
         this.address = address;
+        this.estateName = estateName;
     }
 
     public Estates(int estateid, String estateName, boolean occupied, float price, String address, String duedate) {

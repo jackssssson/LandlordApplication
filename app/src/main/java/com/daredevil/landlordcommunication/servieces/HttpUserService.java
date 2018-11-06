@@ -125,4 +125,14 @@ public class HttpUserService implements UserService {
     public void sendImageMessage(MessageDTO messageDTO) throws IOException {
         mUserRepository.sendImageMessage(messageDTO);
     }
+
+    @Override
+    public List<Messages> getMessagesForAdapter(int id) throws IOException {
+        return mUserRepository.getMessagesForAdapter(id);
+    }
+
+    @Override
+    public String checkForEstateMessage(int id) throws IOException {
+        return mUserRepository.checkForEstateMessage(id);
+    }
 }

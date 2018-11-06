@@ -48,6 +48,8 @@ public class LandlordLogInFragment extends Fragment implements
     @BindView(R.id.btn_create_estate_log_in)
     Button mCreateEstate;
 
+
+
     @Inject
     ArrayAdapter<Estates> mAdapter;
 

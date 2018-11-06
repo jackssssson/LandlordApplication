@@ -2,10 +2,12 @@ package com.daredevil.landlordcommunication.views.landlord.info;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.Estates;
+import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,7 +21,7 @@ public class LandlordInfoPresenter implements Presenter {
     UserService mService;
 
     @Inject
-    AsyncRunner asyncRunner;
+    AsyncRunner mAsyncRunner;
 
     @Inject
     LandlordInfoPresenter() {
@@ -33,9 +35,9 @@ public class LandlordInfoPresenter implements Presenter {
     @Override
     public void postIdEstate(int id, Estates estates) {
         userId = id;
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
 
-            if (estates.isOccupied()){
+            if (estates.isOccupied()) {
                 try {
                     userDTO = mService.postIdEstate(id);
                 } catch (IOException e) {
@@ -49,7 +51,7 @@ public class LandlordInfoPresenter implements Presenter {
 
     @Override
     public void setDueDate(String dueDate, int id) {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
                 String result = mService.setDueDate(dueDate, id);
                 mView.showMessage(result);
@@ -61,11 +63,11 @@ public class LandlordInfoPresenter implements Presenter {
 
     @Override
     public void rateUser(int rating, String name) {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
-               String result = mService.rateUser(rating, userDTO.getUserName(), name);
-               mView.showMessage(result);
-               refreshInfo();
+                String result = mService.rateUser(rating, userDTO.getUserName(), name);
+                mView.showMessage(result);
+                refreshInfo();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,7 +76,7 @@ public class LandlordInfoPresenter implements Presenter {
 
     @Override
     public void setOwed(String price, int id) {
-        asyncRunner.runInBackground(() -> {
+        mAsyncRunner.runInBackground(() -> {
             try {
                 String result = mService.setOwed(price, id);
                 mView.showMessage(result);
@@ -89,7 +91,25 @@ public class LandlordInfoPresenter implements Presenter {
         mView.buttonChat(userDTO.getUserid());
     }
 
-    private void refreshInfo(){
+    @Override
+    public void getMessagesForAdapter(int id) {
+        mAsyncRunner.runInBackground(() -> {
+            try {
+                String result = mService.checkForEstateMessage(id);
+
+                if (result.equals("false")) {
+                    return;
+                }
+
+                List<Messages> messages = mService.getMessagesForAdapter(id);
+                mView.showMessagesInAdapter(messages);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void refreshInfo() {
         try {
             userDTO = mService.postIdEstate(userId);
         } catch (IOException e) {

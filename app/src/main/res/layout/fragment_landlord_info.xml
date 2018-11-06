@@ -6,324 +6,363 @@
     android:background="@mipmap/home"
     tools:context=".views.landlord.info.LandlordInfoFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
         <RelativeLayout
-            android:id="@+id/rl_landlord_info"
-            android:layout_width="wrap_content"
-            android:layout_height="130dp"
-            android:background="@drawable/text_view">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/rl_landlord_info"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:background="@drawable/text_view">
 
-            <TextView
-                android:id="@+id/name_info"
+                <TextView
+                    android:id="@+id/name_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tenant name:"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <!-- text view user name-->
+                <TextView
+                    android:id="@+id/user_name_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/name_info"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/email_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_info"
+                    android:text="Tenant email:"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <!-- text view user email-->
+                <TextView
+                    android:id="@+id/user_email_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_info"
+                    android:layout_toEndOf="@id/email_info"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/rate_info_tenant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email_info"
+                    android:text="Tenant rating:"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <!--text view user rate info-->
+                <TextView
+                    android:id="@+id/user_rate_info_tenant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email_info"
+                    android:layout_toEndOf="@+id/rate_info_tenant"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <!-- text view user owned-->
+
+
+                <TextView
+                    android:id="@+id/due_date_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rate_info_tenant"
+                    android:text="Due date:"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <!--text view user due date-->
+
+                <TextView
+                    android:id="@+id/user_due_date_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rate_info_tenant"
+                    android:layout_toEndOf="@+id/due_date_info"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/is_occupied"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/due_date_info"
+                    android:text="Is occupied:"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <!-- text view user is occupied-->
+
+                <TextView
+                    android:id="@+id/user_is_occupied"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/due_date_info"
+                    android:layout_toEndOf="@+id/is_occupied"
+                    android:textColor="#ffff"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/owed_tenant_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/is_occupied"
+                    android:text="Owed:"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/user_owed_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/is_occupied"
+                    android:layout_toEndOf="@id/owed_tenant_info"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_landlord_info"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_landlord_info"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="1"
+                    android:textColor="@color/username12"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:text="2"
+                    android:textColor="@color/username12"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="21dp"
+                    android:text="3"
+                    android:textColor="@color/username12"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="24dp"
+                    android:text="4"
+                    android:textColor="@color/username12"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="21dp"
+                    android:text="5"
+                    android:textColor="@color/username12"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/rg_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tenant name:"
+                android:layout_below="@+id/ll_landlord_info"
+                android:orientation="horizontal"
+
+                >
+
+                <RadioButton
+                    android:id="@+id/rb_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edit_text">
+
+                </RadioButton>
+
+
+                <RadioButton
+                    android:id="@+id/rb_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edit_text" />
+
+                <RadioButton
+                    android:id="@+id/rb_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edit_text" />
+
+                <RadioButton
+                    android:id="@+id/rb_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edit_text" />
+
+                <RadioButton
+                    android:id="@+id/rb_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edit_text" />
+
+            </RadioGroup>
+            <!--button rate-->
+            <Button
+                android:id="@+id/btn_rate_info"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/rl_landlord_info"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/button_create"
+                android:layout_toEndOf="@+id/rg_rating"
+                android:layout_marginStart="10dp"
+                android:text="Rate"
+                android:textColor="@color/username12"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/owed_info"
+                android:layout_width="160dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/rg_rating"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="owed"
+                android:textAlignment="center"
                 android:textColor="#ffff"
+                android:textColorHint="#ffff"
                 android:textSize="15sp"
                 android:textStyle="italic" />
 
-            <!-- text view user name-->
-            <TextView
-                android:id="@+id/user_name_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/name_info"
+            <!--btn owned-->
+
+            <Button
+                android:id="@+id/btn_owed"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/btn_rate_info"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:background="@mipmap/button_create"
+                android:text="Owed"
+                android:layout_toRightOf="@id/owed_info"
+                android:textColor="@color/username12"
+                android:textSize="10sp" />
+
+            <!--edit text set due date-->
+
+            <EditText
+                android:id="@+id/user_set_due_date"
+                android:layout_width="160dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/owed_info"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="set due date"
+                android:textAlignment="center"
                 android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/email_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name_info"
-                android:text="Tenant email:"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <!-- text view user email-->
-            <TextView
-                android:id="@+id/user_email_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name_info"
-                android:layout_toEndOf="@id/email_info"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/rate_info_tenant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/email_info"
-                android:text="Tenant rating:"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <!--text view user rate info-->
-            <TextView
-                android:id="@+id/user_rate_info_tenant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/email_info"
-                android:layout_toEndOf="@+id/rate_info_tenant"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <!-- text view user owned-->
-
-
-            <TextView
-                android:id="@+id/due_date_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rate_info_tenant"
-                android:text="Due date:"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <!--text view user due date-->
-
-            <TextView
-                android:id="@+id/user_due_date_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rate_info_tenant"
-                android:layout_toEndOf="@+id/due_date_info"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/is_occupied"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/due_date_info"
-                android:text="Is occupied:"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
-
-            <!-- text view user is occupied-->
-
-            <TextView
-                android:id="@+id/user_is_occupied"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/due_date_info"
-                android:layout_toEndOf="@+id/is_occupied"
-                android:textColor="#ffff"
+                android:textColorHint="#ffff"
                 android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/owed_tenant_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/is_occupied"
-                android:text="Owed:"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
+            <!--button set-->
 
-            <TextView
-                android:id="@+id/user_owed_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/is_occupied"
-                android:layout_toEndOf="@id/owed_tenant_info"
-                android:textColor="#ffff"
-                android:textSize="15sp"
-                android:textStyle="italic" />
+            <Button
+                android:id="@+id/btn_set_info"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/btn_owed"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/user_set_due_date"
+                android:background="@mipmap/button_create"
+                android:text="Set"
+                android:textColor="@color/username12"
+                android:textSize="10sp" />
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_landlord_info"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_landlord_info"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="1"
-                android:textColor="@color/username12"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="25dp"
-                android:text="2"
-                android:textColor="@color/username12"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="21dp"
-                android:text="3"
-                android:textColor="@color/username12"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="24dp"
-                android:text="4"
-                android:textColor="@color/username12"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="21dp"
-                android:text="5"
-                android:textColor="@color/username12"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <RadioGroup
-            android:id="@+id/rg_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_landlord_info"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-
+        <ListView
+            android:id="@+id/lv_landlord_info"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_below="@+id/btn_set_info"
             >
 
-            <RadioButton
-                android:id="@+id/rb_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text">
-
-            </RadioButton>
 
 
-            <RadioButton
-                android:id="@+id/rb_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text" />
+        </ListView>
 
-            <RadioButton
-                android:id="@+id/rb_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           >
 
-            <RadioButton
-                android:id="@+id/rb_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text" />
+           <Button
+               android:id="@+id/btn_chat_info"
+               android:layout_width="100dp"
+               android:layout_height="40dp"
+               android:background="@mipmap/button_create"
+               android:text="Chat"
+               android:textColor="@color/username12"
+               android:textSize="10sp" />
 
-            <RadioButton
-                android:id="@+id/rb_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text" />
+           <Spinner
+               android:id="@+id/spinner_messages"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               />
 
-        </RadioGroup>
-        <!--button rate-->
-        <Button
-            android:id="@+id/btn_rate_info"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/rg_rating"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="@mipmap/button_create"
-            android:text="Rate"
-            android:textColor="@color/username12"
-            android:textSize="10sp" />
+           <Button
+               android:id="@+id/btn_send_info"
+               android:layout_width="100dp"
+               android:layout_height="40dp"
+               android:background="@mipmap/button_create"
+               android:text="Send"
+               android:textColor="@color/username12"
+               android:textSize="10sp" />
 
-        <EditText
-            android:id="@+id/owed_info"
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/btn_rate_info"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rounded_edit_text"
-            android:hint="owed"
-            android:textAlignment="center"
-            android:textColor="#ffff"
-            android:textColorHint="#ffff"
-            android:textSize="15sp"
-            android:textStyle="italic" />
-
-        <!--btn owned-->
-
-        <Button
-            android:id="@+id/btn_owed"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/owed_info"
-            android:layout_marginTop="5dp"
-            android:background="@mipmap/button_create"
-            android:text="Owed"
-            android:textColor="@color/username12"
-            android:textSize="10sp" />
-
-        <!--edit text set due date-->
-
-        <EditText
-            android:id="@+id/user_set_due_date"
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/btn_owed"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rounded_edit_text"
-            android:hint="set due date"
-            android:textAlignment="center"
-            android:textColor="#ffff"
-            android:textColorHint="#ffff"
-            android:textSize="15sp" />
-
-        <!--button set-->
-
-        <Button
-            android:id="@+id/btn_set_info"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/user_set_due_date"
-            android:layout_marginTop="5dp"
-            android:background="@mipmap/button_create"
-            android:text="Set"
-            android:textColor="@color/username12"
-            android:textSize="10sp" />
-
-        <!--btn chat-->
-
-        <Button
-            android:id="@+id/btn_chat_info"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="530dp"
-            android:background="@mipmap/button_create"
-            android:text="Chat"
-            android:textColor="@color/username12"
-            android:textSize="10sp" />
-    </RelativeLayout>
+       </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

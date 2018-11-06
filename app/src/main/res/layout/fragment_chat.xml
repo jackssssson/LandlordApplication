@@ -1,56 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.chat.ChatFragment">
+    tools:context=".views.chat.ChatFragment"
+    android:orientation="vertical"
+    >
 
-    <Button
-        android:id="@+id/btn_images"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="Images"
+    <ImageView
+        android:id="@+id/id_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        />
-
-    <EditText
-        android:id="@+id/chat_message"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lv_chat"
-        android:hint="Enter message"
-        android:textStyle="italic"
-        android:textColorHint="#ffff"
-        android:singleLine="true"
-        />
-
-    <Button
-        android:id="@+id/btn_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send"
-        android:layout_below="@id/lv_chat"
-        android:layout_toEndOf="@id/chat_message"
-        />
-
-    <Button
-        android:id="@+id/btn_send_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Photo"
-        android:layout_below="@id/lv_chat"
-        android:layout_toEndOf="@id/btn_chat"
+        android:layout_marginStart="140dp"
         />
 
     <ListView
         android:id="@+id/lv_chat"
         android:layout_width="match_parent"
-        android:layout_below="@+id/btn_images"
-        android:layout_height="520dp"
+        android:layout_below="@+id/id_picture"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:transcriptMode="alwaysScroll"
         android:stackFromBottom="false"
         android:cacheColorHint="@color/username8"
         >
     </ListView>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/chat_message"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Enter message"
+            android:textStyle="italic"
+            android:textColorHint="#ffff"
+            android:singleLine="true"
+            />
+
+        <Button
+            android:id="@+id/btn_chat"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Send"
+            />
+
+        <Button
+            android:id="@+id/btn_send_image"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Photo"
+            />
+    </LinearLayout>
+
+</LinearLayout>

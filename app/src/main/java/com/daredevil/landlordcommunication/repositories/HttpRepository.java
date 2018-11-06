@@ -207,4 +207,18 @@ public class HttpRepository implements Repository {
         String body = messagesDTO.toJson(messageDTO);
         mHttpRequester.postUser(url, body);
     }
+
+    @Override
+    public List<Messages> getMessagesForAdapter(int id) throws IOException {
+        String url = Constants.GET_MESSAGES_FOR_ADAPTER + id;
+        String json = mHttpRequester.getUser(url);
+        JsonParser<Messages[]> jsonEstate = new GsonParser<>(Messages[].class);
+        return Arrays.asList(jsonEstate.fromJson(json));
+    }
+
+    @Override
+    public String checkForEstateMessage(int id) throws IOException {
+        String url = Constants.CHECK_FOR_ESTATE_MESSAGES + id;
+        return mHttpRequester.getUser(url);
+    }
 }

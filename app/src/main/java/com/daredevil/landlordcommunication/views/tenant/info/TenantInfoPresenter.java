@@ -2,10 +2,12 @@ package com.daredevil.landlordcommunication.views.tenant.info;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
 import com.daredevil.landlordcommunication.models.Estates;
+import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -70,12 +72,16 @@ public class TenantInfoPresenter implements Presenter{
         mAsyncRunner.runInBackground(() -> {
             String result = null;
             try {
-                result = mService.payRent(value, id);
-                refreshRent(id);
+
+                if (value.equals("")){
+                    result = "Please enter value";
+                } else {
+                    result = mService.payRent(value, id);
+                    refreshRent(id);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             mView.showMessage(result);
         });
     }
@@ -91,6 +97,36 @@ public class TenantInfoPresenter implements Presenter{
             }
 
 
+        });
+    }
+
+    @Override
+    public void getMessagesForAdapter(int id) {
+        mAsyncRunner.runInBackground(() -> {
+            try {
+                String result = mService.checkForEstateMessage(id);
+
+                if (result.equals("false")) {
+                    return;
+                }
+
+                List<Messages> messages = mService.getMessagesForAdapter(id);
+                mView.showMessagesInAdapter(messages);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    @Override
+    public void postEstateMessage(String spinnerMessage, int estateId, int userId) {
+        mAsyncRunner.runInBackground(() -> {
+            try {
+                String result  = mService.postEstateMessage(spinnerMessage, estateId, userId);
+                mView.showMessage(result);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 

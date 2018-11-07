@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.tenant.info.TenantInfoFragment"
-    android:background="@mipmap/home">
+    android:background="@mipmap/home"
+    android:orientation="vertical"
+    tools:context=".views.tenant.info.TenantInfoFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/rl_tenant_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/text_view"
-            >
+            android:background="@drawable/text_view">
 
             <TextView
                 android:id="@+id/name_tenant_info_landlord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Landlord name:"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <!--tv user name-->
             <TextView
@@ -32,9 +32,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/name_tenant_info_landlord"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/email_tenant_info_landlord"
@@ -42,9 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name_tenant_info_landlord"
                 android:text="Landlord email:"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <!--tv user email-->
             <TextView
@@ -53,9 +53,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name_tenant_info_landlord"
                 android:layout_toRightOf="@+id/email_tenant_info_landlord"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/rating_tenant_info_landlord"
@@ -63,9 +63,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/email_tenant_info_landlord"
                 android:text="Landlord rating:"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <!--tv user rating-->
             <TextView
@@ -74,9 +74,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/email_tenant_info_landlord"
                 android:layout_toRightOf="@+id/rating_tenant_info_landlord"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/owed_tenant_info_landlord"
@@ -84,9 +84,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rating_tenant_info_landlord"
                 android:text="Owed:"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <!--tv user owed-->
             <TextView
@@ -95,9 +95,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rating_tenant_info_landlord"
                 android:layout_toRightOf="@+id/owed_tenant_info_landlord"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/due_date_tenant_info_landlord"
@@ -105,9 +105,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/owed_tenant_info_landlord"
                 android:text="Due date:"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
             <!--tv user due date-->
             <TextView
@@ -116,9 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/owed_tenant_info_landlord"
                 android:layout_toRightOf="@+id/due_date_tenant_info_landlord"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:textStyle="italic"
-                android:textColor="#ffff"/>
+                android:textStyle="italic" />
 
         </RelativeLayout>
 
@@ -126,51 +126,48 @@
             android:id="@+id/ll_tenant_info"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/rl_tenant_info"
-            android:layout_marginTop="140dp"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
                 android:paddingLeft="10dp"
-                android:textSize="16sp"
-                android:textColor="@color/username12"/>
+                android:text="1"
+                android:textColor="@color/username12"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2"
                 android:paddingLeft="25dp"
-                android:textSize="16sp"
-                android:textColor="@color/username12"/>
+                android:text="2"
+                android:textColor="@color/username12"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="21dp"
                 android:text="3"
-                android:textSize="16sp"
-                android:paddingLeft="21dp"
-                android:textColor="@color/username12"/>
+                android:textColor="@color/username12"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4"
                 android:paddingLeft="24dp"
-                android:textSize="16sp"
-                android:textColor="@color/username12"/>
+                android:text="4"
+                android:textColor="@color/username12"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5"
                 android:paddingLeft="21dp"
-                android:textSize="16sp"
-                android:textColor="@color/username12"/>
+                android:text="5"
+                android:textColor="@color/username12"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -179,7 +176,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_tenant_info"
-            android:layout_centerHorizontal="true"
             android:orientation="horizontal"
 
             >
@@ -188,8 +184,7 @@
                 android:id="@+id/rb_1_tenant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text"
-                >
+                android:background="@drawable/rounded_edit_text">
 
             </RadioButton>
 
@@ -198,25 +193,25 @@
                 android:id="@+id/rb_2_tenant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text"/>
+                android:background="@drawable/rounded_edit_text" />
 
             <RadioButton
                 android:id="@+id/rb_3_tenant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text"/>
+                android:background="@drawable/rounded_edit_text" />
 
             <RadioButton
                 android:id="@+id/rb_4_tenant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text"/>
+                android:background="@drawable/rounded_edit_text" />
 
             <RadioButton
                 android:id="@+id/rb_5_tenant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edit_text"/>
+                android:background="@drawable/rounded_edit_text" />
 
         </RadioGroup>
 
@@ -227,14 +222,15 @@
             android:id="@+id/btn_tenant_info_rate"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/rg_rating_tenant"
-            android:layout_marginTop="10dp"
+            android:layout_below="@+id/rl_tenant_info"
             android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/rg_rating_tenant"
             android:background="@mipmap/button_create"
-            android:textSize="10sp"
             android:text="Rate"
             android:textColor="@color/username12"
-            />
+            android:textSize="10sp" />
 
         <!--et pay-->
 
@@ -242,9 +238,8 @@
             android:id="@+id/value_tenant_info"
             android:layout_width="160dp"
             android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/btn_tenant_info_rate"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_edit_text"
             android:hint="enter value"
             android:textAlignment="center"
@@ -260,30 +255,56 @@
             android:id="@+id/btn_value_tenant_info"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/value_tenant_info"
-            android:background="@mipmap/button_create"
+            android:layout_below="@+id/btn_tenant_info_rate"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textSize="10sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@+id/value_tenant_info"
+            android:background="@mipmap/button_create"
             android:text="Pay"
             android:textColor="@color/username12"
-            />
+            android:textSize="10sp" />
 
-        <!--button chat-->
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_tenant_info"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_edit_text" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_tenant_info_chat"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/btn_value_tenant_info"
-            android:layout_marginTop="70dp"
             android:background="@mipmap/button_create"
-            android:textSize="10sp"
             android:text="Chat"
             android:textColor="@color/username12"
-            />
+            android:textSize="10sp" />
 
-    </RelativeLayout>
+        <Spinner
+            android:id="@+id/spinner_tenant_messages"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-</FrameLayout>
+        <Button
+            android:id="@+id/btn_send_tenant_info"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/button_create"
+            android:text="Send"
+            android:textColor="@color/username12"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

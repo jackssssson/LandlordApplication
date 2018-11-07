@@ -29,4 +29,5 @@ public class Constants {
     public static final String SEND_IMAGE = Constants.IP_AND_PORT + "messages/postImage";
     public static final String GET_MESSAGES_FOR_ADAPTER = Constants.IP_AND_PORT + "messages/getEstateMessages/";
     public static final String CHECK_FOR_ESTATE_MESSAGES = Constants.IP_AND_PORT + "messages/checkForEstateMessages/";
+    public static final String GET_ESTATE_MESSAGES = Constants.IP_AND_PORT + "messages/postEstateMessage/";
 }

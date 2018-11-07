@@ -16,4 +16,6 @@ public interface Presenter {
     void chatClicked();
 
     void getMessagesForAdapter(int id);
+
+    void postEstateMessage(String spinnerMessage, int estateId, int userId);
 }

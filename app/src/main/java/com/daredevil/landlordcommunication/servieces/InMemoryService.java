@@ -4,22 +4,15 @@ import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.Messages;
 import com.daredevil.landlordcommunication.models.dto.MessageDTO;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
+import com.daredevil.landlordcommunication.repositories.InMemoryRepository;
 import com.daredevil.landlordcommunication.repositories.Repository;
 
 import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Inject;
 
-public class HttpUserService implements UserService {
-    @Inject
-    Repository mUserRepository;
-
-    @Inject
-    public HttpUserService(Repository repository) {
-        this.mUserRepository = repository;
-    }
-
+public class InMemoryService implements UserService {
+    Repository mUserRepository = new InMemoryRepository();
 
     @Override
     public String addUser(UserDTO user, String type) throws IOException {
@@ -138,6 +131,6 @@ public class HttpUserService implements UserService {
 
     @Override
     public String postEstateMessage(String spinnerMessage, int estateId, int userId) throws IOException {
-        return mUserRepository.postEstateMessage(spinnerMessage, estateId, userId);
+        return null;
     }
 }

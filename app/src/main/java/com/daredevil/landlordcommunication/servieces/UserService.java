@@ -54,4 +54,6 @@ public interface UserService {
     List<Messages> getMessagesForAdapter(int id) throws IOException;
 
     String checkForEstateMessage(int id) throws IOException;
+
+    String postEstateMessage(String spinnerMessage, int estateId, int userId) throws IOException;
 }

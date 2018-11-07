@@ -5,7 +5,7 @@ import com.daredevil.landlordcommunication.models.dto.UserDTO;
 public interface View {
     void setPresenter(Presenter presenter);
 
-    void showUserInfo(String name, String email, String rating);
+    void showUserInfo(String name, String email, String rating, float sum);
 
     void setUserDTO(UserDTO userDTO);
 

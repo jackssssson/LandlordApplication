@@ -2,6 +2,7 @@ package com.daredevil.landlordcommunication.views.landlord.info;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -87,15 +88,13 @@ public class LandlordInfoFragment extends Fragment implements
     @BindView(R.id.spinner_messages)
     Spinner mSpinner;
 
-    @Inject
-    ArrayAdapter<Messages> mAdapter;
 
-    private ArrayAdapter<CharSequence> mSpinnerAdapter;
-
+    private ArrayAdapter<Messages> mAdapter;
     private Presenter presenter;
     private Estates estates;
     private String name;
     private int userId;
+    private String spinnerMessage;
 
     @Inject
     public LandlordInfoFragment() {
@@ -110,6 +109,23 @@ public class LandlordInfoFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_landlord_info, container, false);
 
         ButterKnife.bind(this, view);
+
+        mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1){
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = view.findViewById(android.R.id.text1);
+
+                textView.setTextColor(Color.CYAN);
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                return view;
+            }
+        };
+
 
         spinner();
 
@@ -132,6 +148,11 @@ public class LandlordInfoFragment extends Fragment implements
         buttonSetOwed();
 
         mButtonChat.setOnClickListener(v -> presenter.chatClicked());
+
+        mButtonSend.setOnClickListener(v -> presenter.postEstateMessage(
+               spinnerMessage, estates.getEstateid(), userId));
+
+        mSpinner.setOnItemSelectedListener(this);
 
         return view;
     }
@@ -268,7 +289,7 @@ public class LandlordInfoFragment extends Fragment implements
     }
 
     private void spinner() {
-        mSpinnerAdapter = ArrayAdapter.createFromResource(Objects.requireNonNull(getContext()),
+        ArrayAdapter<CharSequence> mSpinnerAdapter = ArrayAdapter.createFromResource(Objects.requireNonNull(getContext()),
                 R.array.spinner_content,
                 android.R.layout.simple_spinner_item);
 
@@ -278,11 +299,11 @@ public class LandlordInfoFragment extends Fragment implements
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        spinnerMessage = parent.getItemAtPosition(position).toString();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        spinnerMessage = "Please select a message";
     }
 }

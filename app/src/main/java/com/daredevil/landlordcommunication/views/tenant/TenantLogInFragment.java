@@ -42,6 +42,9 @@ public class TenantLogInFragment extends Fragment implements
     @BindView(R.id.user_rating_log_in)
     TextView mUserRating;
 
+    @BindView(R.id.user_total_owed_tenant)
+    TextView mUserTotalOwed;
+
     @BindView(R.id.btn_create_estate_log_in)
     Button mButtonRent;
 
@@ -104,11 +107,12 @@ public class TenantLogInFragment extends Fragment implements
     }
 
     @Override
-    public void showUserInfo(String name, String email, String rating) {
+    public void showUserInfo(String name, String email, String rating, float sum) {
         runOnUi(() -> {
             mUserName.setText(name);
             mUserEmail.setText(email);
             mUserRating.setText(rating);
+            mUserTotalOwed.setText(String.valueOf(sum));
         });
     }
 

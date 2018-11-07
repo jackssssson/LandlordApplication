@@ -14,4 +14,8 @@ public interface Presenter {
     void payRent(String value, int id);
 
     void refreshRent(int id);
+
+    void getMessagesForAdapter(int id);
+
+    void postEstateMessage(String spinnerMessage, int estateId, int userId);
 }

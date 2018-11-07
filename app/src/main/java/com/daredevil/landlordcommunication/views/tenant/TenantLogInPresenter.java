@@ -1,6 +1,7 @@
 package com.daredevil.landlordcommunication.views.tenant;
 
 import com.daredevil.landlordcommunication.async.AsyncRunner;
+import com.daredevil.landlordcommunication.models.Estates;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.servieces.UserService;
 
@@ -30,8 +31,13 @@ public class TenantLogInPresenter implements Presenter {
 
     @Override
     public void loadUser() {
+        float sum = 0;
+        for (Estates e : mUserDTO.getEstates()){
+            sum += e.getPrice();
+        }
+
         mView.showUserInfo(mUserDTO.getUserName(), mUserDTO.getUserEmail(),
-                mUserDTO.getUserRating());
+                mUserDTO.getUserRating(), sum);
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.daredevil.landlordcommunication.views.chat;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.camera.CameraActivity;
@@ -55,8 +57,7 @@ public class ChatFragment extends Fragment implements
     private int senderId;
     private int recipientId;
 
-    @Inject
-    ArrayAdapter<Messages> mAdapter;
+    private ArrayAdapter<Messages> mAdapter;
 
     @Inject
     public ChatFragment() {
@@ -70,6 +71,21 @@ public class ChatFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         ButterKnife.bind(this, view);
+
+        mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1){
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = view.findViewById(android.R.id.text1);
+
+                textView.setTextColor(Color.CYAN);
+
+                return view;
+            }
+        };
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         senderId = intent.getIntExtra("sender", 0);

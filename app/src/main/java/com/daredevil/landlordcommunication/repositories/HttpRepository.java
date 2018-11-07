@@ -221,4 +221,10 @@ public class HttpRepository implements Repository {
         String url = Constants.CHECK_FOR_ESTATE_MESSAGES + id;
         return mHttpRequester.getUser(url);
     }
+
+    @Override
+    public String postEstateMessage(String spinnerMessage, int estateId, int userId) throws IOException {
+        String url = Constants.GET_ESTATE_MESSAGES + spinnerMessage + "/" + estateId + "/" + userId;
+        return mHttpRequester.postText(url);
+    }
 }

@@ -109,6 +109,18 @@ public class LandlordInfoPresenter implements Presenter {
         });
     }
 
+    @Override
+    public void postEstateMessage(String spinnerMessage, int estateId, int userId) {
+        mAsyncRunner.runInBackground(() -> {
+            try {
+                String result  = mService.postEstateMessage(spinnerMessage, estateId, userId);
+                mView.showMessage(result);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     private void refreshInfo() {
         try {
             userDTO = mService.postIdEstate(userId);

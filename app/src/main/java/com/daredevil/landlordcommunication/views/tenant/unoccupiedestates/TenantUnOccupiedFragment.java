@@ -2,6 +2,7 @@ package com.daredevil.landlordcommunication.views.tenant.unoccupiedestates;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.Estates;
@@ -33,7 +35,6 @@ public class TenantUnOccupiedFragment extends Fragment implements
     @BindView(R.id.lv_unoccupied_estate)
     ListView mListView;
 
-    @Inject
     ArrayAdapter<Estates> mAdapter;
 
     private Presenter presenter;
@@ -52,6 +53,8 @@ public class TenantUnOccupiedFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_tenant_un_occupied, container, false);
 
         ButterKnife.bind(this, view);
+
+        instantiateAdapter();
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         userId = intent.getIntExtra("id", 0);
@@ -92,5 +95,22 @@ public class TenantUnOccupiedFragment extends Fragment implements
         intent.putExtra("estate", mAdapter.getItem(position));
         intent.putExtra("id", userId);
         startActivity(intent);
+    }
+
+    private void instantiateAdapter(){
+        mAdapter = new ArrayAdapter<Estates>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1){
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = view.findViewById(android.R.id.text1);
+
+                textView.setTextColor(Color.CYAN);
+
+                return view;
+            }
+        };
     }
 }

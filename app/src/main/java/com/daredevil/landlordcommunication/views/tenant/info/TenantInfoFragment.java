@@ -102,21 +102,7 @@ public class TenantInfoFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-        mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
-                android.R.layout.simple_list_item_1) {
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-
-                TextView textView = view.findViewById(android.R.id.text1);
-
-                textView.setTextColor(Color.CYAN);
-                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
-                return view;
-            }
-        };
+        instantiateAdapter();
 
         spinner();
 
@@ -243,5 +229,22 @@ public class TenantInfoFragment extends Fragment implements
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         spinnerMessage = "Please select a message";
+    }
+
+    private void instantiateAdapter(){
+        mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1){
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = view.findViewById(android.R.id.text1);
+
+                textView.setTextColor(Color.CYAN);
+
+                return view;
+            }
+        };
     }
 }

@@ -2,6 +2,7 @@ package com.daredevil.landlordcommunication.views.landlord;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -48,11 +49,7 @@ public class LandlordLogInFragment extends Fragment implements
     @BindView(R.id.btn_create_estate_log_in)
     Button mCreateEstate;
 
-
-
-    @Inject
-    ArrayAdapter<Estates> mAdapter;
-
+    private ArrayAdapter<Estates> mAdapter;
     private Presenter presenter;
     private UserDTO userDTO;
 
@@ -70,6 +67,8 @@ public class LandlordLogInFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_landlord_log_in, container, false);
 
         ButterKnife.bind(this, view);
+
+        instantiateAdapter();
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         userDTO = (UserDTO) intent.getSerializableExtra("user");
@@ -145,5 +144,22 @@ public class LandlordLogInFragment extends Fragment implements
         intent.putExtra("id", userDTO.getUserid());
 
         startActivity(intent);
+    }
+
+    private void instantiateAdapter(){
+        mAdapter = new ArrayAdapter<Estates>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1){
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = view.findViewById(android.R.id.text1);
+
+                textView.setTextColor(Color.CYAN);
+
+                return view;
+            }
+        };
     }
 }

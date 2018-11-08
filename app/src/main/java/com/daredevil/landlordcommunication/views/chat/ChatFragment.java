@@ -72,20 +72,7 @@ public class ChatFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-        mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
-                android.R.layout.simple_list_item_1){
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-
-                TextView textView = view.findViewById(android.R.id.text1);
-
-                textView.setTextColor(Color.CYAN);
-
-                return view;
-            }
-        };
+        instantiateAdapter();
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         senderId = intent.getIntExtra("sender", 0);
@@ -132,15 +119,15 @@ public class ChatFragment extends Fragment implements
         runOnUi(() -> {
             mListView.setAdapter(mAdapter);
 
-            for (int i = messages.size() - 1; i >= 0; i--){
-                if (messages.get(i).getImageMessage() != null){
+            for (int i = messages.size() - 1; i >= 0; i--) {
+                if (messages.get(i).getImageMessage() != null) {
                     testMethod(messages.get(i));
                     break;
                 }
             }
 
             for (Messages m : messages) {
-                if (m.getImageMessage() != null){
+                if (m.getImageMessage() != null) {
                     continue;
                 }
 
@@ -210,5 +197,29 @@ public class ChatFragment extends Fragment implements
         mPicture.setImageBitmap(bitmap);
     }
 
+    private void instantiateAdapter() {
+        mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_list_item_1) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
 
+                Messages messages = getItem(position);
+
+                assert messages != null;
+                if (messages.getSender().getUserid() == senderId){
+                    TextView textView = view.findViewById(android.R.id.text1);
+
+                    textView.setTextColor(Color.CYAN);
+                } else {
+                    TextView textView = view.findViewById(android.R.id.text1);
+
+                    textView.setTextColor(Color.GREEN);
+                }
+
+                return view;
+            }
+        };
+    }
 }

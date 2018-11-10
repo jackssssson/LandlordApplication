@@ -6,4 +6,6 @@ public interface Presenter {
     void setView(View view);
 
     void logInUser(String userName, String password) throws IOException;
+
+    void showNotification(String username);
 }

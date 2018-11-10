@@ -50,4 +50,10 @@ public class LandlordLogInPresenter implements Presenter {
             }
         });
     }
+
+    @Override
+    public void logOut() {
+        mView.setSharedPreferencesToNull();
+        mView.finish();
+    }
 }

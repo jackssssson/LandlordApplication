@@ -10,4 +10,8 @@ public interface View {
     void setUserDTO(UserDTO userDTO);
 
     void showEstateAdapter();
+
+    void setSharedPreferencesToNull();
+
+    void finish();
 }

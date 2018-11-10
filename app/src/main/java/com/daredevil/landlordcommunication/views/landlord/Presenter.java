@@ -10,4 +10,6 @@ public interface Presenter {
    void setUser(UserDTO user);
 
    void refreshUserDto(int id);
+
+   void logOut();
 }

@@ -1,7 +1,9 @@
 package com.daredevil.landlordcommunication.views.tenant;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -52,6 +54,9 @@ public class TenantLogInFragment extends Fragment implements
     @BindView(R.id.lv_estate_log_in)
     ListView mListView;
 
+    @BindView(R.id.btn_log_out_tenant)
+    Button mLogoutButton;
+
     private ArrayAdapter<Estates> mAdapter;
     private Presenter presenter;
     private UserDTO userDTO;
@@ -79,6 +84,7 @@ public class TenantLogInFragment extends Fragment implements
 
         showEstateAdapter();
 
+        setupLogoutButton();
         presenter.setUser(userDTO);
 
         mListView.setOnItemClickListener(this);
@@ -99,6 +105,10 @@ public class TenantLogInFragment extends Fragment implements
         presenter.setView(this);
         presenter.loadUser();
         presenter.refreshUserDto(userDTO.getUserid());
+    }
+
+    private void setupLogoutButton(){
+        mLogoutButton.setOnClickListener(i-> presenter.logOut());
     }
 
     @Override
@@ -161,5 +171,22 @@ public class TenantLogInFragment extends Fragment implements
                 return view;
             }
         };
+    }
+
+    @Override
+    public void setSharedPreferencesToNull(){
+        SharedPreferences share = Objects.requireNonNull(getActivity()).getApplicationContext().
+                getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = share.edit();
+
+        editor.putString("user_name", "");
+        editor.putString("user_password", "");
+        editor.apply();
+    }
+
+    @Override
+    public void finish() {
+        Objects.requireNonNull(getActivity()).finish();
     }
 }

@@ -3,18 +3,26 @@ package com.daredevil.landlordcommunication.views.main;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.daredevil.landlordcommunication.R;
@@ -52,8 +60,17 @@ public class InitialScreenFragment extends Fragment implements
     @BindView(R.id.log_in_id)
     Button mLogIn;
 
+    @BindView(R.id.rl_initial)
+    RelativeLayout mRelativelayout;
+
+    @BindView(R.id.pb_initial)
+    ProgressBar mProgressBar;
+
     private Presenter presenter;
-    private String user_name;
+    private String shared_user_name;
+    private String shared_password;
+
+    private static final String CHANEL_ID="Notification-1";
 
     @Inject
     public InitialScreenFragment() {
@@ -70,9 +87,19 @@ public class InitialScreenFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
-        if (!isLoggedIn()){
-            setNotification(user_name);
+
+        showLoading();
+        if (isLoggedIn()){
+            presenter.showNotification(shared_user_name);
+            try {
+                presenter.logInUser(shared_user_name, shared_password);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        else
+            hideLoading();
 
         mCreate.setOnClickListener(v -> startActivity(new Intent(getActivity(),
                 CreateUserActivity.class)));
@@ -94,6 +121,10 @@ public class InitialScreenFragment extends Fragment implements
     public void onResume() {
         super.onResume();
         presenter.setView(this);
+        if(!isLoggedIn()) {
+            cancelNotifications();
+            hideLoading();
+        }
     }
 
     @Override
@@ -135,25 +166,62 @@ public class InitialScreenFragment extends Fragment implements
         editor.apply();
     }
 
+
+
     @Override
-    public void setNotification(String userNotification) {
+    public void setNotification(String userNotification){
+        createNotificationChannel();
+
+        Intent onClickIntent = new Intent(getActivity(), InitialScreenActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
+        stackBuilder.addNextIntentWithParentStack(onClickIntent);
+        PendingIntent onClickPendingIntent =
+                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification.Builder builder= null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            builder = new Notification.Builder(getActivity(), CHANEL_ID);
+        } else {
+            builder=new Notification.Builder(getActivity());
+        }
+        builder.setContentTitle("Landlord Communication:");
+        builder.setContentText(userNotification);
+        builder.setSmallIcon(android.R.drawable.arrow_up_float);
+        builder.setContentIntent(onClickPendingIntent);
+        Notification noti=builder.build();
+        Intent notiIntent=new Intent(getActivity(), MyNotification.class);
+        notiIntent.putExtra(MyNotification.NOTI_ID, 1);
+        notiIntent.putExtra(MyNotification.NOTI, noti);
+        PendingIntent pendingIntent=PendingIntent.getBroadcast(getActivity(),
+                0, notiIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         Calendar calendar = Calendar.getInstance();
 
-        Intent intent = new Intent(getActivity(), MyNotification.class);
-        intent.putExtra("user_name", userNotification);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(Objects.requireNonNull(getActivity())
-                        .getApplicationContext(),
-                100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getActivity().
+        AlarmManager alarmManager = (AlarmManager) Objects.requireNonNull(getActivity()).
                 getSystemService(DaggerAppCompatActivity.ALARM_SERVICE);
 
         Objects.requireNonNull(alarmManager).setRepeating(
                 AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 60000, pendingIntent);
 
- }
+
+    }
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            CharSequence name="Notification-1 channel";
+            String description="Notification-1 channel's description";
+            int importance= NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel notificationChannel=new NotificationChannel(CHANEL_ID, name, importance);
+            notificationChannel.setDescription(description);
+
+            NotificationManager notificationManager=(NotificationManager) Objects.requireNonNull(getActivity())
+                    .getSystemService(Context.NOTIFICATION_SERVICE);
+            Objects.requireNonNull(notificationManager)
+                    .createNotificationChannel(notificationChannel);
+        }
+    }
 
 
     private void runOnUi(Runnable action) {
@@ -166,8 +234,30 @@ public class InitialScreenFragment extends Fragment implements
 
         String name = share.getString("user_name", "");
         String password = share.getString("user_password", "");
-        user_name = name;
+        shared_user_name = name;
+        shared_password=password;
 
-        return name.equals("") && password.equals("");
+        return !(name.equals("") && password.equals(""));
     }
+
+    private void cancelNotifications(){
+        AlarmManager alarmManager = (AlarmManager) Objects.requireNonNull(getActivity()).
+                getSystemService(DaggerAppCompatActivity.ALARM_SERVICE);
+
+        Intent notiIntent=new Intent(getActivity(), MyNotification.class);
+        PendingIntent pendingIntent=PendingIntent.getBroadcast(getActivity(),
+                0, notiIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.cancel(pendingIntent);
+    }
+
+    private void showLoading(){
+        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativelayout.setVisibility(View.GONE);
+    }
+
+    private void hideLoading(){
+        mProgressBar.setVisibility(View.GONE);
+        mRelativelayout.setVisibility(View.VISIBLE);
+    }
+
 }

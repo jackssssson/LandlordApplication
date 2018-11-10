@@ -33,6 +33,7 @@ public class ChatPresenter implements Presenter {
 
     @Override
     public void getMessages(int senderId, int recipientId) {
+        mView.showLoading();
         this.senderId = senderId;
         this.recipientId = recipientId;
         mAsyncRunner.runInBackground(() -> {

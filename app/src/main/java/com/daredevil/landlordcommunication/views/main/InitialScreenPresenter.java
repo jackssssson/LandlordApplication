@@ -52,4 +52,16 @@ public class InitialScreenPresenter implements Presenter{
             }
         });
     }
+
+    @Override
+    public void showNotification(String user_name) {
+        mAsyncRunner.runInBackground(()->{
+            try {
+                String notification=mService.getNotification(user_name);
+                mView.setNotification(notification);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

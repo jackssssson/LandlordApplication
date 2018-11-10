@@ -12,4 +12,8 @@ public interface View {
     void showNewElement(List<Messages> messages);
 
     void showSendMessage(Messages message);
+
+    void showLoading();
+
+    void hideLoading();
 }

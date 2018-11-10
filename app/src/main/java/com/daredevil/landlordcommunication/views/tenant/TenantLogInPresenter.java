@@ -55,4 +55,11 @@ public class TenantLogInPresenter implements Presenter {
                 e.printStackTrace();
             }
         });
-    }}
+    }
+
+    @Override
+    public void logOut() {
+        mView.setSharedPreferencesToNull();
+        mView.finish();
+    }
+}

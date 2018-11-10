@@ -3,6 +3,7 @@ package com.daredevil.landlordcommunication.camera;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.util.Base64;
@@ -69,10 +70,11 @@ public class CameraActivity extends DaggerAppCompatActivity implements EasyImage
     public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
         String path = imageFile.getPath();
         Bitmap bitmap = BitmapFactory.decodeFile(path);
-        mPhoto.setImageBitmap(bitmap);
+        Bitmap bitmap1 = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth()/4, bitmap.getHeight()/4, true);
+        mPhoto.setImageBitmap(bitmap1);
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitmap1.compress(Bitmap.CompressFormat.JPEG, 25, stream);
 
         byte[] byteArray = stream.toByteArray();
         String imageString =  Base64.encodeToString(byteArray, Base64.DEFAULT);

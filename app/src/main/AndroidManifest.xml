@@ -15,7 +15,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
         <activity android:name=".camera.CameraActivity" />
         <!-- <intent-filter> -->
         <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -51,11 +52,11 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".views.tenant.unoccupiedestates.TenantUnOccupiedActivity" />
         <activity android:name=".views.chat.ChatActivity" />
-        <activity android:name=".notification.RepeatingActivity" />
 
         <receiver android:name=".notification.MyNotification" />
-
-        <activity android:name=".views.images.ImagesActivity"></activity>
+        <activity android:name=".views.images.ImagesActivity" />
     </application>
+
+
 
 </manifest>

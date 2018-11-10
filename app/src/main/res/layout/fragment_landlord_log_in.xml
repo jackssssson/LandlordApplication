@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl_landlord_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/text_view"
@@ -56,23 +57,12 @@
                 android:textStyle="italic"
                 android:textColor="#ffff"/>
 
-        </RelativeLayout>
-
-
-
-        <RelativeLayout
-            android:id="@+id/rl_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_view"
-            android:layout_marginStart="240dp"
-            >
-
             <TextView
                 android:id="@+id/tv_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rating:"
+                android:layout_below="@+id/tv_email"
                 android:textSize="15sp"
                 android:textStyle="italic"
                 android:textColor="#ffff"/>
@@ -83,10 +73,34 @@
                 android:id="@+id/user_rating_log_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/user_email_log_in"
                 android:layout_toEndOf="@id/tv_rating"
                 android:textSize="15sp"
                 android:textStyle="italic"
                 android:textColor="#ffff"/>
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/rl_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:padding="10dp"
+
+            >
+            <Button
+                android:id="@+id/btn_log_out_landlord"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@mipmap/button_create"
+                android:text="LogOut"
+                android:textSize="10dp"
+                android:textColor="@color/username12" />
+
+
         </RelativeLayout>
 
         <!--btn create estate-->

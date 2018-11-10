@@ -17,7 +17,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.daredevil.landlordcommunication.R;
@@ -52,6 +54,14 @@ public class ChatFragment extends Fragment implements
 
     @BindView(R.id.id_picture)
     ImageView mPicture;
+
+    @BindView(R.id.ll_chat)
+    LinearLayout mLinearLayout;
+
+    @BindView(R.id.pb_chat)
+    ProgressBar mProgressBar;
+
+
 
     private Presenter presenter;
     private int senderId;
@@ -133,7 +143,8 @@ public class ChatFragment extends Fragment implements
 
                 mAdapter.add(m);
             }
-
+            hideLoading();
+            mListView.smoothScrollToPosition(messages.size());
         });
     }
 
@@ -221,5 +232,21 @@ public class ChatFragment extends Fragment implements
                 return view;
             }
         };
+    }
+
+    @Override
+    public void showLoading(){
+        runOnUi(()->{
+            mProgressBar.setVisibility(View.VISIBLE);
+            mLinearLayout.setVisibility(View.GONE);
+        });
+    }
+
+    @Override
+    public void hideLoading(){
+        runOnUi(()->{
+            mProgressBar.setVisibility(View.GONE);
+            mLinearLayout.setVisibility(View.VISIBLE);
+        });
     }
 }

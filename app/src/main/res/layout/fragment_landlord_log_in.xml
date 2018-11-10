@@ -120,19 +120,25 @@
 
         <!--lv estate log in-->
 
-        <ListView
-            android:id="@+id/lv_estate_log_in"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/srl_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/btn_create_estate_log_in"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded_edit_text"
+            android:layout_below="@id/btn_create_estate_log_in">
+            <ListView
+                android:id="@+id/lv_estate_log_in"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rounded_edit_text"
 
-            >
+                >
 
 
-        </ListView>
+            </ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
 
 
     </RelativeLayout>

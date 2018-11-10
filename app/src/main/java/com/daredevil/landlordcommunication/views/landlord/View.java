@@ -14,4 +14,6 @@ public interface View {
     void setSharedPreferencesToNull();
 
     void finish();
+
+    void stopRefreshing();
 }

@@ -79,7 +79,7 @@ public class TenantUnOccupiedFragment extends Fragment implements
     @Override
     public void showAdapter(List<Estates> estates) {
         runOnUi(() -> {
-
+            mAdapter.clear();
             mListView.setAdapter(mAdapter);
             mAdapter.addAll(estates);
         });

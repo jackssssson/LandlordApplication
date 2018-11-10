@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,9 @@ public class LandlordLogInFragment extends Fragment implements
     @BindView(R.id.btn_log_out_landlord)
     Button mLogoutButton;
 
+    @BindView(R.id.srl_refresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     private ArrayAdapter<Estates> mAdapter;
     private Presenter presenter;
     private UserDTO userDTO;
@@ -75,8 +79,17 @@ public class LandlordLogInFragment extends Fragment implements
 
         instantiateAdapter();
 
+
+
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         userDTO = (UserDTO) intent.getSerializableExtra("user");
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.refreshUserDto(userDTO.getUserid());
+            }
+        });
 
         mListView.setAdapter(mAdapter);
 
@@ -190,5 +203,9 @@ public class LandlordLogInFragment extends Fragment implements
         Objects.requireNonNull(getActivity()).finish();
     }
 
+    @Override
+    public void stopRefreshing(){
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
 
 }

@@ -45,6 +45,7 @@ public class LandlordLogInPresenter implements Presenter {
             try {
                 mView.setUserDTO(mService.getUserById(id));
                 mView.showEstateAdapter();
+                mView.stopRefreshing();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,7 @@
 package com.daredevil.landlordcommunication.constants;
 
 public class Constants {
-    private static final String IP_AND_PORT = "http://192.168.0.5:3579/";
+    private static final String IP_AND_PORT = "http://95.111.19.222:3579/";
 
     public static final String POST_LANDLORD = Constants.IP_AND_PORT + "user/addLandlord";
     public static final String POST_TENANT = Constants.IP_AND_PORT + "user/addTenant";

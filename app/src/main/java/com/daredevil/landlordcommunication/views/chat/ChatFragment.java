@@ -135,6 +135,7 @@ public class ChatFragment extends Fragment implements
     @Override
     public void showAdapter(List<Messages> messages) {
         runOnUi(() -> {
+            mAdapter.clear();
             mListView.setAdapter(mAdapter);
 
             for (int i = messages.size() - 1; i >= 0; i--) {
@@ -175,6 +176,7 @@ public class ChatFragment extends Fragment implements
         mButtonChat.setOnClickListener(v -> {
             String message = mMessage.getText().toString();
 
+            message.replaceAll(System.getProperty("line.separator"), "\\n");
             if (message.equals("")) {
                 return;
             }
@@ -198,7 +200,7 @@ public class ChatFragment extends Fragment implements
                     (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 // Perform action on key press
 
-                presenter.sendMessage(message, senderId, recipientId);
+                presenter.sendMessage(message.replaceAll(System.getProperty("line.separator"), "\\n"), senderId, recipientId);
                 mMessage.getText().clear();
 
                 return true;

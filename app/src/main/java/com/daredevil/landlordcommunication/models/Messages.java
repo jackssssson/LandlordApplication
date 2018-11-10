@@ -70,7 +70,7 @@ public class Messages implements Serializable {
 
     @Override
     public String toString() {
-        return sender.getUserName() + ": " + getTextMessage();
+        return getTimeStamp()+ "\n" +sender.getUserName() + ": " + getTextMessage();
     }
 
 

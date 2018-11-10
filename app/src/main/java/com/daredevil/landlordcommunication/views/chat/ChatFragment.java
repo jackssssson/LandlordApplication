@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.camera.CameraActivity;
 import com.daredevil.landlordcommunication.models.Messages;
+import com.daredevil.landlordcommunication.views.chat.picture.PictureChatActivity;
 
 import java.util.List;
 import java.util.Objects;
@@ -66,6 +67,7 @@ public class ChatFragment extends Fragment implements
     private Presenter presenter;
     private int senderId;
     private int recipientId;
+    private Messages messageForPicture;
 
     private ArrayAdapter<Messages> mAdapter;
 
@@ -91,6 +93,12 @@ public class ChatFragment extends Fragment implements
         buttonSendChat();
 
         clickEnter();
+
+        mPicture.setOnClickListener(p->{
+            Intent intent5=new Intent(getActivity(), PictureChatActivity.class);
+            intent5.putExtra("bm", messageForPicture);
+            startActivity(intent5);
+        });
 
         mButtonPhoto.setOnClickListener(v -> {
             Intent intent1 = new Intent(getActivity(), CameraActivity.class);
@@ -200,6 +208,7 @@ public class ChatFragment extends Fragment implements
     }
 
     private void testMethod(Messages m) {
+        this.messageForPicture=m;
         byte[] bytes = Base64.decode(m.getImageMessage(), Base64.DEFAULT);
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,

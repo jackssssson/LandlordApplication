@@ -1,7 +1,5 @@
 package com.daredevil.landlordcommunication.views.chat;
 
-import com.daredevil.landlordcommunication.models.dto.MessageDTO;
-
 public interface Presenter {
     void setView(View view);
 

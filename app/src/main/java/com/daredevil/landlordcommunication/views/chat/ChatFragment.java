@@ -135,25 +135,28 @@ public class ChatFragment extends Fragment implements
     @Override
     public void showAdapter(List<Messages> messages) {
         runOnUi(() -> {
-            mAdapter.clear();
-            mListView.setAdapter(mAdapter);
+            if(!(messages==null)) {
+                mAdapter.clear();
+                mListView.setAdapter(mAdapter);
 
-            for (int i = messages.size() - 1; i >= 0; i--) {
-                if (messages.get(i).getImageMessage() != null) {
-                    testMethod(messages.get(i));
-                    break;
-                }
-            }
-
-            for (Messages m : messages) {
-                if (m.getImageMessage() != null) {
-                    continue;
+                for (int i = messages.size() - 1; i >= 0; i--) {
+                    if (messages.get(i).getImageMessage() != null) {
+                        testMethod(messages.get(i));
+                        break;
+                    }
                 }
 
-                mAdapter.add(m);
+                for (Messages m : messages) {
+                    if (m.getImageMessage() != null) {
+                        continue;
+                    }
+
+                    mAdapter.add(m);
+                }
+                mListView.smoothScrollToPosition(messages.size());
             }
-            hideLoading();
-            mListView.smoothScrollToPosition(messages.size());
+            else
+                mListView.setAdapter(mAdapter);
         });
     }
 

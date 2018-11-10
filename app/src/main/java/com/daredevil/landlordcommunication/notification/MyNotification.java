@@ -18,6 +18,7 @@ import com.daredevil.landlordcommunication.servieces.HttpUserService;
 import com.daredevil.landlordcommunication.servieces.UserService;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MyNotification extends BroadcastReceiver {
 
@@ -29,7 +30,7 @@ public class MyNotification extends BroadcastReceiver {
         NotificationManager notificationManager=(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification=intent.getParcelableExtra(NOTI);
         int id = intent.getIntExtra(NOTI_ID, 0);
-        notificationManager.notify(id, notification);
+        Objects.requireNonNull(notificationManager).notify(id, notification);
     }
 
 

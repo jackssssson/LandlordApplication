@@ -33,16 +33,17 @@ public class ChatPresenter implements Presenter {
 
     @Override
     public void getMessages(int senderId, int recipientId) {
-        mView.showLoading();
         this.senderId = senderId;
         this.recipientId = recipientId;
         mAsyncRunner.runInBackground(() -> {
             try {
+                mView.showLoading();
                 if (mService.checkForMessages(senderId, recipientId)) {
                     List<Messages> messages = mService.getMessages(senderId, recipientId);
-
                     mView.showAdapter(messages);
                 }
+                mView.showAdapter(null);
+                mView.hideLoading();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,9 +53,9 @@ public class ChatPresenter implements Presenter {
     @Override
     public void refreshMessages() {
         new Thread(() -> {
-            while (!isStopped){
+            while (!isStopped) {
                 try {
-                    if (mService.checkForNewMessages(senderId, recipientId)){
+                    if (mService.checkForNewMessages(senderId, recipientId)) {
                         mView.showNewElement(mService.getNewMessages(senderId, recipientId));
                     }
                 } catch (IOException e) {

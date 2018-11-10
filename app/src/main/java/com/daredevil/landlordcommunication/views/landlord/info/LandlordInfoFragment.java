@@ -271,7 +271,9 @@ public class LandlordInfoFragment extends Fragment implements
 
     @Override
     public void showMessagesInAdapter(List<Messages> messages) {
-        runOnUi(() -> mAdapter.addAll(messages));
+        runOnUi(() -> {
+            mAdapter.clear();
+            mAdapter.addAll(messages);});
     }
 
     private void spinner() {

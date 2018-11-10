@@ -172,7 +172,9 @@ public class TenantInfoFragment extends Fragment implements
 
     @Override
     public void showMessagesInAdapter(List<Messages> messages) {
-        runOnUi(() -> mAdapter.addAll(messages));
+        runOnUi(() -> {
+            mAdapter.clear();
+            mAdapter.addAll(messages);});
     }
 
     private void runOnUi(Runnable action) {

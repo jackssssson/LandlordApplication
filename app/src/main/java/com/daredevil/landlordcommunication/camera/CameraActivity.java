@@ -69,7 +69,10 @@ public class CameraActivity extends DaggerAppCompatActivity implements EasyImage
     public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
         String path = imageFile.getPath();
         Bitmap bitmap = BitmapFactory.decodeFile(path);
-        Bitmap bitmap1 = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth()/4, bitmap.getHeight()/4, true);
+        Bitmap bitmap1 = Bitmap.createScaledBitmap(bitmap,
+                bitmap.getWidth()/4,
+                bitmap.getHeight()/4,
+                true);
         mPhoto.setImageBitmap(bitmap1);
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

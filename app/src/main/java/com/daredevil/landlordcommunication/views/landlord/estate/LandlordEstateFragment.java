@@ -93,7 +93,6 @@ public class LandlordEstateFragment extends Fragment implements
     public void showEstateCreated() {
         runOnUi(() -> {
             Toast.makeText(getContext(), "Estate created", Toast.LENGTH_LONG).show();
-            //startActivity(new Intent(getActivity(), LandlordLogInActivity.class));
             Objects.requireNonNull(getActivity()).finish();
         });
     }

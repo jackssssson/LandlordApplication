@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,21 +23,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.daredevil.landlordcommunication.R;
 import com.daredevil.landlordcommunication.models.dto.UserDTO;
 import com.daredevil.landlordcommunication.notification.MyNotification;
 import com.daredevil.landlordcommunication.views.CreateUser.CreateUserActivity;
 import com.daredevil.landlordcommunication.views.landlord.LandlordLogInActivity;
 import com.daredevil.landlordcommunication.views.tenant.TenantLogInActivity;
-
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Objects;
-
-
 import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
@@ -61,7 +55,7 @@ public class InitialScreenFragment extends Fragment implements
     Button mLogIn;
 
     @BindView(R.id.rl_initial)
-    RelativeLayout mRelativelayout;
+    RelativeLayout mRelativeLayout;
 
     @BindView(R.id.pb_initial)
     ProgressBar mProgressBar;
@@ -202,7 +196,7 @@ public class InitialScreenFragment extends Fragment implements
 
         Objects.requireNonNull(alarmManager).setRepeating(
                 AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                60000, pendingIntent);
+                AlarmManager.INTERVAL_HOUR, pendingIntent);
 
 
     }
@@ -252,12 +246,12 @@ public class InitialScreenFragment extends Fragment implements
 
     private void showLoading(){
         mProgressBar.setVisibility(View.VISIBLE);
-        mRelativelayout.setVisibility(View.GONE);
+        mRelativeLayout.setVisibility(View.GONE);
     }
 
     private void hideLoading(){
         mProgressBar.setVisibility(View.GONE);
-        mRelativelayout.setVisibility(View.VISIBLE);
+        mRelativeLayout.setVisibility(View.VISIBLE);
     }
 
 }

@@ -10,7 +10,6 @@ public class User implements Serializable {
     private String userEmail;
     private String userName;
     private String userPassword;
-    //private BankAccount bankAccount;
     private Estates estate;
 
     public User(int userid, String userEmail, String userName,
@@ -19,7 +18,6 @@ public class User implements Serializable {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPassword = userPassword;
-        //this.bankAccount = bankAccount;
         this.estate = estate;
     }
 

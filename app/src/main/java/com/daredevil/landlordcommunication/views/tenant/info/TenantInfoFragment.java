@@ -13,7 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -80,6 +82,15 @@ public class TenantInfoFragment extends Fragment implements
     @BindView(R.id.spinner_tenant_messages)
     Spinner mSpinner;
 
+    @BindView(R.id.ll_tenant_info_id)
+    LinearLayout mLinearLayout;
+
+    @BindView(R.id.pb_tenant_info)
+    ProgressBar mProgressBar;
+
+    @BindView(R.id.pb_tenant_info_adapter)
+    ProgressBar mAdapterProgressBar;
+
     private String spinnerMessage;
     private ArrayAdapter<Messages> mAdapter;
     private Presenter presenter;
@@ -105,6 +116,8 @@ public class TenantInfoFragment extends Fragment implements
         instantiateAdapter();
 
         spinner();
+
+        showLoading();
 
         mListView.setAdapter(mAdapter);
 
@@ -147,7 +160,7 @@ public class TenantInfoFragment extends Fragment implements
             mUserName.setText(userDTO.getUserName());
             mUserEmail.setText(userDTO.getUserEmail());
             mUserRating.setText(userDTO.getUserRating());
-            mUserDueDate.setText(estate.getDuedate());
+            mUserDueDate.setText(estate.getDuedate().substring(0, 10).replace("-", "."));
             mUserOwed.setText(String.valueOf(estate.getPrice()));
         });
     }
@@ -178,7 +191,9 @@ public class TenantInfoFragment extends Fragment implements
     }
 
     private void runOnUi(Runnable action) {
-        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+        if(getActivity()==null)
+            return;
+        getActivity().runOnUiThread(action);
     }
 
     private void buttonRate() {
@@ -248,5 +263,37 @@ public class TenantInfoFragment extends Fragment implements
                 return view;
             }
         };
+    }
+
+    @Override
+    public void showLoading(){
+        runOnUi(()->{
+            mProgressBar.setVisibility(View.VISIBLE);
+            mLinearLayout.setVisibility(View.GONE);
+        });
+    }
+
+    @Override
+    public void hideLoading(){
+        runOnUi(()->{
+            mProgressBar.setVisibility(View.GONE);
+            mLinearLayout.setVisibility(View.VISIBLE);
+        });
+    }
+
+    @Override
+    public void showAdapterLoading(){
+        runOnUi(()-> {
+            mListView.setVisibility(View.GONE);
+            mAdapterProgressBar.setVisibility(View.VISIBLE);
+        });
+    }
+
+    @Override
+    public void hideAdapterLoading(){
+        runOnUi(()-> {
+            mListView.setVisibility(View.VISIBLE);
+            mAdapterProgressBar.setVisibility(View.GONE);
+        });
     }
 }

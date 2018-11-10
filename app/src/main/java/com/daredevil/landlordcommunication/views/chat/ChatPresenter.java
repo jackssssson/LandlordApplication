@@ -37,7 +37,7 @@ public class ChatPresenter implements Presenter {
         this.recipientId = recipientId;
         mAsyncRunner.runInBackground(() -> {
             try {
-                mView.showLoading();
+
                 if (mService.checkForMessages(senderId, recipientId)) {
                     List<Messages> messages = mService.getMessages(senderId, recipientId);
                     mView.showAdapter(messages);

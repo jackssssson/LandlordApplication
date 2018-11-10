@@ -122,6 +122,8 @@ public class CreateUserFragment extends Fragment implements
     }
 
     private void runOnUi(Runnable action) {
-        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+        if(getActivity()==null)
+            return;
+        getActivity().runOnUiThread(action);
     }
 }

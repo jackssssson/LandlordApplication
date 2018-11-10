@@ -7,9 +7,11 @@
     tools:context=".views.landlord.info.LandlordInfoFragment">
 
     <LinearLayout
+        android:id="@+id/ll_landlord_info_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:visibility="visible"
         >
 
         <RelativeLayout
@@ -319,17 +321,30 @@
 
         </RelativeLayout>
 
-        <ListView
-            android:id="@+id/lv_landlord_info"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_edit_text"
-            >
+            android:layout_weight="1">
+            <ListView
+                android:id="@+id/lv_landlord_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_edit_text"
+                android:visibility="gone"
+                >
+            </ListView>
+
+            <ProgressBar
+                android:id="@+id/pb_landlord_info_adapter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                >
 
 
 
-        </ListView>
+            </ProgressBar>
+        </RelativeLayout>
 
        <LinearLayout
            android:layout_width="match_parent"
@@ -364,5 +379,10 @@
 
        </LinearLayout>
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/pb_landlord_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </FrameLayout>

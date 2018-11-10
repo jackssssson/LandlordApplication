@@ -15,4 +15,12 @@ public interface View {
     void buttonChat(int id);
 
     void showMessagesInAdapter(List<Messages> messages);
+
+    void hideLoading();
+
+    void showLoading();
+
+    void hideAdapterLoading();
+
+    void showAdapterLoading();
 }

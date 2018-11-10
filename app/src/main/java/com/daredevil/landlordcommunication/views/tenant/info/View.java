@@ -18,4 +18,12 @@ public interface View {
     void showEstate(Estates estate);
 
     void showMessagesInAdapter(List<Messages> messages);
+
+    void hideLoading();
+
+    void showLoading();
+
+    void hideAdapterLoading();
+
+    void showAdapterLoading();
 }

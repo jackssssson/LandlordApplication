@@ -45,6 +45,7 @@ public class TenantInfoPresenter implements Presenter{
                 }
 
                 mView.showUserDTO(userDTO);
+                mView.hideLoading();
             }
         });
     }
@@ -104,6 +105,7 @@ public class TenantInfoPresenter implements Presenter{
     public void getMessagesForAdapter(int id) {
         mAsyncRunner.runInBackground(() -> {
             try {
+                mView.showAdapterLoading();
                 String result = mService.checkForEstateMessage(id);
 
                 if (result.equals("false")) {
@@ -112,6 +114,7 @@ public class TenantInfoPresenter implements Presenter{
 
                 List<Messages> messages = mService.getMessagesForAdapter(id);
                 mView.showMessagesInAdapter(messages);
+                mView.hideAdapterLoading();
             } catch (IOException e) {
                 e.printStackTrace();
             }

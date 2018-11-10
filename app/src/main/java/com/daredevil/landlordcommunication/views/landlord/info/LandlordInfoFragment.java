@@ -13,7 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -88,6 +90,15 @@ public class LandlordInfoFragment extends Fragment implements
     @BindView(R.id.spinner_messages)
     Spinner mSpinner;
 
+    @BindView(R.id.ll_landlord_info_id)
+    LinearLayout mLinearLayout;
+
+    @BindView(R.id.pb_landlord_info)
+    ProgressBar mProgressBar;
+
+    @BindView(R.id.pb_landlord_info_adapter)
+    ProgressBar mAdapterProgressBar;
+
 
     private ArrayAdapter<Messages> mAdapter;
     private Presenter presenter;
@@ -112,8 +123,9 @@ public class LandlordInfoFragment extends Fragment implements
 
         instantiateAdapter();
 
-
         spinner();
+
+        showLoading();
 
         mListView.setAdapter(mAdapter);
 
@@ -171,7 +183,7 @@ public class LandlordInfoFragment extends Fragment implements
             }
 
             mUserIsOccupied.setText(occupied);
-            mDueDate.setText(estates.getDuedate());
+            mDueDate.setText(estates.getDuedate().substring(0, 10).replace("-", "."));
             mUserOwed.setText(String.valueOf(estates.getPrice()));
         });
     }
@@ -182,7 +194,9 @@ public class LandlordInfoFragment extends Fragment implements
     }
 
     private void runOnUi(Runnable action) {
-        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+        if(getActivity()==null)
+            return;
+        getActivity().runOnUiThread(action);
     }
 
     private void buttonRate() {
@@ -310,5 +324,37 @@ public class LandlordInfoFragment extends Fragment implements
                 return view;
             }
         };
+    }
+
+    @Override
+    public void showLoading(){
+        runOnUi(()->{
+            mProgressBar.setVisibility(View.VISIBLE);
+            mLinearLayout.setVisibility(View.GONE);
+        });
+    }
+
+    @Override
+    public void hideLoading(){
+        runOnUi(()->{
+            mProgressBar.setVisibility(View.GONE);
+            mLinearLayout.setVisibility(View.VISIBLE);
+        });
+    }
+
+    @Override
+    public void showAdapterLoading(){
+        runOnUi(()-> {
+            mListView.setVisibility(View.GONE);
+            mAdapterProgressBar.setVisibility(View.VISIBLE);
+        });
+    }
+
+    @Override
+    public void hideAdapterLoading(){
+        runOnUi(()-> {
+            mListView.setVisibility(View.VISIBLE);
+            mAdapterProgressBar.setVisibility(View.GONE);
+        });
     }
 }

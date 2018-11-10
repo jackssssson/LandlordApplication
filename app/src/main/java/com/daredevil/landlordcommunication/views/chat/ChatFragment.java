@@ -84,6 +84,8 @@ public class ChatFragment extends Fragment implements
 
         ButterKnife.bind(this, view);
 
+        showLoading();
+
         instantiateAdapter();
 
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
@@ -172,7 +174,9 @@ public class ChatFragment extends Fragment implements
     }
 
     private void runOnUi(Runnable action) {
-        Objects.requireNonNull(getActivity()).runOnUiThread(action);
+        if(getActivity()==null)
+            return;
+        getActivity().runOnUiThread(action);
     }
 
     private void buttonSendChat() {

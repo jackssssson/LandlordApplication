@@ -145,6 +145,8 @@ public class LandlordInfoFragment extends Fragment implements
 
         buttonSetOwed();
 
+        mUserIsOccupied.setText("No");
+
         mButtonChat.setOnClickListener(v -> presenter.chatClicked());
 
         mButtonSend.setOnClickListener(v -> presenter.postEstateMessage(
@@ -177,9 +179,9 @@ public class LandlordInfoFragment extends Fragment implements
 
             String occupied;
             if (estates.isOccupied()) {
-                occupied = "true";
+                occupied = "Yes";
             } else {
-                occupied = "false";
+                occupied = "No";
             }
 
             mUserIsOccupied.setText(occupied);

@@ -45,8 +45,9 @@ public class LandlordInfoPresenter implements Presenter {
                 }
 
                 mView.showUserDTO(userDTO);
-                mView.hideLoading();
+
             }
+            mView.hideLoading();
         });
     }
 

@@ -27,7 +27,8 @@ public class Messages implements Serializable {
         this.sender = sender;
     }
 
-    public Messages(String textMessage, String messageType, String timeStamp, UserDTO sender, String imageMessage) {
+    public Messages(String textMessage, String messageType, String timeStamp,
+                    UserDTO sender, String imageMessage) {
         this.textMessage = textMessage;
         this.messageType = messageType;
         this.timeStamp = timeStamp;
@@ -70,7 +71,7 @@ public class Messages implements Serializable {
 
     @Override
     public String toString() {
-        return getTimeStamp()+ "\n" +sender.getUserName() + ": " + getTextMessage();
+        return sender.getUserName() + ": " + getTextMessage();
     }
 
 
@@ -80,5 +81,9 @@ public class Messages implements Serializable {
 
     public void setImageMessage(String imageMessage) {
         this.imageMessage = imageMessage;
+    }
+
+    public boolean equals(Object o){
+        return getClass() == o.getClass();
     }
 }

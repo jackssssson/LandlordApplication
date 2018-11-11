@@ -44,3 +44,6 @@ if you are a tenant or a landlord.*
 ![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/12.jpg)
 ![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/13.jpg)
 ![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/14.jpg)
+
+**<h1>Android url:</h1>** https://github.com/jackssssson/LandlordApplication
+**<h1>Spring url:</h1>** https://github.com/jackssssson/LandlordServer

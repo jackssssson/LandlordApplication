@@ -146,11 +146,15 @@ public class LandlordInfoFragment extends Fragment implements
         buttonSetOwed();
 
         mUserIsOccupied.setText("No");
+        mUserOwed.setText(String.valueOf(estates.getPrice()));
 
         mButtonChat.setOnClickListener(v -> presenter.chatClicked());
 
-        mButtonSend.setOnClickListener(v -> presenter.postEstateMessage(
-                spinnerMessage, estates.getEstateid(), userId));
+        mButtonSend.setOnClickListener(v -> {
+            presenter.postEstateMessage(
+                spinnerMessage, estates.getEstateid(), userId);
+            presenter.getMessagesForAdapter(estates.getEstateid());
+        });
 
         mSpinner.setOnItemSelectedListener(this);
 

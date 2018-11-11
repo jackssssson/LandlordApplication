@@ -56,14 +56,14 @@ public class MyNotification extends BroadcastReceiver {
                 getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String[] str=new String[1];
         boolean[] isFinished=new boolean[1];
-        isFinished[0]=true;
+        isFinished[0]=false;
         new AsyncRunnerImpl().runInBackground(() -> {
             try {
                 str[0]=userService.getNotification(share.getString("user_name", ""));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            isFinished[0]=false;
+            isFinished[0]=true;
         });
         try {
             Thread.sleep(750);

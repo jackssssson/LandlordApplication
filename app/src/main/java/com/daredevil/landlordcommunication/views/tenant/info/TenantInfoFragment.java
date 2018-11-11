@@ -133,8 +133,11 @@ public class TenantInfoFragment extends Fragment implements
 
         mButtonPay.setOnClickListener(v -> presenter.payRent(mValueEnter.getText().toString(), estate.getEstateid()));
 
-        mButtonSend.setOnClickListener(v -> presenter.postEstateMessage(
-                spinnerMessage, estate.getEstateid(), tenantId));
+        mButtonSend.setOnClickListener(v -> {
+            presenter.postEstateMessage(
+                    spinnerMessage, estate.getEstateid(), tenantId);
+            presenter.getMessagesForAdapter(estate.getEstateid());
+        });
 
         mSpinner.setOnItemSelectedListener(this);
 

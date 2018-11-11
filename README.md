@@ -30,3 +30,17 @@ if you are a tenant or a landlord.*
 - chat
 
 **<h1>Images: </h1>**
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/1.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/2.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/3.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/4.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/5.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/6.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/7.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/8.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/9.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/10.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/11.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/12.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/13.jpg)
+![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/14.jpg)

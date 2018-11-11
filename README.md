@@ -1,33 +1,24 @@
-# LandlordApplication
+# Landlord Studio
 
-**<h1>Project name:</h1>** "Landlord Studio"
-
-**<h1>Overall:</h1>**
+**<h1>Description:</h1>**
  
- *The android application "Landlord Studio" was created in accordance to Telerik Academy final project assignment. It is 
- designed with the MVP design pattern with dependency injection with Dagger. The backend side of this project was built with Spring 
- and Hibernate for relational database access with MySQL.*
+ *This is a project for an android application about communication between landlords and tenants.It allows you to create users with 
+ two rows: tenant and landlord. Landlords can create new estates, set their due date and see their estates. Tenants can rent estates
+ and see the estates they rented. Every user can chat with his tenant/landlord and post messages in a message queue in the estate.*
 
 **<h1>Contributors:</h1>**
-Jivko Jelqzkov
+Jivko Jelqzkov https://github.com/jackssssson
 
-Denis Pavlov
-
-**<h1>Project purpose:</h1>**
-
-*Login with custom user account, social media
-accounts or sing up. The app is individualised depending on the user account type and gives you different options 
-if you are a tenant or a landlord.*
+Denis Pavlov https://github.com/galliber
 
 **<h1>Functionalities:</h1>**
-- login
-- sign up
-- notifications 5 days before the rent is due
-- rate your tenant or landlord
-- change rent amount
-- pay rent
-- rent unoccupied properties
-- chat
+- Login.
+- Create user.
+- Create estate.
+- Rent estate.
+- Send photo.
+- See all unoccupied estates.
+- Chat.
 
 **<h1>Images: </h1>**
 ![Alt text](https://github.com/jackssssson/LandlordApplication/blob/master/Pictures/1.jpg)

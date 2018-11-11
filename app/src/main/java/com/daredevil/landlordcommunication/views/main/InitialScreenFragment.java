@@ -166,26 +166,7 @@ public class InitialScreenFragment extends Fragment implements
     public void setNotification(String userNotification){
         createNotificationChannel();
 
-        Intent onClickIntent = new Intent(getActivity(), InitialScreenActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
-        stackBuilder.addNextIntentWithParentStack(onClickIntent);
-        PendingIntent onClickPendingIntent =
-                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification.Builder builder= null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            builder = new Notification.Builder(getActivity(), CHANEL_ID);
-        } else {
-            builder=new Notification.Builder(getActivity());
-        }
-        builder.setContentTitle("Landlord Communication:");
-        builder.setContentText(userNotification);
-        builder.setSmallIcon(android.R.drawable.arrow_up_float);
-        builder.setContentIntent(onClickPendingIntent);
-        Notification noti=builder.build();
         Intent notiIntent=new Intent(getActivity(), MyNotification.class);
-        notiIntent.putExtra(MyNotification.NOTI_ID, 1);
-        notiIntent.putExtra(MyNotification.NOTI, noti);
         PendingIntent pendingIntent=PendingIntent.getBroadcast(getActivity(),
                 0, notiIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 

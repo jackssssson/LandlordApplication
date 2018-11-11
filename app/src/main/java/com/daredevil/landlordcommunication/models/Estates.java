@@ -10,7 +10,7 @@ public class Estates implements Serializable {
     private boolean occupied;
     private float price;
     private String address;
-    private String duedate;
+    private String dueDate;
 
 
     public Estates(int estateid,  boolean occupied, float price, String address, String duedate) {
@@ -18,7 +18,7 @@ public class Estates implements Serializable {
         this.occupied = occupied;
         this.price = price;
         this.address = address;
-        this.duedate = duedate;
+        this.dueDate = duedate;
     }
 
     public Estates(String estateName, float price, String address) {
@@ -33,7 +33,7 @@ public class Estates implements Serializable {
         this.occupied = occupied;
         this.price = price;
         this.address = address;
-        this.duedate = duedate;
+        this.dueDate = duedate;
     }
 
     public int getEstateid() {
@@ -69,11 +69,11 @@ public class Estates implements Serializable {
     }
 
     public String getDuedate() {
-        return duedate;
+        return dueDate;
     }
 
     public void setDuedate(String duedate) {
-        this.duedate = duedate;
+        this.dueDate = duedate;
     }
 
     @Override

@@ -136,4 +136,9 @@ public class UserDTO implements Serializable{
     public void setUserid(int userid) {
         this.userid = userid;
     }
+
+    public boolean equals(Object o){
+        return getClass() == o.getClass();
+    }
+
 }

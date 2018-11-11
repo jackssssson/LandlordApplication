@@ -96,4 +96,9 @@ public class Estates implements Serializable {
     public void setEstateName(String estateName) {
         this.estateName = estateName;
     }
+
+    public boolean equals(Object o){
+        return getClass() == o.getClass();
+    }
+
 }

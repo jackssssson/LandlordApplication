@@ -131,6 +131,6 @@ public class InMemoryService implements UserService {
 
     @Override
     public String postEstateMessage(String spinnerMessage, int estateId, int userId) throws IOException {
-        return null;
+        return mUserRepository.postEstateMessage(spinnerMessage, estateId, userId);
     }
 }

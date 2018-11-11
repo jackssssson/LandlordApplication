@@ -39,4 +39,8 @@ public class MessageDTO implements Serializable{
     public void setRecipientId(int recipientId) {
         this.recipientId = recipientId;
     }
+
+    public boolean equals(Object o){
+        return getClass() == o.getClass();
+    }
 }

@@ -196,7 +196,7 @@ public class InitialScreenFragment extends Fragment implements
 
         Objects.requireNonNull(alarmManager).setRepeating(
                 AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_HOUR, pendingIntent);
+                60000, pendingIntent);
 
 
     }

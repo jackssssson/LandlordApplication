@@ -160,7 +160,8 @@ public class TenantInfoFragment extends Fragment implements
             mUserName.setText(userDTO.getUserName());
             mUserEmail.setText(userDTO.getUserEmail());
             mUserRating.setText(userDTO.getUserRating());
-            mUserDueDate.setText(estate.getDuedate().substring(0, 10).replace("-", "."));
+            if (estate.getDuedate() != null)
+                mUserDueDate.setText(estate.getDuedate().substring(0, 10).replace("-", "."));
             mUserOwed.setText(String.valueOf(estate.getPrice()));
         });
     }
@@ -187,11 +188,12 @@ public class TenantInfoFragment extends Fragment implements
     public void showMessagesInAdapter(List<Messages> messages) {
         runOnUi(() -> {
             mAdapter.clear();
-            mAdapter.addAll(messages);});
+            mAdapter.addAll(messages);
+        });
     }
 
     private void runOnUi(Runnable action) {
-        if(getActivity()==null)
+        if (getActivity() == null)
             return;
         getActivity().runOnUiThread(action);
     }
@@ -248,9 +250,9 @@ public class TenantInfoFragment extends Fragment implements
         spinnerMessage = "Please select a message";
     }
 
-    private void instantiateAdapter(){
+    private void instantiateAdapter() {
         mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
-                android.R.layout.simple_list_item_1){
+                android.R.layout.simple_list_item_1) {
             @NonNull
             @Override
             public View getView(int position, View convertView, @NonNull ViewGroup parent) {
@@ -266,32 +268,32 @@ public class TenantInfoFragment extends Fragment implements
     }
 
     @Override
-    public void showLoading(){
-        runOnUi(()->{
+    public void showLoading() {
+        runOnUi(() -> {
             mProgressBar.setVisibility(View.VISIBLE);
             mLinearLayout.setVisibility(View.GONE);
         });
     }
 
     @Override
-    public void hideLoading(){
-        runOnUi(()->{
+    public void hideLoading() {
+        runOnUi(() -> {
             mProgressBar.setVisibility(View.GONE);
             mLinearLayout.setVisibility(View.VISIBLE);
         });
     }
 
     @Override
-    public void showAdapterLoading(){
-        runOnUi(()-> {
+    public void showAdapterLoading() {
+        runOnUi(() -> {
             mListView.setVisibility(View.GONE);
             mAdapterProgressBar.setVisibility(View.VISIBLE);
         });
     }
 
     @Override
-    public void hideAdapterLoading(){
-        runOnUi(()-> {
+    public void hideAdapterLoading() {
+        runOnUi(() -> {
             mListView.setVisibility(View.VISIBLE);
             mAdapterProgressBar.setVisibility(View.GONE);
         });

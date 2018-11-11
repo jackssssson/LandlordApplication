@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class LandlordInfoFragment extends Fragment implements
-        com.daredevil.landlordcommunication.views.landlord.info.View, AdapterView.OnItemSelectedListener{
+        com.daredevil.landlordcommunication.views.landlord.info.View, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.user_name_info)
     TextView mUserName;
@@ -148,7 +148,7 @@ public class LandlordInfoFragment extends Fragment implements
         mButtonChat.setOnClickListener(v -> presenter.chatClicked());
 
         mButtonSend.setOnClickListener(v -> presenter.postEstateMessage(
-               spinnerMessage, estates.getEstateid(), userId));
+                spinnerMessage, estates.getEstateid(), userId));
 
         mSpinner.setOnItemSelectedListener(this);
 
@@ -183,7 +183,8 @@ public class LandlordInfoFragment extends Fragment implements
             }
 
             mUserIsOccupied.setText(occupied);
-            mDueDate.setText(estates.getDuedate().substring(0, 10).replace("-", "."));
+            if (estates.getDuedate() != null)
+                mDueDate.setText(estates.getDuedate().substring(0, 10).replace("-", "."));
             mUserOwed.setText(String.valueOf(estates.getPrice()));
         });
     }
@@ -194,7 +195,7 @@ public class LandlordInfoFragment extends Fragment implements
     }
 
     private void runOnUi(Runnable action) {
-        if(getActivity()==null)
+        if (getActivity() == null)
             return;
         getActivity().runOnUiThread(action);
     }
@@ -287,7 +288,8 @@ public class LandlordInfoFragment extends Fragment implements
     public void showMessagesInAdapter(List<Messages> messages) {
         runOnUi(() -> {
             mAdapter.clear();
-            mAdapter.addAll(messages);});
+            mAdapter.addAll(messages);
+        });
     }
 
     private void spinner() {
@@ -309,9 +311,9 @@ public class LandlordInfoFragment extends Fragment implements
         spinnerMessage = "Please select a message";
     }
 
-    private void instantiateAdapter(){
+    private void instantiateAdapter() {
         mAdapter = new ArrayAdapter<Messages>(Objects.requireNonNull(getContext()),
-                android.R.layout.simple_list_item_1){
+                android.R.layout.simple_list_item_1) {
             @NonNull
             @Override
             public View getView(int position, View convertView, @NonNull ViewGroup parent) {
@@ -327,32 +329,32 @@ public class LandlordInfoFragment extends Fragment implements
     }
 
     @Override
-    public void showLoading(){
-        runOnUi(()->{
+    public void showLoading() {
+        runOnUi(() -> {
             mProgressBar.setVisibility(View.VISIBLE);
             mLinearLayout.setVisibility(View.GONE);
         });
     }
 
     @Override
-    public void hideLoading(){
-        runOnUi(()->{
+    public void hideLoading() {
+        runOnUi(() -> {
             mProgressBar.setVisibility(View.GONE);
             mLinearLayout.setVisibility(View.VISIBLE);
         });
     }
 
     @Override
-    public void showAdapterLoading(){
-        runOnUi(()-> {
+    public void showAdapterLoading() {
+        runOnUi(() -> {
             mListView.setVisibility(View.GONE);
             mAdapterProgressBar.setVisibility(View.VISIBLE);
         });
     }
 
     @Override
-    public void hideAdapterLoading(){
-        runOnUi(()-> {
+    public void hideAdapterLoading() {
+        runOnUi(() -> {
             mListView.setVisibility(View.VISIBLE);
             mAdapterProgressBar.setVisibility(View.GONE);
         });

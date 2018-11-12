@@ -84,7 +84,7 @@ public class InitialScreenFragment extends Fragment implements
 
         showLoading();
         if (isLoggedIn()){
-            presenter.showNotification(shared_user_name);
+
             try {
                 presenter.logInUser(shared_user_name, shared_password);
 
@@ -133,15 +133,21 @@ public class InitialScreenFragment extends Fragment implements
             if (user.getUserName() == null) {
                 Toast.makeText(getContext(), "Wrong user or password",
                         Toast.LENGTH_LONG).show();
+                savePreference("", "");
+                hideLoading();
+                cancelNotifications();
+
             } else {
                 if (user.getType().equals("Landlord")) {
                     Intent intent = new Intent(getActivity(), LandlordLogInActivity.class);
                     intent.putExtra("user", user);
+                    presenter.showNotification(shared_user_name);
 
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(getActivity(), TenantLogInActivity.class);
                     intent.putExtra("user", user);
+                    presenter.showNotification(shared_user_name);
                     startActivity(intent);
                 }
             }

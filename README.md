@@ -2,9 +2,15 @@
 
 **<h1>Description:</h1>**
  
- *This is a project for an android application about communication between landlords and tenants.It allows you to create users with 
+ *This is a project for an android application about communication between landlords and tenants. It allows you to create users with 
  two rows: tenant and landlord. Landlords can create new estates, set their due date and see their estates. Tenants can rent estates
- and see the estates they rented. Every user can chat with his tenant/landlord and post messages in a message queue in the estate.*
+ and see the estates they rented. Every user can chat with his tenant/landlord and post messages in a message queue in the estate.
+ 
+ The back-end is a Spring server that connects to a MySQL database using Hibernate.
+ 
+ The database is auto-generated from Hibernate.
+ 
+ The front-end is an Android mobile application that connects to the server via HTTP requests.*
 
 **<h1>Contributors:</h1>**
 Jivko Jelqzkov https://github.com/jackssssson
@@ -18,6 +24,7 @@ Denis Pavlov https://github.com/galliber
 - Rent estate.
 - Send photo.
 - See all unoccupied estates.
+- Delete estate messages 3 months old
 - Chat.
 
 **<h1>Images: </h1>**
